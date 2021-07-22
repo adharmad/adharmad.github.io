@@ -1,0 +1,1065 @@
+Date: Wed, 20 Jul 1994 10:13:05 -0700
+From: braden@ISI.EDU (Bob Braden)
+Message-Id: <199407201713.AA20911@zephyr.isi.edu>
+To: end2end-interest@ISI.EDU, hkim@gradient.cis.upenn.edu
+Subject: Re: Is there a log?
+
+
+Actually, ISI does keep a log, but it is not publicly available
+at present.  We could make it available, if there is interest.
+However, you would not find the msgs you want there.
+
+Attached are the Van Jacobson Classic messages on fast
+recovery/retransmit, from my private cache.  This should give
+you something to digest...
+
+Bob Braden
+
+_______________________________________________________________
+
+>From @A.ISI.EDU:tcp-ip-RELAY@SRI-NIC.ARPA Fri Feb 12 02:52:00 1988
+
+To: tcp-ip@sri-nic.arpa
+Subject: Dynamic Congestion Avoidance / Control (long message)
+Date: Thu, 11 Feb 88 22:17:04 PST
+From: Van Jacobson <van@lbl-csam.arpa>
+Status: RO
+Content-Length: 33790
+X-Lines: 688
+
+A dozen people forwarded Phil Karn's question about TCP
+congestion control to me, usually with pithy subject lines like
+"how much longer till you publish something?".  I do have three
+RFCs and two papers in various stages of preparation, but innate
+laziness combined with this semester's unexpectedly large
+teaching load means it will probably be late spring before
+anything gets finished.  In the interim, here's a sort-of
+overview of our congestion control work.
+
+I should point out these algorithms are joint work with Mike
+Karels of UC Berkeley (I guess my name got stuck on things
+because I make the presentations while Mike is off fighting the
+battles on EGP or routing or domains or ...).  I should also
+mention that there's not a whole lot that's original.  In
+particular, the two most important algorithms are quite close to
+(prior) work done by DEC's Raj Jain.  This was by accident in
+one case and deliberate in the other.
+
+This stuff has been discussed on the ietf and end2end lists
+(Phil participated in some of those discussions and was, in
+fact, one of the early beta testers for our new tcp --  I have
+this nagging suspicion I was set up).  I've appended a couple of
+those mail messages.
+
+
+Mike and I have put a number (six, actually) of new algorithms
+into the 4bsd tcp.  Our own measurements and the reports of our
+beta testers suggest that the result is quite good at dealing
+with current, congested conditions on the Internet.  The various
+algorithms were developed and presented at different times over
+the past year and it may not be clear to anyone but the
+developers how, or if, the pieces relate.
+
+Most of the changes spring from one observation:  The flow on a
+TCP connection (or ISO TP-4 or XNS SPP connection) should, by
+the design of the protocol, obey a `conservation of packets'
+principle.  And, if this principle were obeyed, congestion
+collapse would become the exception rather than the rule.
+Thus congestion control turns into finding places where
+conservation is violated and fixing them.
+
+By `conservation of packets' I mean the following:
+If you look at the connection "in equilibrium", i.e., running
+stably with a full window of data in transit, you notice that
+the flow is what a physicist would call "conservative":  A new
+packet isn't put into the network until an old packet leaves.
+Two scientific disciplines that deal with flow, hydrodynamics
+and thermodynamics, predict that systems with this conservation
+property should be extremely robust in the face of congestion.
+Observation of the Arpanet or NSFNet suggests that they were not
+particularly robust in the face of congestion.  From whence
+comes the discrepancy?
+
+[Someone asked me for a simple explanation of why a conservative
+flow system should be stable under load.  I've been trying to
+come up with one, thus far without success -- absolutely nothing
+in hydrodynamics admits to simple explanations.  The shortest
+explanation is that the inhomogenous forcing terms in the
+Fokker-Planck equation vanish and the remaining terms are highly
+damped.  But I don't suppose this means much to anyone (it
+doesn't mean much to me).  My intuition is that conservation
+means there's never an `energy difference' between the outside
+world and the system that the system could use to `pump up' an
+instability to a state of collapse.  Thus the only mechanism the
+system can use for self-destruction is to re-arrange its
+internal energy and create a difference large enough to break
+something.  But entropy (or diffusion) always trys to erase
+large internal energy differences so collapse via these
+mechanisms is improbable.  Possible, but improbable, at least
+until the load gets so outrageous that collective, non-ergodic
+effects start to dominate the overall behavior.]
+
+Packet conservation can fail three ways:
+
+  1) the connection doesn't get to equilibrium, or
+
+  2) a sender injects a packet before an old packet has exited, or
+
+  3) the equilibrium can't be reached because of resource
+     limits along the path.
+
+(1) has to be from a connection starting or restarting after a
+packet loss.  Another way to look at the conservation property
+is to say that the sender uses acks as a "clock" to strobe new
+packets into the network.  Since the receiver can generate acks
+no faster than data packets can get through the network, the
+protocol is "self clocking" (an ack can't go in until a packet
+comes out, a packet can't go in until an ack comes out).  Self
+clocking systems automatically adjust to bandwidth and delay
+variations and have a wide dynamic range (an important issue
+when you realize that TCP spans everything from 800 Mbit/sec
+Cray channels to 1200 bit/sec packet radio links).  But the same
+thing that makes a self-clocked system stable when it's running
+makes it hard to get started -- to get data flowing you want acks
+to clock packets out but to get acks you have to have data flowing.
+
+To get the `clock' started, we came up with an algorithm called
+slow-start that gradually increases the amount of data flowing.
+Although we flatter ourselves that the design of this algorithm
+is quite subtle, the implementation is trivial -- 3 lines of
+code and one new state variable in the sender:
+
+    1) whenever you're starting or restarting after a loss,
+       set your "congestion window" to 1 packet.
+    2) when you get an ack for new data, increase the
+       congestion window by one packet.
+    3) when you send, send the minimum of the receiver's
+       advertised window and the congestion window.
+
+(This is quite similar to Raj Jain's CUTE algorithm described in
+IEEE Transactions on Communications, Oct, '86, although we didn't
+know about CUTE at the time we were developing slowstart).
+
+Actually, the slow-start window increase isn't all that gradual:
+The window opening takes time proportional to log2(W) where W is
+the window size in packets.  This opens the window fast enough
+to have a negligible effect on performance, even on links that
+require a very large window.  And the algorithm guarantees that
+a connection will source data at a rate at most twice the
+maximum possible on the path.  (Without slow-start, by contrast,
+when 10Mb ethernet hosts talk over the 56Kb Arpanet via IP
+gateways, the gateways see a window's worth of packets (8-16)
+delivered at 200 times the path bandwidth.)
+
+Once you can reliably start data flowing, problems (2) and (3)
+have to be addressed.  Assuming that the protocol implementation
+is correct, (2) must represent a failure of sender's retransmit
+timer.  A good round trip time estimator (the core of the
+retransmit timer) is the single most important feature of any
+protocol implementation that expects to survive heavy load.  And
+it almost always gets botched.
+
+One mistake seems to be not estimating the variance of the rtt.
+>From queuing theory we know that rtt and rtt variation increase
+very quickly with load.  Measuring the load by rho (the ratio of
+average arrival rate to average departure rate), the rtt goes up
+like 1/(1-rho) and the variation in rtt goes like 1/(1-rho)^2.
+To make this concrete, if the network is running at 75% of
+capacity (as the Arpanet was in last April's collapse), you
+should expect rtt to vary by a factor of 16 around its mean
+value.  The RFC793 parameter "beta" accounts for rtt variation.
+The suggested value of "2" can adapt to loads of at most 30%.
+Above this point, a connection will respond to load increases by
+retransmitting packets that have only been delayed in transit.
+This makes the network do useless work (wasting bandwidth on
+duplicates of packets that have been or will be delivered) at a
+time when it's known to be having trouble with useful work.
+I.e., this is the network equivalent of pouring gasoline on a
+fire.
+
+We came up a cheap method for estimating variation (see first of
+attached msgs) and the resulting retransmit timer essentially
+eliminates spurious retransmissions.  A pleasant side effect of
+estimating "beta" rather than using a fixed value is that low
+load as well as high load performance improves, particularly
+over high delay paths such as satellite links.
+
+Another timer mistake seems to be in the backoff after a
+retransmit:  If we have to retransmit a packet more than once,
+how should the retransmits be spaced?  It turns out there's only
+one scheme that's likely to work, exponential backoff, but
+proving this is a bit involved (one of the two papers alluded to
+in to opening goes through a proof).  We might finesse a proof
+by noting that a network is, to a very good approximation, a
+linear system.  (That is, it is composed of elements that behave
+like linear operators -- integrators, delays, gain stages,
+etc.).  Linear system theory says that if a system is stable,
+the stability is exponential.  This suggests that if we have a
+system that is unstable (a network subject to random load shocks
+and prone to congestive collapse), the way to stabilize it is to
+add some exponential damping (read: exponential timer backoff)
+to its primary excitation (read: senders, traffic sources).
+
+Once the timers are in good shape, you can state with some
+confidence that a timeout really means a lost packet and not a
+busted timer.  At this point you can do something about (3).
+Packets can get lost for two reasons: they are damaged in
+transit or the network is congested and somewhere on the path
+there was insufficient buffer capacity.  On most of the network
+paths we use, loss due to damage is rare (<<1%) so it is very
+probable that a packet loss is due to congestion in the network.
+
+Say we try to develop a `congestion avoidance' strategy like the
+one Raj Jain, et.al., propose in DEC TR506 and ISO 8473.  It
+must have two components:  The network must be able to signal
+the transport endpoints that congestion is occurring (or about
+to occur).  And the endpoints must have a policy that decreases
+utilization if this signal is received and increases utilization
+if the signal isn't received.
+
+If packet loss is (almost) always due to congestion and if a
+timeout is (almost) always due to a lost packet, we have a good
+candidate for the `network is congested' signal.  Particularly
+since this signal is delivered automatically by all existing
+networks, without special modification (as opposed to, say, ISO
+8473 which requires a new bit in the packet headers and a mod to
+*all* existing gateways to set this bit).
+
+[As a (lengthy) aside:
+Using `lost packets' to communicate information seems to bother
+people.  The second of the two papers mentioned above is devoted
+to analytic and simulation investigations of our algorithm under
+various network conditions.  I'll briefly mention some of the
+objections we've heard and, I think, addressed.
+
+There have been claims that signaling congestion via dropping
+packets will adversely affect total throughput (it's easily
+proved that the opposite is true) or that this signal will be
+`too slow' compared to alternatives (The fundamental frequency
+of the system is set by its average round trip time.  From
+control theory and Nyquist's theorem, any control strategy that
+attempts to respond in less than two round trip times will be
+unstable.  A packet loss is detected in at most two rtt, the
+minimum stable response time).
+
+There have also been claims that this scheme will result in
+unfair or sub-optimal resource allocation (this is untrue if
+equivalent implementations of ISO and our schemes are compared)
+or that mistaking damage for congestion will unnecessarily
+throttle the endpoints on some paths with a high intrinsic loss
+rate (this is mostly untrue -- the scheme we propose is
+analytically tractable so we've worked out its behavior under
+random loss.  It turns out that window flow control schemes just
+don't handle high loss rates well and throughput of a vanilla
+TCP under high, random loss is abysmal.  Adding our congestion
+control scheme makes things slightly worse but the practical
+difference is negligible.  As an example (that we have calculated
+and Jon Crowcroft at UCL has measured), it takes 40 256-byte
+packets to fill the Satnet pipe.  Satnet currently shows a
+random, 1% average packet loss.  The maximum throughput a
+vanilla tcp could achieve at this loss rate is 56% of the 40kbs
+channel bandwidth.  The maximum throughput our TCP can achieve at
+this loss rate is 49% of the channel bandwidth.
+
+In theory, the use of dynamic congestion control should allow
+one to achieve much better throughput under high loss than is
+possible with normal TCP -- performance comparable to, say,
+NETBLT over the same lossy link.  The reason is that regular TCP
+tries to communicate two different things with one number (the
+window field in the packet): the amount of buffer the receiver
+has available and the delay-bandwidth product of the pipe.  Our
+congestion control scheme separates these two numbers.  The
+sender estimates the pipe size so the receiver window need only
+describe the receiver's buffer size.  As long as the receiver
+advertises a sufficiently large buffer, (twice the delay-
+bandwidth product) a 1% loss rate would translate into a 1%
+throughput effect, not a factor-of-two effect.  Of course, we
+have yet to put this theory to test.]
+
+The other part of a congestion avoidance strategy, the endnode
+action, is almost identical in Jain's DEC/ISO scheme and our
+TCP.  This is not an accident (we copied Jain's scheme after
+hearing his presentation at the Boston IETF & realizing that the
+scheme was, in a sense, universal):  The endnode strategy
+follows directly from a first-order time-series model of the
+network.  Say we measure network `load' by average queue length
+over fixed intervals of some appropriate length (something near
+the rtt).  If L(i) is the load at interval i, a network not
+subject to congestion can be modeled by saying L(i) changes
+slowly compared to the sampling time.  I.e.,
+
+    L(i) = N
+
+(the average queue length doesn't change over time).  If the
+network is subject to congestion, this zero'th order model
+breaks down.  The average queue length becomes the sum of two
+terms, the N above that accounts for the average arrival rate
+of new traffic and a new term that accounts for the left-over
+traffic from the last time interval:
+
+    L(i) = N + a L(i-1)
+
+(As pragmatists, we extend the original model just enough to
+explain the new behavior.  What we're doing here is taking the
+first two terms in a taylor series expansion of L(t) when we
+find that just the first term is inadequate.  There is reason to
+believe one would eventually need a three term, second order
+model, but not until the Internet has grown to several times its
+current size.)
+
+When the network is congested, the `a' term must be large and
+the load (queues) will start increasing exponentially.  The only
+way to stabilize the system is if the traffic sources throttle
+back at least as fast as the queues are growing.  Since the way
+a source controls load in a window-based protocol is to adjust
+the size of the window, W, we end up with the sender policy
+
+    On congestion:   W(i) = d W(i-1)    (d < 1)
+
+I.e., a multiplicative decrease of the window size.  (This will
+turn into an exponential decrease over time if the congestion
+persists.)
+
+If there's no congestion, the `a' term must be near zero and the
+network load is about constant.  You have to try to increase the
+bandwidth you're using to find out the current limit (e.g., you
+could have been sharing the path with someone else and converged
+to a window that gives you each half the available bandwidth.  If
+he shuts down, 50% of the bandwidth will get wasted unless you
+make some effort to increase your window size.)  What should the
+increase policy be?
+
+The first thought is to use a symmetric, multiplicative increase,
+possibly with a longer time constant.  E.g.,  W(i) = b W(i-1),
+1 < b <= 1/d.  This is a mistake.  The result will oscillate
+wildly and, on the average, deliver poor throughput.  The reason
+why is tedious to explain.  It has to do with that fact that it
+is easy to drive the net into saturation but hard for the net
+to recover (what Kleinrock, vol.2, calls the "rush-hour effect").
+Thus overestimating the available bandwidth is costly.  But an
+exponential, almost regardless of its time constant, increases
+so quickly that large overestimates are inevitable.
+
+Without justification, I'll simply state that the best increase
+policy is to make small, constant changes to the window size (if
+you've had a control theory course, you've seen the justification):
+
+    On no congestion:   W(i) = W(i-1) + u	(u << the path delay-
+						bandwidth product)
+
+I.e., an additive increase policy.  This is exactly the policy that
+Jain, et.al., suggest in DEC TR-506 and exactly the policy we've
+implemented in TCP.  The only difference in our implementations is
+the choice of constants for `d' and `u'.  We picked .5 and 1 for
+reasons that are partially explained in the second of the attached
+messages.  A more complete analysis is in the second in-progress
+paper (and may be discussed at the upcoming IETF meeting).
+
+All of the preceding has probably made it sound as if the
+dynamic congestion algorithm is hairy but it's not.  Like
+slow-start, it turns out to be three lines of code and one new
+connection state variable (the combined slow-start/congestion
+control algorithm is described in the second of the attached
+msgs).
+
+
+That covers about everything that's been done to date.  It's
+about 1/3 of what we think clearly needs to be done.  The next
+big step is to do the gateway `congestion detection' algorithms
+so that a signal is sent to the endnodes as early as possible
+(but not so early that the gateway ends up starved for traffic).
+The way we anticipate doing these algorithms, gateway `self
+protection' from a mis-behaving host will fall-out for free (that
+host will simply have most of its packets dropped as the gateway
+trys to tell it that it's using more than its fair share).  Thus,
+like the endnode algorithm, the gateway algorithm will improve
+things even if no endnode is modified to do dynamic congestion
+avoidance.  And nodes that do implement congestion avoidance
+will get their fair share of bandwidth and a minimum number of
+packet drops.
+
+Since congestion grows exponentially, detecting it early is
+important.  (If it's detected early, small adjustments to the
+senders' windows will cure it.  Otherwise massive adjustments
+will be necessary to give the net enough spare capacity to pump
+out the backlog.)  But, given the bursty nature of traffic,
+reliable detection is a non-trivial problem.  There is a scheme
+proposed in DEC TR-506 but we think it might have convergence
+problems under high load and/or significant second-order dynamics
+in the traffic.  We are thinking of using some of our earlier
+work on ARMAX models for rtt/queue length prediction as the
+basis of the detection.  Preliminary results suggest that this
+approach works well at high load, is immune to second-order
+effects in the traffic and is cheap enough to compute that it
+wouldn't slow down thousand-packet-per-second gateways.
+
+In addition to the gateway algorithms, we want to apply the
+endnode algorithms to connectionless traffic (e.g., domain
+server queries, RPC requests).  We have the rate-based
+equivalent of the TCP window algorithm worked out (there should
+be a message describing it on the tcp list sometime in the near
+future).  Sun Microsystems has been very interested, and
+supportive, during the development of the TCP congestion control
+(I believe Sun OS 4.0 will ship with our new TCP) and Sun has
+offered to cooperate in developing the RPC dynamic congestion
+control algorithms, using NFS as a test-bed (since NFS is known
+to have congestion problems).
+
+The far future holds some work on controlling second-order, non-
+ergodic effects, adaptively determining the rate constants in
+the control algorithm, and some other things that are too vague
+to mention.
+
+- Van
+
+----------------------------
+
+To: markl@PTT.LCS.MIT.EDU
+
+Subject: Re: interpacket arrival variance and mean
+In-reply-to: Your message of Mon, 08 Jun 87 12:31:33 EDT.
+Date: Mon, 15 Jun 87 06:08:01 PDT
+From: Van Jacobson
+
+Mark -
+
+I'm working on long paper about transport protocol timers (models,
+estimation, implementations, common implementation mistakes, etc.).
+This has me all primed on the subject so attached is a long-winded
+explanation and example C code for estimating the mean and variance
+of a series of measurements.
+
+Though I know your application isn't tcp, I'm going to use a new
+tcp retransmit timer algorithm as an example.  The algorithm
+illustrates the method and, based on 3 months of experiment, is
+much better than the algorithm in rfc793 (though it isn't as good
+as the algorithm I talked about at IETF and am currently debugging).
+
+Theory
+------
+You're probably familiar with the rfc793 algorithm for estimating
+the mean round trip time.  This is the simplest example of a
+class of estimators called "recursive prediction error" or
+"stochastic gradient" algorithms.  In the past 20 years these
+algorithms have revolutionized estimation and control theory so
+it's probably worth while to look at the rfc793 estimator in some
+detail.
+
+Given a new measurement, Meas, of the rtt, tcp updates an
+estimate of the average rtt, Avg, by
+
+	Avg <- (1 - g) Avg  +  g Meas
+
+where g is a "gain" (0 < g < 1) that should be related to the
+signal- to-noise ratio (or, equivalently, variance) of Meas.
+This makes a bit more sense (and computes faster) if we rearrange
+and collect terms multiplied by g to get
+
+	Avg <- Avg + g (Meas - Avg)
+
+We can think of "Avg" as a prediction of the next measurement.
+So "Meas - Avg" is the error in that prediction and the
+expression above says we make a new prediction based on the old
+prediction plus some fraction of the prediction error.  The
+prediction error is the sum of two components: (1) error due to
+"noise" in the measurement (i.e., random, unpredictable effects
+like fluctuations in competing traffic) and (2) error due to a
+bad choice of "Avg".  Calling the random error RE and the
+predictor error PE,
+
+	Avg <- Avg + g RE + g PE
+
+The "g PE" term gives Avg a kick in the right direction while the
+"g RE" term gives it a kick in a random direction.  Over a number
+of samples, the random kicks cancel each other out so this
+algorithm tends to converge to the correct average.  But g
+represents a compromise: We want a large g to get mileage out of
+the PE term but a small g to minimize the damage from the RE
+term.  Since the PE terms move Avg toward the real average no
+matter what value we use for g, it's almost always better to use
+a gain that's too small rather than one that's too large.
+Typical gain choices are .1 - .2 (though it's always a good
+idea to take long look at your raw data before picking a gain).
+
+It's probably obvious that Avg will oscillate randomly around
+the true average and the standard deviation of Avg will be
+something like g sdev(Meas).  Also that Avg converges to the
+true average exponentially with time constant 1/g.  So
+making g smaller gives a stabler Avg at the expense of taking
+a much longer time to get to the true average.
+
+[My paper makes the preceding hand-waving a bit more rigorous
+but I assume no one cares about rigor.  If you do care, check
+out almost any text on digital filtering or estimation theory.]
+
+If we want some measure of the variation in Meas, say to compute
+a good value for the tcp retransmit timer, there are lots of
+choices.  Statisticians love variance because it has some nice
+mathematical properties.  But variance requires squaring (Meas -
+Avg) so an estimator for it will contain two multiplies and a
+large chance of integer overflow.  Also, most of the applications
+I can think of want variation in the same units as Avg and Meas,
+so we'll be forced to take the square root of the variance to use
+it (i.e., probably at least a divide, multiply and two adds).
+
+A variation measure that's easy to compute, and has a nice,
+intuitive justification, is the mean prediction error or mean
+deviation.  This is just the average of abs(Meas - Avg).
+Intuitively, this is an estimate of how badly we've blown our
+recent predictions (which seems like just the thing we'd want to
+set up a retransmit timer).  Statistically, standard deviation
+(= sqrt variance) goes like sqrt(sum((Meas - Avg)^2)) while mean
+deviation goes like sum(sqrt((Meas - Avg)^2)).  Thus, by the
+triangle inequality, mean deviation should be a more "conservative"
+estimate of variation.
+
+If you really want standard deviation for some obscure reason,
+there's usually a simple relation between mdev and sdev.  Eg.,
+if the prediction errors are normally distributed, mdev =
+sqrt(pi/2) sdev.  For most common distributions the factor
+to go from sdev to mdev is near one (sqrt(pi/2) ~= 1.25).  Ie.,
+mdev is a good approximation of sdev (and is much easier to
+compute).
+
+Practice
+--------
+So let's do estimators for Avg and mean deviation, Mdev.  Both
+estimators compute means so we get two instances of the rfc793
+algorithm:
+
+	Err = abs (Meas - Avg)
+	Avg <- Avg + g (Meas - Avg)
+	Mdev <- Mdev + g (Err - Mdev)
+
+If we want to do the above fast, it should probably be done in
+integer arithmetic.  But the expressions contain fractions (g < 1)
+so we'll have to do some scaling to keep everything integer.  If
+we chose g so that 1/g is an integer, the scaling is easy.  A
+particularly good choice for g is a reciprocal power of 2
+(ie., g = 1/2^n for some n).  Multiplying through by 1/g gives
+
+	2^n Avg <- 2^n Avg + (Meas - Avg)
+	2^n Mdev <- 2^n Mdev + (Err - Mdev)
+
+To minimize round-off error, we probably want to keep the scaled
+versions of Avg and Mdev rather than the unscaled versions.  If
+we pick g = .125 = 1/8 (close to the .1 that rfc793 suggests) and
+express all the above in C:
+
+	Meas -= (Avg >> 3);
+	Avg += Meas;
+	if (Meas < 0)
+		Meas = -Meas;
+	Meas -= (Mdev >> 3);
+	Mdev += Meas;
+
+I've been using a variant of this to compute the retransmit timer
+for my tcp.  It's clearly faster than the two floating point
+multiplies that 4.3bsd uses and gives you twice as much information.
+Since the variation is estimated dynamically rather than using
+the wired-in beta of rfc793, the retransmit performance is also
+much better: faster retransmissions on low variance links and
+fewer spurious retransmissions on high variance links.
+
+It's not necessary to use the same gain for Avg and Mdev.
+Empirically, it looks like a retransmit timer estimate works
+better if there's more gain (bigger g) in the Mdev estimator.
+This forces the timer to go up quickly in response to changes in
+the rtt.  (Although it may not be obvious, the absolute value in
+the calculation of Mdev introduces an asymmetry in the timer:
+Because Mdev has the same sign as an increase and the opposite
+sign of a decrease, more gain in Mdev makes the timer go up fast
+and come down slow, "automatically" giving the behavior Dave
+Mills suggests in rfc889.)
+
+Using a gain of .25 on the deviation and computing the retransmit
+timer, rto, as Avg + 2 Mdev, my tcp timer code looks like:
+
+	Meas -= (Avg >> 3);
+	Avg += Meas;
+	if (Meas < 0)
+		Meas = -Meas;
+	Meas -= (Mdev >> 2);
+	Mdev += Meas;
+	rto = (Avg >> 3) + (Mdev >> 1);
+
+Hope this helps.
+
+  - Van
+
+---------------------------------
+
+To: jain%erlang.DEC@decwrl.dec.com (Raj Jain, LKG1-2/A19, DTN: 226-7642)
+Cc: ietf@gateway.mitre.org
+Subject: Re: Your congestion scheme
+In-Reply-To: Your message of 03 Nov 87 12:51:00 GMT.
+Date: Mon, 16 Nov 87 06:03:29 PST
+From: Van Jacobson
+
+Raj,
+
+Thanks for the note.  I hope you'll excuse my taking the liberty
+of cc'ing this reply to the ietf:  At the last meeting there was a
+great deal of interest in your congestion control scheme and our
+adaptation of it.
+
+>I am curious to know what values of increase amount and decrease
+>factor did you use.  In our previous study on congestion using
+>timeout (CUTE scheme, IEEE JSAC, Oct 1986), we had found that the
+>decrease factor should be small since packet losses are
+>expensive.  In fact, we found that a decrease factor of zero
+>(decreasing to one) was the best.
+
+We use .5 for the decrease factor and 1 for the increase factor.
+We also use something very close to CUTE (Mike Karels and I were
+behind on our journal reading so we independently rediscovered
+the algorithm and called it slow-start).  Since we use a lost
+packet as the "congestion experienced" indicator, the CUTE
+algorithm and the congestion avoidance algorithm (BTW, have you
+picked a name for it yet?) get run together, even though they are
+logically distinct.
+
+The sender keeps two state variables for congestion control: a
+congestion window, cwnd, and a threshhold size, ssthresh, to
+switch between the two algorithms.  The sender's output routine
+sends the minimum of cwnd and the window advertised by the
+receiver.  The rest of the congestion control sender code looks
+like:  On a timeout, record half the current window size as
+"ssthresh" (this is the multiplicative decrease part of the
+congestion avoidance algorithm), then set the congestion window
+to 1 packet and call the output routine (this initiates
+slowstart/CUTE).  When new data is acked, the sender does
+something like
+
+	if (cwnd < ssthresh)	  // if we're still doing slowstart
+		cwnd += 1 packet  // open the window exponentially
+	else
+		cwnd += 1/cwnd    // otherwise do the Congestion
+				  // Avoidance increment-by-1
+
+Notice that our variation of CUTE opens the window exponentially
+in time, as opposed to the linear scheme in your JSAC article.
+We looked at a linear scheme but were concerned about the
+performance hit on links with a large bandwidth-delay product
+(ie., satellite links).  An exponential builds up fast enough to
+accomodate any bandwidth-delay and our testing showed no more
+packet drops with exponential opening that with linear opening.
+(My model of what slowstart is doing -- starting an ack "clock"
+to meter out packets -- suggested that there should be no
+loss-rate difference between the two policies).
+
+The reason for the 1/2 decrease, as opposed to the 7/8 you use,
+was the following hand-waving:  When a packet is dropped, you're
+either starting (or restarting after a drop) or steady-state
+sending.  If you're starting, you know that half the current
+window size "worked", ie., that a window's worth of packets were
+exchanged with no drops (slowstart guarantees this).  Thus on
+congestion you set the window to the largest size that you know
+works then slowly increase the size.  If the connection is
+steady-state running and a packet is dropped, it's probably
+because a new connection started up and took some of your
+bandwidth.  We usually run our nets with rho <= .5 so it's
+probable that there are now exactly two conversations sharing the
+bandwidth.  Ie., that you should reduce your window by half
+because the bandwidth available to you has been reduced to half.
+And, if there are more than two conversations sharing the
+bandwidth, halving your window is conservative -- and being
+conservative at high traffic intensities is probably wise.
+
+Obviously, this large decrease term is accounting for the high
+cost of our "congestion experienced" indicator compared to yours --
+a dropped packet vs. a bit in the ack.  If the DEC bit were
+available, the preceding "logic" should be ignored.  But I wanted
+tcp congestion avoidance that we could deploy immediately and
+incrementally, without adding code to the hundreds of Internet
+gateways.  So using dropped packets seemed like the only choice.
+And, in system terms, the cost isn't that high: Currently packets
+are dropped only when a large queue has formed.  If we had a bit
+to force senders to reduce their windows, we'd still be stuck
+with the queue since we'd still be running the bottleneck at 100%
+utilization so there's no excess bandwidth available to dissipate
+the queue.  If we toss a packet, a sender will shut up for 2 rtt,
+exactly the time we need to empty the queue (in the ususal case).
+If that sender restarts with the correct window size the queue
+won't reform.  Thus we've reduced the delay to minimum without
+the system losing any bottleneck bandwidth.
+
+The 1-packet increase has less justification that the .5
+decrease.  In fact, it's almost certainly too large.  If the
+algorithm converges to a window size of w, you get O(w^2) packets
+between drops with an additive increase policy.  We were shooting
+for an average drop rate of <1% and found that on the Arpanet
+(the worst case of the 4 networks we tested), windows converged
+to 8 - 12 packets.  This yields 1 packet increments for a 1%
+average drop rate.
+
+But, since we've done nothing in the gateways, the window we
+converge to is the maximum the gateway can accept without dropping
+packets.  I.e., in the terms you used, we are just to the left of
+the cliff rather than just to the right of the knee.  If we
+now fix the gateways so they start dropping packets when the
+queue gets pushed past the knee, our increment will be much too
+agressive and we'll have to drop it by at least a factor of 4
+(since all my measurements on an unloaded Arpanet or Milnet
+place their "pipe size" at 4-5 packets).  Mike and I have talked
+about a second order control loop to adaptively determine the
+appropriate increment to use for a path (there doesn't seem to
+be much need to adjust the decrement).  It looks trivial to
+implement such a loop (since changing the increment affects
+the frequency of oscillation but not the mean window size,
+the loop would affect rate of convergence but not convergence
+and (first-order) stability).  But we think 2nd order stuff
+should wait until we've spent some time on the 1st order part
+of the algorithm for the gateways.
+
+I'm tired and probably no longer making sense.  I think I'll
+head home and get some sleep.  Hope to hear from you soon.
+
+Cheers.
+
+- Van
+
+
+>From van@helios.ee.lbl.gov Mon Apr 30 01:44:05 1990
+To: end2end-interest@ISI.EDU
+Subject: modified TCP congestion avoidance algorithm
+Date: Mon, 30 Apr 90 01:40:59 PDT
+From: Van Jacobson
+Status: RO
+Content-Length: 12896
+X-Lines: 297
+
+This is a description of the modified TCP congestion avoidance
+algorithm that I promised at the teleconference.
+
+BTW, on re-reading, I noticed there were several errors in
+Lixia's note besides the problem I noted at the teleconference.
+I don't know whether that's because I mis-communicated the
+algorithm at dinner (as I recall, I'd had some wine) or because
+she's convinced that TCP is ultimately irrelevant :).  Either
+way, you will probably be disappointed if you experiment with
+what's in that note.
+
+First, I should point out once again that there are two
+completely independent window adjustment algorithms running in
+the sender:  Slow-start is run when the pipe is empty (i.e.,
+when first starting or re-starting after a timeout).  Its goal
+is to get the "ack clock" started so packets will be metered
+into the network at a reasonable rate.  The other algorithm,
+congestion avoidance, is run any time *but* when (re-)starting
+and is responsible for estimating the (dynamically varying)
+pipesize.  You will cause yourself, or me, no end of confusion
+if you lump these separate algorithms (as Lixia's message did).
+
+The modifications described here are only to the congestion
+avoidance algorithm, not to slow-start, and they are intended to
+apply to large bandwidth-delay product paths (though they don't
+do any harm on other paths).  Remember that with regular TCP (or
+with slow-start/c-a TCP), throughput really starts to go to hell
+when the probability of packet loss is on the order of the
+bandwidth-delay product.  E.g., you might expect a 1% packet
+loss rate to translate into a 1% lower throughput but for, say,
+a TCP connection with a 100 packet b-d p. (= window), it results
+in a 50-75% throughput loss.  To make TCP effective on fat
+pipes, it would be nice if throughput degraded only as function
+of loss probability rather than as the product of the loss
+probabilty and the b-d p.  (Assuming, of course, that we can do
+this without sacrificing congestion avoidance.)
+
+These mods do two things: (1) prevent the pipe from going empty
+after a loss (if the pipe doesn't go empty, you won't have to
+waste round-trip times re-filling it) and (2) correctly account
+for the amount of data actually in the pipe (since that's what
+congestion avoidance is supposed to be estimating and adapting to).
+
+For (1), remember that we use a packet loss as a signal that the
+pipe is overfull (congested) and that packet loss can be
+detected one of two different ways:  (a) via a retransmit
+timeout or (b) when some small number (3-4) of consecutive
+duplicate acks has been received (the "fast retransmit"
+algorithm).  In case (a), the pipe is guaranteed to be empty so
+we must slow-start.  In case (b), if the duplicate ack
+threshhold is small compared to the bandwidth-delay product, we
+will detect the loss with the pipe almost full.  I.e., given a
+threshhold of 3 packets and an LBL-MIT bandwidth-delay of around
+24KB or 16 packets (assuming 1500 byte MTUs), the pipe is 75%
+full when fast-retransmit detects a loss (actually, until
+gateways start doing some sort of congestion control, the pipe
+is overfull when the loss is detected so *at least* 75% of the
+packets needed for ack clocking are in transit when
+fast-retransmit happens).  Since the pipe is full, there's no
+need to slow-start after a fast-retransmit.
+
+For (2), consider what a duplicate ack means:  either the
+network duplicated a packet (i.e., the NSFNet braindead IBM
+token ring adapters) or the receiver got an out-of-order packet.
+The usual cause of out-of-order packets at the receiver is a
+missing packet.  I.e., if there are W packets in transit and one
+is dropped, the receiver will get W-1 out-of-order and
+(4.3-tahoe TCP will) generate W-1 duplicate acks.  If the
+`consecutive duplicates' threshhold is set high enough, we can
+reasonably assume that duplicate acks mean dropped packets.
+
+But there's more information in the ack:  The receiver can only
+generate one in response to a packet arrival.  I.e., a duplicate
+ack means that a packet has left the network (it is now cached
+at the receiver).  If the sender is limitted by the congestion
+window, a packet can now be sent.  (The congestion window is a
+count of how many packets will fit in the pipe.  The ack says a
+packet has left the pipe so a new one can be added to take its
+place.)  To put this another way, say the current congestion
+window is C (i.e, C packets will fit in the pipe) and D
+duplicate acks have been received.  Then only C-D packets are
+actually in the pipe and the sender wants to use a window of C+D
+packets to fill the pipe to its estimated capacity (C+D sent -
+D received = C in pipe).
+
+So, conceptually, the slow-start/cong.avoid/fast-rexmit changes
+are:
+
+  - The sender's input routine is changed to set `cwnd' to `ssthresh'
+    when the dup ack threshhold is reached.  [It used to set cwnd to
+    mss to force a slow-start.]  Everything else stays the same.
+
+  - The sender's output routine is changed to use an effective window
+    of min(snd_wnd, cwnd + dupacks*mss)  [the change is the addition
+    of the `dupacks*mss' term.]  `Dupacks' is zero until the rexmit
+    threshhold is reached and zero except when receiving a sequence
+    of duplicate acks.
+
+The actual implementation is slightly different than the above
+because I wanted to avoid the multiply in the output routine
+(multiplies are expensive on some risc machines).  A diff of the
+old and new fastrexmit code is attached (your line numbers will
+vary).
+
+Note that we still do congestion avoidance (i.e., the window is
+reduced by 50% when we detect the packet loss).  But, as long as
+the receiver's offered window is large enough (it needs to be at
+most twice the bandwidth-delay product), we continue sending
+packets (at exactly half the rate we were sending before the
+loss) even after the loss is detected so the pipe stays full at
+exactly the level we want and a slow-start isn't necessary.
+
+Some algebra might make this last clear:  Say U is the sequence
+number of the first un-acked packet and we are using a window
+size of W when packet U is dropped.  Packets [U..U+W) are in
+transit.  When the loss is detected, we send packet U and pull
+the window back to W/2.  But in the round-trip time it takes
+the U retransmit to fill the receiver's hole and an ack to get
+back, W-1 dup acks will arrive (one for each packet in transit).
+The window is effectively inflated by one packet for each of
+these acks so packets [U..U+W/2+W-1) are sent.  But we don't
+re-send packets unless we know they've been lost so the amount
+actually sent between the loss detection and the recovery ack is
+U+W/2+W-1 - U+W = W/2-1 which is exactly the amount congestion
+avoidance allows us to send (if we add in the rexmit of U).  The
+recovery ack is for packet U+W so when the effective window is
+pulled back from W/2+W-1 to W/2 (which happens because the
+recovery ack is `new' and sets dupack to zero), we are allowed
+to send up to packet U+W+W/2 which is exactly the first packet
+we haven't yet sent.  (I.e., there is no sudden burst of packets
+as the `hole' is filled.)  Also, when sending packets between
+the loss detection and the recovery ack, we do nothing for the
+first W/2 dup acks (because they only allow us to send packets
+we've already sent) and the bottleneck gateway is given W/2
+packet times to clean out its backlog.  Thus when we start
+sending our W/2-1 new packets, the bottleneck queue is as empty
+as it can be.
+
+[I don't know if you can get the flavor of what happens from
+this description -- it's hard to see without a picture.  But I
+was delighted by how beautifully it worked -- it was like
+watching the innards of an engine when all the separate motions
+of crank, pistons and valves suddenly fit together and
+everything appears in exactly the right place at just the right
+time.]
+
+Also note that this algorithm interoperates with old tcp's:  Most
+pre-tahoe tcp's don't generate the dup acks on out-of-order packets.
+If we don't get the dup acks, fast retransmit never fires and the
+window is never inflated so everything happens in the old way (via
+timeouts).  Everything works just as it did without the new algorithm
+(and just as slow).
+
+If you want to simulate this, the intended environment is:
+
+    - large bandwidth-delay product (say 20 or more packets)
+
+    - receiver advertising window of two b-d p (or, equivalently,
+      advertised window of the unloaded b-d p but two or more
+      connections simultaneously sharing the path).
+
+    - average loss rate (from congestion or other source) less than
+      one lost packet per round-trip-time per active connection.
+      (The algorithm works at higher loss rate but the TCP selective
+      ack option has to be implemented otherwise the pipe will go empty
+      waiting to fill the second hole and throughput will once again
+      degrade at the product of the loss rate and b-d p.  With selective
+      ack, throughput is insensitive to b-d p at any loss rate.)
+
+And, of course, we should always remember that good engineering
+practise suggests a b-d p worth of buffer at each bottleneck --
+less buffer and your simulation will exhibit the interesting
+pathologies of a poorly engineered network but will probably
+tell you little about the workings of the algorithm (unless the
+algorithm misbehaves badly under these conditions but my
+simulations and measurements say that it doesn't).  In these
+days of $100/megabyte memory, I dearly hope that this particular
+example of bad engineering is of historical interest only.
+
+- Van
+
+-----------------
+*** /tmp/,RCSt1a26717	Mon Apr 30 01:35:17 1990
+--- tcp_input.c	Mon Apr 30 01:33:30 1990
+***************
+*** 834,850 ****
+  				 * Kludge snd_nxt & the congestion
+  				 * window so we send only this one
+! 				 * packet.  If this packet fills the
+! 				 * only hole in the receiver's seq.
+! 				 * space, the next real ack will fully
+! 				 * open our window.  This means we
+! 				 * have to do the usual slow-start to
+! 				 * not overwhelm an intermediate gateway
+! 				 * with a burst of packets.  Leave
+! 				 * here with the congestion window set
+! 				 * to allow 2 packets on the next real
+! 				 * ack and the exp-to-linear thresh
+! 				 * set for half the current window
+! 				 * size (since we know we're losing at
+! 				 * the current window size).
+  				 */
+  				if (tp->t_timer[TCPT_REXMT] == 0 ||
+--- 834,850 ----
+  				 * Kludge snd_nxt & the congestion
+  				 * window so we send only this one
+! 				 * packet.
+! 				 *
+! 				 * We know we're losing at the current
+! 				 * window size so do congestion avoidance
+! 				 * (set ssthresh to half the current window
+! 				 * and pull our congestion window back to
+! 				 * the new ssthresh).
+! 				 *
+! 				 * Dup acks mean that packets have left the
+! 				 * network (they're now cached at the receiver)
+! 				 * so bump cwnd by the amount in the receiver
+! 				 * to keep a constant cwnd packets in the
+! 				 * network.
+  				 */
+  				if (tp->t_timer[TCPT_REXMT] == 0 ||
+***************
+*** 853,864 ****
+  				else if (++tp->t_dupacks == tcprexmtthresh) {
+  					tcp_seq onxt = tp->snd_nxt;
+! 					u_int win =
+! 					    MIN(tp->snd_wnd, tp->snd_cwnd) / 2 /
+! 						tp->t_maxseg;
+
+  					if (win < 2)
+  						win = 2;
+  					tp->snd_ssthresh = win * tp->t_maxseg;
+-
+  					tp->t_timer[TCPT_REXMT] = 0;
+  					tp->t_rtt = 0;
+--- 853,864 ----
+  				else if (++tp->t_dupacks == tcprexmtthresh) {
+  					tcp_seq onxt = tp->snd_nxt;
+! 					u_int win = MIN(tp->snd_wnd,
+! 							tp->snd_cwnd);
+
++ 					win /= tp->t_maxseg;
++ 					win >>= 1;
+  					if (win < 2)
+  						win = 2;
+  					tp->snd_ssthresh = win * tp->t_maxseg;
+  					tp->t_timer[TCPT_REXMT] = 0;
+  					tp->t_rtt = 0;
+***************
+*** 866,873 ****
+  					tp->snd_cwnd = tp->t_maxseg;
+  					(void) tcp_output(tp);
+!
+  					if (SEQ_GT(onxt, tp->snd_nxt))
+  						tp->snd_nxt = onxt;
+  					goto drop;
+  				}
+  			} else
+--- 866,879 ----
+  					tp->snd_cwnd = tp->t_maxseg;
+  					(void) tcp_output(tp);
+! 					tp->snd_cwnd = tp->snd_ssthresh +
+! 						       tp->t_maxseg *
+! 						       tp->t_dupacks;
+  					if (SEQ_GT(onxt, tp->snd_nxt))
+  						tp->snd_nxt = onxt;
+  					goto drop;
++ 				} else if (tp->t_dupacks > tcprexmtthresh) {
++ 					tp->snd_cwnd += tp->t_maxseg;
++ 					(void) tcp_output(tp);
++ 					goto drop;
+  				}
+  			} else
+***************
+*** 874,877 ****
+--- 880,890 ----
+  				tp->t_dupacks = 0;
+  			break;
++ 		}
++ 		if (tp->t_dupacks) {
++ 			/*
++ 			 * the congestion window was inflated to account for
++ 			 * the other side's cached packets - retract it.
++ 			 */
++ 			tp->snd_cwnd = tp->snd_ssthresh;
+  		}
+  		tp->t_dupacks = 0;
+*** /tmp/,RCSt1a26725	Mon Apr 30 01:35:23 1990
+--- tcp_timer.c	Mon Apr 30 00:36:29 1990
+***************
+*** 223,226 ****
+--- 223,227 ----
+  		tp->snd_cwnd = tp->t_maxseg;
+  		tp->snd_ssthresh = win * tp->t_maxseg;
++ 		tp->t_dupacks = 0;
+  		}
+  		(void) tcp_output(tp);
+
+>From van@helios.ee.lbl.gov Mon Apr 30 10:37:36 1990
+To: end2end-interest@ISI.EDU
+Subject: modified TCP congestion avoidance algorithm (correction)
+Date: Mon, 30 Apr 90 10:36:12 PDT
+From: Van Jacobson
+Status: RO
+Content-Length: 838
+X-Lines: 27
+
+I shouldn't make last minute 'fixes'.  The code I sent out last
+night had a small error:
+
+*** t.c	Mon Apr 30 10:28:52 1990
+--- tcp_input.c	Mon Apr 30 10:30:41 1990
+***************
+*** 885,893 ****
+  			 * the congestion window was inflated to account for
+  			 * the other side's cached packets - retract it.
+  			 */
+! 			tp->snd_cwnd = tp->snd_ssthresh;
+  		}
+- 		tp->t_dupacks = 0;
+  		if (SEQ_GT(ti->ti_ack, tp->snd_max)) {
+  			tcpstat.tcps_rcvacktoomuch++;
+  			goto dropafterack;
+--- 885,894 ----
+  			 * the congestion window was inflated to account for
+  			 * the other side's cached packets - retract it.
+  			 */
+! 			if (tp->snd_cwnd > tp->snd_ssthresh)
+! 				tp->snd_cwnd = tp->snd_ssthresh;
+! 			tp->t_dupacks = 0;
+  		}
+  		if (SEQ_GT(ti->ti_ack, tp->snd_max)) {
+  			tcpstat.tcps_rcvacktoomuch++;
+  			goto dropafterack;

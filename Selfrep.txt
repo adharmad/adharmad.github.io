@@ -1,0 +1,511 @@
+Newsgroups: alt.sources
+Path: rwsys!utacfd.uta.edu!news.uta.edu!cs.utexas.edu!zaphod.mps.ohio-state.edu!howland.reston.ans.net!agate!dog.ee.lbl.gov!network.ucsd.edu!gulfaero.com!ux1.cso.uiuc.edu!news.cso.uiuc.edu!peltz
+From: peltz@cerl.uiuc.edu (Steve Peltz)
+Subject: self replicating program
+Date: Thu, 11 Mar 1993 23:03:59 GMT
+Message-ID: <C3qyqn.H2p@news.cso.uiuc.edu>
+Sender: usenet@news.cso.uiuc.edu (Net Noise owner)
+Organization: Computer Based Education Research Lab - University of Illinois
+Lines: 501
+
+A recent posting of a generator for self-extracting compressed program
+reminded me of the self-replicating program I posted a year or two back
+(after one of the inevitable rounds of discussion about same). Since
+I'd played around a bit more with it, I decided to dust it off and fix
+it up a bit.
+
+There are actually three separate versions of programs here. The
+interesting part is that it is a fairly general shell for building
+self-replicating programs. Obviously, the job can be done much more
+easily if the only goal is to write a program that can re-create it's
+source.
+
+Instructions for use: snip and copy to a file, compile it, create a new
+directory and cd to it, then run the program.
+
+e.g.
+cc -o replicate replicate.c
+mkdir self
+cd self
+../replicate
+
+This will create a makefile and several source files. The file "selfcopy.c"
+in the new directory should be the same as what I'm posting. "make test" will
+build and test all three versions.
+
+The three programs are:
+self		just reproduces its source on stdout
+selfshar	reproduces on stdout a shar file that contains the sources
+		for re-creating a new version of itself (requires "shar")
+replicate	creates the source tree for building itself and the other
+		two programs (in the current directory); also creates a
+		file selfcopy.c, which should be identical to replicate.c
+
+Sorry for the lack of comments.
+
+Here is replicate.c:
+-------------------------------------------------------------------------------
+char	*selfish[] = {
+"#include <stdio.h>\n",
+"\n",
+"void\tdup(p, out)\n",
+"\tchar\t*p[];\n",
+"\tFILE\t*out;\n",
+"{\n",
+"\tchar\t*c;\n",
+"\n",
+"\twhile (c = *p++)\n",
+"\t\tfputs(c, out);\n",
+"}\n",
+"\n",
+"void\tmakehead(aname, out)\n",
+"\tchar\t*aname;\n",
+"\tFILE\t*out;\n",
+"{\n",
+"\tfprintf(out, \"char\\t*%s[] = {\\n\", aname);\n",
+"}\n",
+"\n",
+"void\tmakeline(c, out)\n",
+"\tchar\t*c;\n",
+"\tFILE\t*out;\n",
+"{\n",
+"\tchar\tch;\n",
+"\n",
+"\tputc('\"', out);\n",
+"\twhile (ch = *c++) {\n",
+"\t\tif ((ch == '\"') || (ch == '\\\\') || (ch == '\\n') ||\n",
+"\t\t\t(ch == '\\t'))\n",
+"\t\t\tputc('\\\\', out);\n",
+"\t\tif (ch == '\\n')\n",
+"\t\t\tputc('n', out);\n",
+"\t\telse if (ch == '\\t')\n",
+"\t\t\tputc('t', out);\n",
+"\t\telse\n",
+"\t\t\tputc(ch, out);\n",
+"\t}\n",
+"\tfputs(\"\\\",\\n\", out);\n",
+"}\n",
+"\n",
+"void\tmaketail(out)\n",
+"\tFILE\t*out;\n",
+"{\n",
+"\tfputs(\"0};\\n\\n\", out);\n",
+"}\n",
+"\n",
+"void\tclone(aname, p, out)\n",
+"\tchar\t*aname;\n",
+"\tchar\t*p[];\n",
+"\tFILE\t*out;\n",
+"{\n",
+"\tmakehead(aname, out);\n",
+"\twhile (*p)\n",
+"\t\tmakeline(*p++, out);\n",
+"\tmaketail(out);\n",
+"}\n",
+"\n",
+"void\tclonehead(aname, out)\n",
+"\tchar\t*aname;\n",
+"\tFILE\t*out;\n",
+"{\n",
+"\tfprintf(out, \"\\nstruct self {\\n\");\n",
+"\tfprintf(out, \"\\tchar\\t**txt;\\n\");\n",
+"\tfprintf(out, \"\\tchar\\t*name;\\n\");\n",
+"\tfprintf(out, \"\\tchar\\t*file;\\n\");\n",
+"\tfprintf(out, \"} %s[] = {\\n\", aname);\n",
+"}\n",
+"\n",
+"void\tcloneline(aname, afile, out)\n",
+"\tchar\t*aname;\n",
+"\tchar\t*afile;\n",
+"\tFILE\t*out;\n",
+"{\n",
+"\tfprintf(out, \"\\t%s, \\\"%s\\\", \\\"%s\\\",\\n\", aname, aname, afil",
+"e);\n",
+"}\n",
+"\n",
+"void\tclonetail(aname, afile, out)\n",
+"\tchar\t*aname;\n",
+"\tchar\t*afile;\n",
+"\tFILE\t*out;\n",
+"{\n",
+"\tfprintf(out, \"\\t0, \\\"%s\\\", \\\"%s\\\"\\n\", aname, afile);\n",
+"\tfprintf(out, \"};\\n\\n\");\n",
+"}\n",
+0};
+
+char	*replicate[] = {
+"void\tcloneself(last, out)\n",
+"\tstruct self\t*last;\n",
+"\tFILE\t*out;\n",
+"{\n",
+"\tstruct self\t*p;\n",
+"\n",
+"\tclonehead(last->name, out);\n",
+"\tfor (p = self; p->txt; p++)\n",
+"\t\tcloneline(p->name, p->file, out);\n",
+"\tclonetail(last->name, last->file, out);\n",
+"}\n",
+"\n",
+"void\tdupself(out)\n",
+"{\n",
+"\tstruct self\t*p;\n",
+"\n",
+"\tfor (p = self; p->txt; p++)\n",
+"\t\tclone(p->name, p->txt, out);\n",
+"\tcloneself(p, out);\n",
+"\tdup(self[0].txt, out);\n",
+"\tdup(self[1].txt, out);\n",
+"}\n",
+"\n",
+"void\tdupfile(p)\n",
+"\tstruct self\t*p;\n",
+"{\n",
+"\tFILE\t*out;\n",
+"\n",
+"\tif (!(out = fopen(p->file, \"w\"))) {\n",
+"\t\tfprintf(stderr, \"dupfile: create \");\n",
+"\t\tperror(p->file);\n",
+"\t\texit(1);\n",
+"\t}\n",
+"\tif (p->txt)\n",
+"\t\tdup(p->txt, out);\n",
+"\telse\n",
+"\t\tdupself(out);\n",
+"\tfclose(out);\n",
+"}\n",
+"\n",
+"void\tdupfiles()\n",
+"{\n",
+"\tstruct self\t*p;\n",
+"\n",
+"\tfor (p = self; p->txt; p++)\n",
+"\t\tdupfile(p);\n",
+"\tdupfile(p);\n",
+"}\n",
+"\n",
+"int\tmain(argc, argv)\n",
+"\tint\targc;\n",
+"\tchar\t*argv[];\n",
+"{\n",
+"\tdupfiles();\n",
+"\treturn 0;\n",
+"}\n",
+0};
+
+char	*replicant[] = {
+"\n",
+"int\tmain()\n",
+"{\n",
+"\tclone(\"self\", self, stdout);\n",
+"\tclone(\"replicant\", replicant, stdout);\n",
+"\tdup(self, stdout);\n",
+"\tdup(replicant, stdout);\n",
+"}\n",
+0};
+
+char	*shar[] = {
+"#include <stdio.h>\n",
+"\n",
+"int\tmain()\n",
+"{\n",
+"\tchar\t**p;\n",
+"\tchar\t*s;\n",
+"\n",
+"\tp = shar;\n",
+"\twhile (s = *p++)\n",
+"\t\tfputs(s, stdout);\n",
+"\treturn 0;\n",
+"}\n",
+0};
+
+char	*make[] = {
+"all:\tself selfshar replicate\n",
+"\n",
+"test:\tall\n",
+"\trm -rf cmp\n",
+"\tmkdir cmp\n",
+"\t./self > cmp/self.c\n",
+"\tcmp self.c cmp/self.c\n",
+"\trm -f cmp/*\n",
+"\t./selfshar > cmp/shar\n",
+"\tcd cmp; unshar shar; make selfshar; ./selfshar > shar\n",
+"\tcmp cmp/shar cmp/self.shar\n",
+"\trm -f cmp/*\n",
+"\tcd cmp; ../replicate\n",
+"\tcmp replicate.c cmp/selfcopy.c\n",
+"\tcd cmp; make replicate.c\n",
+"\tcmp replicate.c cmp/replicate.c\n",
+"\trm -rf cmp\n",
+"\n",
+"self:\tself.c\n",
+"\tcc -o self self.c\n",
+"\n",
+"self.c:\tmakeself replicant.self\n",
+"\t./makeself self selfish.c replicant replicant.self - selfi",
+"sh.c replicant.self > self.c\n",
+"\n",
+"selfshar:\tselfshar.c\n",
+"\tcc -o selfshar selfshar.c\n",
+"\n",
+"selfshar.c:\tmakeself self.shar\n",
+"\t./makeself shar self.shar - selfshar.self > selfshar.c\n",
+"\n",
+"self.shar:\tselfish.c clone.c makeself.c selfshar.self Makef",
+"ile\n",
+"\tshar selfish.c clone.c makeself.c selfshar.self Makefile >",
+" self.shar\n",
+"\n",
+"replicate:\treplicate.c\n",
+"\tcc -o replicate replicate.c\n",
+"\n",
+"replicate.c:\tmakeself replicate.self replicant.self selfsha",
+"r.self Makefile\n",
+"\t./makeself selfish selfish.c replicate replicate.self repl",
+"icant replicant.self shar selfshar.self make Makefile build",
+" makeself.c cloner clone.c -self selfcopy.c selfish.c repli",
+"cate.self > replicate.c\n",
+"\n",
+"makeself:\tmakeself.o selfish.o clone.o\n",
+"\tcc -o makeself makeself.o selfish.o clone.o\n",
+"\n",
+"clean:\n",
+"\trm -f replicate.c self.c selfshar.c replicate self selfsha",
+"r self.shar copy.c\n",
+"\n",
+"realclean:\tclean\n",
+"\trm -f *.o makeself\n",
+"\trm -rf cmp\n",
+0};
+
+char	*build[] = {
+"#include <stdio.h>\n",
+"\n",
+"int\tmain(argc, argv)\n",
+"\tint\targc;\n",
+"\tchar\t*argv[];\n",
+"{\n",
+"\tint\tindex;\n",
+"\tint\tclonal;\n",
+"\n",
+"\tclonal = 0;\n",
+"\tfor (index = 1; index < argc; index += 2) {\n",
+"\t\tif (*argv[index] == '-') {\n",
+"\t\t\tclonal = index;\n",
+"\t\t\tbreak;\n",
+"\t\t}\n",
+"\t\tmakeself(argv[index], argv[index+1], stdout);\n",
+"\t}\n",
+"\tif (clonal) {\n",
+"\t\tif (argv[clonal][1]) {\n",
+"\t\t\tclonehead(argv[clonal]+1, stdout);\n",
+"\t\t\tfor (index = 1; index < clonal; index += 2)\n",
+"\t\t\t\tcloneline(argv[index], argv[index+1], stdout);\n",
+"\t\t\tclonetail(argv[clonal]+1, argv[clonal+1], stdout);\n",
+"\t\t\tclonal += 1;\n",
+"\t\t}\n",
+"\t\tfor (index = clonal + 1; index < argc; index += 1)\n",
+"\t\t\tcopyfile(argv[index], stdout);\n",
+"\t}\n",
+"\treturn 0;\n",
+"}\n",
+0};
+
+char	*cloner[] = {
+"#include <stdio.h>\n",
+"\n",
+"#define\tMAXLINE\t60\n",
+"\n",
+"void\tmakeself(aname, fname, out)\n",
+"\tchar\t*aname;\n",
+"\tchar\t*fname;\n",
+"\tFILE\t*out;\n",
+"{\n",
+"\tFILE\t*in;\n",
+"\tchar\tp[MAXLINE];\n",
+"\n",
+"\tif (!(in = fopen(fname, \"r\"))) {\n",
+"\t\tfprintf(stderr, \"makeself: create \");\n",
+"\t\tperror(fname);\n",
+"\t\texit(1);\n",
+"\t}\n",
+"\tmakehead(aname, out);\n",
+"\twhile (fgets(p, MAXLINE, in))\n",
+"\t\tmakeline(p, out);\n",
+"\tmaketail(out);\n",
+"\tfclose(in);\n",
+"}\n",
+"\n",
+"void\tcopyfile(fname, out)\n",
+"\tchar\t*fname;\n",
+"\tFILE\t*out;\n",
+"{\n",
+"\tFILE\t*in;\n",
+"\tchar\ts[MAXLINE];\n",
+"\n",
+"\tif (!(in = fopen(fname, \"r\"))) {\n",
+"\t\tfprintf(stderr, \"copyfile: open \");\n",
+"\t\tperror(fname);\n",
+"\t\texit(1);\n",
+"\t}\n",
+"\twhile (fgets(s, MAXLINE, in))\n",
+"\t\tfputs(s, out);\n",
+"\tfclose(in);\n",
+"}\n",
+0};
+
+
+struct self {
+	char	**txt;
+	char	*name;
+	char	*file;
+} self[] = {
+	selfish, "selfish", "selfish.c",
+	replicate, "replicate", "replicate.self",
+	replicant, "replicant", "replicant.self",
+	shar, "shar", "selfshar.self",
+	make, "make", "Makefile",
+	build, "build", "makeself.c",
+	cloner, "cloner", "clone.c",
+	0, "self", "selfcopy.c"
+};
+
+#include <stdio.h>
+
+void	dup(p, out)
+	char	*p[];
+	FILE	*out;
+{
+	char	*c;
+
+	while (c = *p++)
+		fputs(c, out);
+}
+
+void	makehead(aname, out)
+	char	*aname;
+	FILE	*out;
+{
+	fprintf(out, "char\t*%s[] = {\n", aname);
+}
+
+void	makeline(c, out)
+	char	*c;
+	FILE	*out;
+{
+	char	ch;
+
+	putc('"', out);
+	while (ch = *c++) {
+		if ((ch == '"') || (ch == '\\') || (ch == '\n') ||
+			(ch == '\t'))
+			putc('\\', out);
+		if (ch == '\n')
+			putc('n', out);
+		else if (ch == '\t')
+			putc('t', out);
+		else
+			putc(ch, out);
+	}
+	fputs("\",\n", out);
+}
+
+void	maketail(out)
+	FILE	*out;
+{
+	fputs("0};\n\n", out);
+}
+
+void	clone(aname, p, out)
+	char	*aname;
+	char	*p[];
+	FILE	*out;
+{
+	makehead(aname, out);
+	while (*p)
+		makeline(*p++, out);
+	maketail(out);
+}
+
+void	clonehead(aname, out)
+	char	*aname;
+	FILE	*out;
+{
+	fprintf(out, "\nstruct self {\n");
+	fprintf(out, "\tchar\t**txt;\n");
+	fprintf(out, "\tchar\t*name;\n");
+	fprintf(out, "\tchar\t*file;\n");
+	fprintf(out, "} %s[] = {\n", aname);
+}
+
+void	cloneline(aname, afile, out)
+	char	*aname;
+	char	*afile;
+	FILE	*out;
+{
+	fprintf(out, "\t%s, \"%s\", \"%s\",\n", aname, aname, afile);
+}
+
+void	clonetail(aname, afile, out)
+	char	*aname;
+	char	*afile;
+	FILE	*out;
+{
+	fprintf(out, "\t0, \"%s\", \"%s\"\n", aname, afile);
+	fprintf(out, "};\n\n");
+}
+void	cloneself(last, out)
+	struct self	*last;
+	FILE	*out;
+{
+	struct self	*p;
+
+	clonehead(last->name, out);
+	for (p = self; p->txt; p++)
+		cloneline(p->name, p->file, out);
+	clonetail(last->name, last->file, out);
+}
+
+void	dupself(out)
+{
+	struct self	*p;
+
+	for (p = self; p->txt; p++)
+		clone(p->name, p->txt, out);
+	cloneself(p, out);
+	dup(self[0].txt, out);
+	dup(self[1].txt, out);
+}
+
+void	dupfile(p)
+	struct self	*p;
+{
+	FILE	*out;
+
+	if (!(out = fopen(p->file, "w"))) {
+		fprintf(stderr, "dupfile: create ");
+		perror(p->file);
+		exit(1);
+	}
+	if (p->txt)
+		dup(p->txt, out);
+	else
+		dupself(out);
+	fclose(out);
+}
+
+void	dupfiles()
+{
+	struct self	*p;
+
+	for (p = self; p->txt; p++)
+		dupfile(p);
+	dupfile(p);
+}
+
+int	main(argc, argv)
+	int	argc;
+	char	*argv[];
+{
+	dupfiles();
+	return 0;
+}

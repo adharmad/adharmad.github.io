@@ -1,0 +1,2 @@
+# Find unique file extensions in a directory
+find . -type f | sed -e 's/.*\.//' | sed -e 's/.*\///' | sort | uniq -c | sort -rn

@@ -1,0 +1,1547 @@
+ML FAQ
+
+From: leaf@cs.cmu.edu (Leaf Eames Petersen)
+Newsgroups: comp.lang.ml
+Subject: Comp.Lang.ML FAQ [Monthly Posting]
+Date: Thu, 20 Mar 2003 20:30:14 +0000 (UTC)
+Sender: leaf@cs.cmu.edu
+Message-ID: <b5d8cm$gdp$1@wolfberry.srv.cs.cmu.edu>
+Reply-To: comp-lang-ml-request@cs.cmu.edu
+Summary: This posting contains a list of Frequently asked questions (and
+their
+         answers) about the family of ML programming languages, including
+         Standard ML, CAML, Lazy-ML, and CAML-Light.  This post should be
+read
+         before asking a question on the comp.lang.ml newsgroup.
+
+Archive-name: meta-lang-faq
+Last-modified: Mar 20, 2003
+
+
+         COMP.LANG.ML Frequently Asked Questions and Answers
+       (compiled by Dave Berry, Greg Morrisett and Rowan Davies)
+           (maintained by Leaf Petersen)
+
+Please send corrections, additions, or comments regarding this list to
+comp-lang-ml-request@cs.cmu.edu.
+
+Changes since last posting:
+    - Added question on OCaml/SML comparison (Andreas Rossberg)
+    - Updated ProofPower entry (Rob Arthan)
+    - Changed link for Elementary Standard ML (Greg Michaelson)
+    - Updated MLton entry (Stephen Weeks)
+    - Added entry on HaMLet (Andreas Rossberg)
+    - Updated basis entry (Andreas Rossberg)
+    - Added SML.Net (Andreas Rossberg)
+
+Contents:
+---------
+    1. What is ML?
+    2. Where is ML discussed?
+        a. Comp.Lang.ML
+        b. SML-LIST
+        c. CAML-LIST
+    3. What implementations of ML are available?
+        a. quick summary (by machine/OS)
+         b. Standard ML of New Jersey (SML/NJ)
+        c. sml2c
+        d. Caml Light
+        e. Objective Caml
+        f. Bigloo
+        g. Camlot
+        h. Moscow ML
+        i. ML Kit
+        j. Edinburgh
+        k. MicroML
+        l. Poly/ML
+        m. Poplog ML
+        n. MLWorks
+        o. MLJ
+        p. MLton
+        q. HaMLet
+        4. Unsupported SML/NJ Ports
+        a. OS/2
+        b. NEXTSTEP
+         c. SVR4
+        5. Where can I find documentation/information on ML?
+        a. The Definition
+        b. Textbooks
+        c. Information on the Internet
+    6. Where can I find ML library code?
+        a. The Standard ML ('97) Basis Library
+        b. The Edinburgh SML Library
+        c. The SML/NJ Library
+        d. SML_TK
+        e. Caml-light libraries
+        f. The Qwertz Toolbox (for AI)
+    7. Theorem Provers and ML
+        8. Miscellaneous Questions
+        a. How do I write the Y combinator in SML?
+        b. Where can I find an X-windows interface to SML?
+        c. How do I call a C function from SML/NJ?
+        d. Where can I find an emacs mode for SML?
+        e. What is the value restriction?
+        f. What is the difference between OCaml and Standard ML?
+
+--------------------------------------------------------------------------
+
+0. Where can I find the latest copy of this FAQ?
+
+  This document can be retrieved via anonymous ftp from
+    ftp://pop.cs.cmu.edu/usr/rowan/sml-archive/
+  or from rtfm.mit.edu.  There is an HTTP version with active links at
+
+http://www.cis.ohio-state.edu/hypertext/faq/usenet/meta-lang-faq/faq.html
+
+--------------------------------------------------------------------------
+
+1. What is ML?
+
+  ML (which stands for Meta-Language) is a family of advanced programming
+  languages with [usually] functional control structures, strict
+semantics,
+  a strict polymorphic type system, and parametrized modules.  It includes
+  Standard ML, Lazy ML, CAML, CAML Light, and various research languages.
+  Implementations are available on many platforms, including PCs,
+mainframes,
+  most models of workstation, multi-processors and supercomputers.  ML has
+  many thousands of users, is taught at many universities (and is the
+first
+  programming language taught at some).
+
+--------------------------------------------------------------------------
+
+2. Where is ML discussed?
+
+COMP.LANG.ML
+------------
+comp.lang.ml is a moderated usenet newsgroup.  The topics for discussion
+include but are not limited to:
+
+   * general ML enquiries or discussion
+   * general interpretation of the definition of Standard ML
+   * applications and use of ML
+   * announcements of general interest (e.g. compiler releases)
+   * discussion of semantics including sematics of extensions based on ML
+   * discussion about library structure and content
+   * tool development
+   * comparison/contrast with other languages
+   * implementation issues, techniques and algorithms including extensions
+     based on ML
+
+Requests should be sent to:
+
+    comp-lang-ml@cs.cmu.edu
+
+Administrative mail should be sent to:
+
+    comp-lang-ml-request@cs.cmu.edu
+
+Messages sent to the newsgroup are archived at CMU.  The archives can be
+retrieved by anonymous ftp from internet sites.  Messages are archived
+on a year-to-year basis.  Previous years' messages are compressed using
+the Unix "compress" command.  The current year's messages are not
+compressed.
+
+    ftp pop.cs.cmu.edu
+    username: anonymous
+    password: <username>@<site>
+    binary
+    cd /usr/rowan/sml-archive
+    get sml-archive.<year>.Z
+    quit
+    zcat sml-archive.<year>.Z
+
+(Pop's IP address is 128.2.205.205).
+
+Individual messages can also be accessed in the directories
+/usr/rowan/mh-sml-archive/<year>-sml.
+
+SML-LIST
+--------
+The SML-LIST is a mailing list that exists for people who cannot
+(or do not want to) read the Usenet COMP.LANG.ML newsgroup.
+Messages are crossposted from COMP.LANG.ML to the SML-LIST and
+vice-versa.  You should ask to join the SML-LIST _only if_ you cannot
+(or do not want to) read the Usenet COMP.LANG.ML newsgroup.
+
+To send a message to the SML-LIST distribution, address it to:
+
+    sml-list@cs.cmu.edu
+
+(sites not connected to the Internet may need additional routing.)
+
+Administrative mail such as requests to add or remove names from the
+distribution list should be addressed to
+
+    sml-list-request@cs.cmu.edu
+
+
+CAML-LIST
+---------
+The Caml language, a dialect of ML, is discussed on the Caml mailing
+list.  To send mail to the Caml mailing list, address it to:
+
+    caml-list@inria.fr
+
+Administrative mail should be addressed to:
+
+    caml-list-request@inria.fr
+
+ALT.LANG.ML
+-----------
+No longer used.
+
+--------------------------------------------------------------------------
+
+3. What implementations of ML are available and where can I find them?
+
+
+Quick Summary:
+
+System    full SML?  contact                        Platforms
+------    ---------  ------------
+------------------------------
+SML/NJ       yes     sml-nj@research.bell-labs.com
+      SML'97       http://cm.bell-labs.com/cm/cs/what/smlnj
+
+                        Alpha - OSF/1 3.2, DUX 4.0
+                        Mips - Irix 4.0.x, 5.x,
+6.x
+                        x86 - Linux, Solaris,
+FreeBSD,
+                          NetBSD, Windows95,
+WindowsNT
+                        Sparc - SunOS, Solaris
+                        RS/6000 - AIX
+                        PowerPC - AIX
+                        HPPA - HPUX 10
+
+sml2c       yes                     32-bit Unix machines (C
+code)
+           http://www.funet.fi/pub/languages/ml/sml2c/
+
+
+Caml Light coreish caml-light@inria.fr         Unix, Mac, PC 80386,
+           ftp ftp.inria.fr         (bytecode)
+
+Objective  own     caml-light@inria.fr         Unix and Windows NT/95
+  Caml    modules  ftp ftp.inria.fr              (bytecode)
+                                                 Alpha, Sparc, x86, Mips,
+                                                 HPPA, Power (native code)
+
+Bigloo    coreish  Manuel.Serrano@inria.fr.      Unix (compiles caml-light
+                   ftp ftp.inria.fr                    to native code)
+
+Camlot    coreish  Regis.Cridlig@ens.fr          Any 32-bit (compiles
+                   ftp ftp.inria.fr                    caml-light to C)
+
+Moscow ML  yes       sestoft@dina.kvl.dk
+       SML'97  http://www.dina.kvl.dk/~sestoft/mosml.html
+
+                        Intel-
+Windows,OS/2,Linux,FreeBSD
+                        Alpha - DUX
+                        Sparc - Solaris,SunOS
+                        HP9000 - UX 9,UX 10
+                        SGI MIPS - IRIX 5
+                        Mac(68k and PPC)
+                          - MacOS,MkLinux,
+                            MacOS X
+
+Kit       yes       ftp ftp.diku.dk         (Requires another SML
+compiler
+           ftp ftp.dcs.ed.ac.uk         to build binaries)
+
+Edinburgh  core       ftp.dcs.ed.ac.uk             32-bit machines
+(bytecode)
+           ftp.informatik.uni-muenchen.de  PC 80386SX+, Amiga
+
+MicroML    core    Olof.Johansson@cs.umu.se      PC 8086+ (bytecode)
+           ftp ftp.cs.umu.se
+
+Poly/ML       SML 97  http://www.polyml.org         Intel - Linux, Windows
+                         Sparc - Solaris
+                         Mac   - MacOS X
+
+PoplogML   yes     isl@isl.co.uk                 Sparc/Solaris,
+Intel/Solaris,
+                                                 Intel/Linux, PowerPC/AIX,
+                                                 Alpha/DUX, Intel/Windows
+
+MLWorks    No longer available
+
+MLJ        core+  mlj@dcs.ed.ac.uk         Unix and Windows NT/95
+           SML'97                                Alpha, Sparc, x86
+                   http://www.dcs.ed.ac.uk/~mlj/    (Compiles to JVM)
+
+MLton      yes     MLton@mlton.org                  x86 Linux, FreeBSD,
+Cygwin
+         SML'97    http://www.mlton.org
+
+HaMLet     yes     http://www.ps.uni-sb.de/hamlet/  N/A
+
+SML.NET    yes     http://www.cl.cam.ac.uk/Research/TSG/SMLNET/
+                             (Targets the Common Language Runtime)
+
+Details:
+
+Standard ML of New Jersey
+------------------------
+Standard ML of New Jersey (SML/NJ) was developed jointly at Bell
+Laboratories, Princeton University, and recently Yale University.  The
+SML/NJ distribution includes CM (a separate compilation manager),
+ML-Yacc, ML-Lex, ML-Burg, the SML/NJ Library, Concurrent ML, eXene
+(a multithreaded X-windows toolkit), and the SML/NJ-C interface
+library.  The software is available with source code under a very
+liberal license.
+
+Version 110 of SML/NJ (released in February 1998), is largely
+compliant with the new SML '97 Definition, including the new Basis
+library.
+
+Version 110 runs on the following machine/os configurations:
+
+    Alpha    OSF/1 3.2, Digital Unix 4.0
+    Mips    Irix 4.0.x, Irix 5.x, Irix 6.x
+    x86        Linux, Solaris, FreeBSD, NetBSD, Windows95, WindowsNT
+    Sparc    SunOS, Solaris
+    RS/6000    AIX (also PowerPC)
+    HPPA    HPUX 10
+
+For the time being, Macintosh users will have to stick with the
+previous release, Version 0.93.  New ports to MacOS and Rhapsody on
+PowerPC are planned, and there may also be support for BeOS on PowerPC
+and Intel.
+
+The SML/NJ Version 110 software distribution is available at:
+
+    Bell Labs:  ftp://ftp.research.bell-labs.com/dist/smlnj/release/110/
+    Stanford:   ftp://rodin.stanford.edu/pub/smlnj/release/110/
+    DIKU:       ftp://ftp.diku.dk/pub/smlnj/release/110/
+    Cambridge:  ftp://ftp.cl.cam.ac.uk/MIRRORED/smlnj/release/110/
+
+or through the SML/NJ web site at:
+
+    http://cm.bell-labs.com/cm/cs/what/smlnj
+
+This web site also has extensive online documentation and links to
+related sites.
+
+Another important link is the documentation for the SML '97 Basis, which
+can be found at:
+
+   http://SML.sourceforge.net/Basis/
+
+
+SML2C
+-----
+sml2c is a Standard ML to C compiler.  It is based on an old
+version of SML/NJ from 1992 and shares its front-end and most of the
+runtime system. sml2c is a batch compiler and compiles only module-level
+declarations.  It does not support SML/NJ style debugging and profiling.
+
+sml2c is easily portable and has been ported to IBM RT,
+Decstation 3100, Decstation 5000, Omron Luna 88k, sun-3, sun-4 and a
+486-based machine (running Mach).  The generated code is highly portable
+and makes very few assumptions about the target machine or the C compilers
+available on the target machine. The runtime system, which it shares with
+the SML/NJ has several machine and operating system dependencies.  sml2c
+has eliminated some of these dependencies by using portable schemes for
+garbage collection and for freezing and restarting programs.
+
+sml2c is available by anonymous ftp from ftp.cs.cmu.edu
+(128.2.206.173). Log in as anonymous, send username@node as password.
+The distribution can be found in /afs/cs/project/mess/research/sml2c/ftp.
+The local ftp software will allow you to change directory only
+to /afs/cs/project/mess/research/sml2c/ftp.  The README file in this
+directory describes the files in the distribution.
+The size of the uncompressed distribution is about 12 Meg.
+
+
+CAML LIGHT
+----------
+Caml Light is a portable, bytecode interpreter for CAML, a dialect of ML.
+Some features of Caml Light include separate compilation, streams and
+stream parsers, ability to link to C code, and a fairly rich library.
+The implementation has low memory requirements, compiles quickly and
+generates compact executables.
+
+The Caml Light system comprises a batch compiler, a toplevel-based
+interactive compiler, tools for building libraries and toplevel
+systems, a replay debugger, and a hypertext-based module browser.
+
+Caml Light runs on most modern Unix machines, including Sun
+Sparcstations (under SunOS 4.1 and Solaris 2), Decstations 3000
+(Alpha) and 5000 (Mips), and PCs under Linux, but many more machines
+have been reported to work. It is also available for the Macintosh (as
+a "fat binary" that runs native on PowerMacs) and the PC under
+MS Windows and MSDOS.
+
+The current version is 0.73, released in January 1997. It is available by
+anonymous ftp from:
+
+    host:           ftp.inria.fr    (192.93.2.54)
+    directory:      lang/caml-light
+
+Summary of the files:
+
+     README.cl            More detailed summary
+     cl73unix.tar.gz      Unix version (source code)
+     cl73macbin.sea.bin   Binaries for the Macintosh version
+     cl73win.exe          Binaries for MS Windows and MSDOS
+     cl73refman.*         Reference manual, in various formats
+     cl73tutorial.*       Tutorial, in various formats
+     cl73macdoc.sea.bin   On-line documentation for the Macintosh version
+     cl73macsrc.sea.bin   Source code for the Macintosh version
+
+More information on Caml Light is available on the Web at:
+  http://pauillac.inria.fr/caml
+
+The implementors can be contacted at caml-light@inria.fr.  General
+questions and comments of interest to the Caml community should be
+sent to caml-list@inria.fr, the Caml mailing list. (see question 2
+above for details.)
+
+
+OBJECTIVE CAML
+--------------
+Objective Caml (formerly known as Caml Special Light) is a complete
+reimplementation of Caml Light that adds a complete class-based
+object-oriented system and a powerful module system in the style of
+Standard ML.
+
+The object system is statically type-checked (no "message not
+understood" run-time errors) and performs ML-style type reconstruction
+(no type declarations for function parameters). This is arguably the
+first publically available object-oriented language featuring ML-style
+type reconstruction.
+
+The module system is based on the notion of manifest types /
+translucent sums; it supports Modula-style separate compilation, and
+fully transparent higher-order functors.
+
+Objective Caml comprises two compilers: a bytecode compiler in the
+style of Caml Light (but up to twice as fast), and a high-performance
+native code compiler for the following platforms:
+
+    Alpha processors: DecStation 3000 under OSF1 (a.k.a. Digital Unix)
+    Sparc processors: Sun Sparcstation under SunOS 4.1, Solaris 2, NetBSD
+    Intel 486 and Pentium processors: PCs under Linux, NextStep,
+        FreeBSD, Windows 95 and Windows NT
+    Mips processors: DecStation 3100 and 5000 under Ultrix 4
+    HP PA-RISC processors: HP 9000/700 under NextStep (no HPUX yet)
+    PowerPC processors: IBM RS6000 and PowerPC workstations under AIX 3.2
+
+The native-code compiler delivers excellent performance (better than
+Standard ML of New Jersey 1.08 on our tests), while retaining the
+moderate memory requirements of the bytecode compiler.
+
+The source distribution (for Unix machines only) is available by
+anonymous FTP on ftp.inria.fr, directory lang/caml-light.
+
+More information on Objective Caml is available on the World Wide
+Web, at:  http://pauillac.inria.fr/ocaml/
+
+Bug reports and technical questions should be directed to
+caml-light@inria.fr. For general questions and comments, use the Caml
+mailing list caml-list@inria.fr (to subscribe:
+caml-list-request@inria.fr).
+
+
+BIGLOO
+------
+Bigloo is an optimizing Scheme-to-C and Caml-to-C compiler that
+produces native machine code from Caml sources. Compatibility with the
+bytecoded implementation of Caml Light is almost perfect. Performance
+of generated code is on a par with that of New Jersey ML. Bigloo is
+also one of the most efficient Scheme compilers available.
+
+Bigloo runs on the following Unix platforms: Decstations 3000 and
+5000, Sparcstations, PCs under Linux, HP PA 730 and Sony News R3000.
+
+Bigloo is being developed by Manuel Serrano (Manuel.Serrano@inria.fr).
+
+Available from:
+  ftp://ftp.inria.fr/lang/caml-light/.
+
+CAMLOT
+-----
+Camlot is the stand alone Caml Light to C compiler. It then uses a
+standard C
+compiler to produce an executable machine code file. The compiler itself
+is
+mostly written in Caml Light and the runtime system is written in standard
+C,
+hence Camlot is easy to port to almost any 32-bit platform. The
+performance
+of the resulting code is quite good, often ten times faster than the
+bytecode
+original implementation of Caml Light.
+
+The distribution has been tested on the following platforms:
+
+  Sun Sparcstation
+  DecStation 3100
+  HP 9000/710
+  i386/486 Linux
+
+The distribution is avaiable at:
+  ftp://ftp.inria.fr/lang/caml-light/
+
+MOSCOW ML
+---------
+Moscow ML provides a light-weight implementation of full Standard ML,
+including Modules and some extensions.
+
+Moscow ML is based on the Caml Light bytecode system, which gives fast
+compilation and modest storage consumption.
+
+Moscow ML 2.00 properties:
+
+  * Supports the full SML'97, including Modules (structures, signatures,
+    and functors), thanks to Claudio Russo
+  * Also provides several extensions to the SML Modules language:
+     - higher-order functors: functors may be defined within structures
+       and functors
+     - first-class modules: structures and functors may be packed and
+       then handled as Core language values, which may then be unpacked
+       as structures or functors again
+     - recursive modules: signatures and structures may be recursively
+       defined
+  * Implements Standard ML, as revised 1997 (value polymorphism,
+    default overloading resolution, new types)
+  * Remains backwards compatible with previous releases of Moscow ML
+  * Implements most of the new Standard ML Basis Library, including
+    the most common input/output facilities in TextIO and BinIO
+  * Built-in help function
+  * Interactive top-level as well as separate (batch) compilation
+  * Can produce compact stand-alone executables
+  * Supports quotations and antiquotations, useful for metaprogramming
+  * Dynamic linking of external functions (Linux/x86 and Linux/Alpha,
+    Solaris, Digital Unix, HP-UX, MacOS, Win'95/98/NT/2000)
+  * Interface to Boutell's library for making PNG images (structure
+Gdimage)
+  * Interface to the PostgreSQL database server (structure Postgres)
+  * Interface to the MySQL database server (structure Mysql)
+  * Interface to POSIX 1003.2 regular expressions (structure Regex)
+  * Interface to sockets (structure Socket)
+  * Interface to GNU gdbm persistent hashtables (structures Gdbm,
+Polygdbm)
+  * Facilities for fast functional generation of HTML code (structure Msp)
+  * Facilities for using CGI (structure Mosmlcgi and Mosmlcookie)
+  * Registration of ML and C functions for callbacks (structure Callback)
+
+
+SUPPORTED PLATFORMS
+
+Intel x86-based PCs running Windows'95, '98, 'NT, and '2000, OS/2,
+Linux or FreeBSD; DEC Alpha running Linux or Digital Unix; Sun Sparc
+running Solaris or SunOS; HP9000 running HP/UX 9 or HP/UX 10; SGI MIPS
+running IRIX 5; Macintosh (68k and PPC) running MacOS (thanks to Doug
+Currie) or MkLinux, MacOS X.
+
+
+AUTHORS
+
+  * Sergei Romanenko (roman@keldysh.ru), Moscow, Russia
+  * Claudio V. Russo (Claudio.Russo@cl.cam.ac.uk), Cambridge, UK
+  * Peter Sestoft (sestoft@dina.kvl.dk), Copenhagen, Denmark
+
+AVAILABILITY
+
+  * The Moscow ML homepage is
+      http://www.dina.kvl.dk/~sestoft/mosml.html
+  * Moscow ML library documentation
+      http://www.dina.kvl.dk/~sestoft/mosmllib/
+  * The Linux executables and documentation are in
+      ftp://ftp.dina.kvl.dk/pub/mosml/
+  * The Unix source files and documentation are in
+      ftp://ftp.dina.kvl.dk/pub/mosml/
+  * The MS Windows 95/98/NT executables and documentation are in
+      ftp://ftp.dina.kvl.dk/pub/mosml/
+  * The MacOS (68k and PPC) executables and docs and source diffs are in
+      ftp://ftp.dina.kvl.dk/pub/mosml/
+  * The MS Windows 95/98/NT/2000 source files are in
+      ftp://ftp.dina.kvl.dk/pub/mosml/
+
+Postscript and PDF versions of the documentation included with the
+binaries can be found in ftp://ftp.dina.kvl.dk/pub/mosml/doc/
+
+Peter Sestoft (sestoft@dina.kvl.dk) 2000-08-03
+
+
+The ML Kit
+----------
+Two versions of the ML Kit are available from DIKU:
+(a) The ML Kit (Version 1, 1993)
+(b) The ML Kit with Regions (1997)
+
+Both are described in more detail at the DIKU ML Kit web site:
+
+     http://www.diku.dk/research-groups/topps/activities/mlkit.html
+
+ML Kit Version 1
+----------------
+Version 1 of the ML Kit is a straight translation of the 1990
+Definition of Standard ML into a collection of Standard ML modules.
+For example, every inference rule in the Definition is translated into
+a small piece of Standard ML code which implements it. The translation
+has been done with as little originality as possible - even variable
+conventions from the Definition are carried straight over to the Kit.
+
+If you are primarily interested in executing Standard ML programs
+efficiently, the ML Kit is not the system for you! (It uses a lot of
+space and is very slow.) The Kit is intended as a tool box for those
+people in the programming language community who may want a
+self-contained parser or type checker for full Standard ML but do not
+want to understand the clever bits of a high-performance compiler. We
+have tried to write simple code and module interfaces; we have not
+paid any attention to efficiency.
+
+The documentation is around 100 pages long and is provided with the
+Kit. It explains how to build, run, read and modify the Kit. It also
+describes how typing of flexible records and overloading are handled
+in the Kit.
+
+The ML Kit is written by Nick Rothwell, David N. Turner, Mads Tofte
+and Lars Birkedal at Edinburgh and Copenhagen Universities.
+
+The ML Kit with Regions (aka Version 2)
+---------------------------------------
+Version 2 builds on Version 1, but is expanded into a real compiler.
+Inefficient data structures and algorithms in the system have been
+replaced by more efficient ones. The ML Kit with Regions is intended for
+the development of stand-alone applications which must be reliable,
+fast and space efficient.
+
+The main feature of the ML Kit with Regions is that it uses a stack of
+regions for memory management rather than traditional garbage
+collection techniques; this has several important consequences:
+
+   Compile-Time Garbage Collection:
+     All memory allocation directives (both allocation and
+     de-allocation) are inferred by the compiler, which uses a number
+     of novel program analyses concerning lifetimes and storage
+     layout. There is no pointer-tracing garbage collection at
+     runtime;
+   Memory Safety:
+     Safety of de-allocation of memory is ensured by the compiler;
+   Static detection of space leaks;
+   Region Resetting:
+     It is possible to give explicit directives about resetting of
+     regions in cases where the static analyses are too conservative;
+     such directives are checked by the compiler;
+   Region Profiling:
+     The system includes a graphical region profiler, which helps
+     gain detailed control over memory use;
+   Soft Real-Time:
+     Programmers who are interested in real-time programming can
+     exploit the absence of garbage collection: there are no
+     interruptions of unbounded duration at runtime;
+   Interface to the C language:
+     ML Kit applications can call C functions using standard C calling
+     conventions; the region scheme can even take care of allocating
+     and de-allocating regions used by C functions thus invoked.
+
+The overall goal with developing the ML Kit with Regions has been to
+combine the advantages of a high-level, type-safe language (Standard
+ML, 1997 Definition), with the advantages of low-level languages,
+namely detailed control over space and time. Indeed, it turns out that
+the regularity provided by the ML type system makes is possible to
+infer much more useful information about ML programs than one can
+reasonably hope for in languages with more liberal type
+systems. Naturally, the hope is that this technology will promote the
+use of Standard ML in situations where safety and detailed control of
+machine resources are important, as indeed is often the case.
+
+Since we are using Standard ML as our source language, one can use the
+ML Kit in conjunction with other Standard ML systems; for example, one
+can port programs that previously ran on a garbage collection based
+Standard ML system to run on the Kit; or one may use the Kit simply to
+gain insight into how a program intended for another system uses
+memory; or one can develop Standard ML programs directly in the Kit.
+We have tried all three with good results.
+
+A comprehensive technical report "Programming with Regions in the ML Kit"
+is available from the above web site.
+
+The ML Kit with Regions was developed by Mads Tofte, Lars Birkedal,
+Martin Elsman, Niels Hallenberg, Tommy H{\o}jfeld Olesen (all at DIKU) and
+Peter Sestoft and Peter Berthelsen (both at KVL).
+
+
+Edinburgh ML 4.0
+----------------
+Edinburgh ML 4.0 is an implementation of the core language (without
+the module system).  It uses a bytecode interpreter, which is written in C
+and runs on any machine with 32 bit words, a continuous address space and
+a correct C compiler.  Ports to various 16 bit machines are underway.  The
+bytecode interpreter can be compiled with switches to avoid the buggy
+parts
+of the C compilers that we've used it with (as far as I know none of them
+worked correctly).
+
+Edinburgh ML 4.0 is available from the LFCS.  See the WWW link:
+     http://www.dcs.ed.ac.uk/lfcsinfo/index.html
+
+A port to PCs with 386SX processors or better is available by FTP from
+ftp.informatik.uni-muenchen.de, in the file
+pub/comp/programming/languages/sml/ibmpc/edml3864.exe.
+Contact Joern Erbguth (erbguth@juris-sb.de) for more information.
+
+Also, there are apparently 8086 and 80386-specific ports of Edinburgh
+ML 3.5 in the same location.  The 386 port is in the file
+edml3863.exe.
+
+There are other Edinburgh (PC-)ports of ML including an OS/2 2.x, an
+OS/2 PM and a Dos version. A new version has just been made ready and
+is available at forwiss.uni-passau.de (132.231.1.10) in
+pub/ibmpc/os2/lang/sml/sml04.zip. It is about 360K long (short?).
+
+    All 3 programs have in common (all in one .zip):
+       - true 32 Bit applications
+       - easy to install, easy to use
+       - As far as I know they work stable
+         (except the DOS version working as a Windows window
+         [you can use it with Windows but it crashes on *exit*])
+       - they don't require expensive hardware
+         (and they don't need a co-processor)
+
+    To be more specific:
+          OS/2 PM               OS/2                DOS
+    OS    >= OS/2 2.0+ServPak   >= OS/2 2.0        >= DOS 5.0
+    Edit  PM, GUI,              Standard            command history
+          integrated editor
+          (cut&paste)
+    HW    >= 386/33, 8MB        >= 386/33 4MB       >= 386sx, 2MB
+          lots of MB and fast
+          graphics ad. recommended
+    Help  online                online
+          (+ML ref. in german)
+
+There's also an amiga port of Edinburgh ML available on all aminet ftp
+sites (amiga users should know which these are) in dev/lang, called
+"sml4.1.02.lha".  The standard version needs a 68020 or better and an
+FPU but there is a 68000-only version as well.
+
+MicroML
+-------
+MicroML is an interpreter for core SML that runs on IBM PCs,
+from the Department of Computing Science at the Umea University in
+Sweden.  It implements the core language except for records.  A 80286
+processor or better is recommended, but it runs even on a 8086.
+
+MicroML is available by anonymous ftp from
+ftp.cs.umu.se /pub/uml022.zoo.  For more information contact Olof
+Johansson
+(olof@cs.umu.se).
+
+
+Poly/ML
+-------
+Poly/ML, probably the longest established implementation of Standard ML,
+is now available at http://www.polyml.org .
+
+Poly/ML was originally written in the mid-eighties at Cambridge
+University.  For several years it was marketed by Abstract Hardware
+Limited who developed it further.  Recently the rights were reacquired
+by Cambridge University Technical Services who have agreed to make
+Poly/ML freely available.  Poly/ML now supports full SML 97 and the
+Standard Basis Library, along with some non-standard extensions.
+According to the web page, the compiler source is available, as well
+as binary releases.
+
+Poly/ML is currently available for Linux and Windows on Intel
+platforms, Sparc/Solaris, and MacOS X. Measurements with several large
+ML applications shows Poly/ML to be one of the fastest implementations
+of Standard ML around.
+
+Poplog ML
+---------
+Poplog is a portable system including incremental compilers for Pop-11,
+Common Lisp, Prolog and Standard ML, along with a huge amount of system
+documentation, teaching materials for AI/Cognitive Science, the
+Sim_agent Toolkit, vision libraries, and other things.
+
+"Poplog" is a trade mark of the University of Sussex, where most
+of Poplog was developed, starting with Pop-11 on a PDP11/40 computer
+in the mid 70s, inspired by the Edinburgh AI language Pop2.
+
+The full Poplog system (as of version 15.53) is available free of
+charge, including source code.
+
+For more information, see
+
+    ftp://ftp.cs.bham.ac.uk/pub/dist/poplog/poplog.info.html
+
+For information about the free versions available, and various teaching
+and research support libraries for AI see:
+
+    ftp://ftp.cs.bham.ac.uk/pub/dist/poplog/freepoplog.html
+
+This includes versions of Poplog V15.53 for
+
+    Solaris+Sparc (works on Solaris 7 as well as earlier versions)
+    PC Linux (RedHat 5.x, and 6.0) with or without motif
+
+There are slightly older versions for
+    PC+Solaris86
+    Dec Alpha + Digital unix
+
+Reduced version (no graphics, nothing that depends on X)
+    PC+Windows95/98 (may work on NT also?)
+
+Poplog comes with masses of online documentation: this can be browsed at
+    ftp://ftp.cs.bham.ac.uk/pub/dist/poplog/doc/
+
+Pop-11 documentation can be found at
+
+    ftp://ftp.cs.bham.ac.uk/pub/dist/poplog/primer/START.html
+    or ftp://ftp.cs.bham.ac.uk/pub/dist/poplog/
+
+A slightly zany tutorial file on story grammars can be read in
+
+    ftp://ftp.cs.bham.ac.uk/pub/dist/poplog/teach/storygrammar
+
+COMP.LANG.POP
+Comments and questions about Poplog and Pop-11 may be posted to the
+comp.lang.pop newsgroup, which is linked to an email list.
+See ftp://ftp.cs.bham.ac.uk/pub/dist/poplog/newsgroup.txt
+
+(Please do NOT post general conference announcements, advertisements,
+etc.)
+
+Adrian John Howard (adrianh@cogs.susx.ac.uk) has a WWW page for Poplog:
+
+    http://www.cogs.susx.ac.uk/users/adrianh/poplog.html
+
+Harlequin MLWorks
+-----------------
+
+Harlequin MLWorks is no longer available as a commercial product.
+
+http://www.harlequin.com/products/mlworks_message.html
+
+MLJ
+---
+MLj is a Standard ML compiler which produces Java bytecodes.
+
+MLj 0.2 compiles the functor-free subset of the new SML'97 language plus
+some new language extensions for straightforward interlanguage working
+with Java. It produces compact standalone compiled code which can be
+run on any computer with a Java Virtual Machine. This release includes a
+number of improvements over the original release (0.1), including
+significantly better compilation times, better code generation, more
+complete
+Basis library support, better error messages and friendlier language
+extensions for interlanguage working.
+
+Although there are limitations (most importantly a lack of
+general tail-call optimisation), MLj is quite usable for many
+small-to-medium projects. It can be used to write portable ML
+applications and applets which make use of Java's standard libraries
+for graphics, database access, networking, etc. and which interwork
+with third-party Java code.
+
+Visit the new MLj website at http://www.dcs.ed.ac.uk/~mlj/ to find
+out more about MLj, see some example ML applets and download the MLj
+0.2 distribution.
+
+The compiler is distributed as source+standalone binaries for
+Sparc/Solaris,
+Intel/Linux and Intel/Windows, and in source-only form for compilation
+under
+SML/NJ version 110. It is covered by the GNU Public License version 2.
+
+MLj was written by Nick Benton, Andrew Kennedy and George Russell of
+the Cambridge Research Group of Persimmon IT, Inc. Please note that
+Persimmon IT will no longer distribute or support the compiler;
+instead, Ian Stark and Tom Chothia of the University of Edinburgh
+have kindly offered to host the new download site. The original authors
+continue to develop the compiler and it is hoped that further releases
+will
+take place in the future.
+
+
+MLton
+-----
+
+MLton is a whole-program optimizing compiler for the Standard ML
+programming language.  MLton runs on X86 machines with Linux, FreeBSD,
+or Cygwin/Windows.  MLton has the following features.
+
+   + Generates standalone executables with good runtime performance
+   + SML 97 compliant, with a mostly complete basis library
+   + Fast IntInf based on the GNU multiprecision library (gmp)
+   + Fast C FFI
+   + Profiling
+   + Supports large amounts of memory and large arrays.
+   + Libraries for continuations, interval timers, random numbers,
+       resource limits, resource usage, signal handlers, sockets, system
+       logging, threads, and heap save and restore
+
+For more information, go to the MLton home page.
+
+    http://www.mlton.org/
+
+Send comments, questions, and bug reports to MLton@mlton.org.
+
+
+HaMLet
+------
+
+HaMLet is a faithful implementation of the Standard ML programming
+language (SML'97). It aims to be
+
+* an accurate reference implementation of the language specification,
+* a platform for experimentation with the language semantics or
+extensions to it,
+* a useful tool for educational purposes.
+
+The implementation is intended to be as direct a translation of the
+language formalisation found in the Definition of Standard ML as
+possible, modulo bug fixes. It tries hard to get all details of the
+Definition right. The HaMLet source code
+
+* implements complete Standard ML,
+* closely follows the structure of the Definition, with lots of cross
+references,
+* conforms to the latest version of the Standard ML Basis Library,
+* is written entirely in Standard ML, with the ability to bootstrap,
+* may readily be compiled with SML/NJ, Moscow ML, or MLton.
+
+HaMLet can perform different phases of execution - like parsing,
+elaboration (type checking), and evaluation - selectively. In
+particular,
+it is possible to execute programs in an untyped manner, thus exploring
+the universe where even ML programs "can go wrong".
+
+SML.NET
+-------
+SML.NET is a whole program compiler for full Standard ML that compiles
+to the .NET Common Language Runtime.  For more information, see
+
+http://www.cl.cam.ac.uk/Research/TSG/SMLNET/
+
+--------------------------------------------------------------------------
+
+4. Unsupported SML/NJ Ports
+
+This section describes various ports of SML/NJ (see section 3)
+that are not directly supported by the NJ folks.
+
+OS/2:
+----
+
+An old port of SML/NJ ver. 0.93 to OS/2 exists.  The port is no longer
+being maintained, but may be downloaded from:
+
+  ftp://ftp.dina.kvl.dk/pub/Staff/Peter.Bertelsen/smlnj/0.93-os2/
+
+Another unmaintained and somewhat incomplete port of SML/NJ
+ver. 108.10 to OS/2 may be downloaded from:
+
+  ftp://ftp.dina.kvl.dk/pub/Staff/Peter.Bertelsen/smlnj/108.10-os2/
+
+NEXTSTEP:
+---------
+The CSDMteam at the University of Munich proudly presents the port of
+Standard  ML of NJ, version 0.93, to NEXTSTEP for Intel processors.
+
+The modified source can be found at ftp.informatik.uni-muenchen.de:
+/pub/comp/programming/languages/sml/NJ-0.93/93.src.nsfip.tar.Z (please
+look
+at the installation instructions in the file README.NeXT.I386).
+
+A precompiled binary of the interpreter (gzip'ed) is located at
+ftp://ftp.informatik.uni-muenchen.de/pub/comp/platforms/next/Developer/languages/
+/sml.0.93.I.b.gz.
+
+SVR4:
+-----
+An mplementation for SVR4.0.4 is available from Anthony Shipman
+(als@tusc.com.au) that fixes the problems with listDir and getWD
+and includes a full malloc implementation for runtime/malloc.c.
+Contact Anthony for more info.
+
+
+--------------------------------------------------------------------------
+
+5. Where can I find documentation on ML?
+
+THE DEFINITION
+--------------
+Robin Milner, Mads Tofte, Robert Harper and Dave MacQueen
+The Definition of Standard ML (Revised)
+MIT Press, 1997, xiii + 114 pp.
+ISBN 0-262-63181-4 (paper)
+
+Robin Milner, Mads Tofte and Robert Harper
+The Definition of Standard ML
+MIT, 1990.
+ISBN: 0-262-63132-6
+
+Robin Milner and Mads Tofte
+Commentary on Standard ML
+MIT, 1991
+ISBN: 0-262-63137-7
+
+TEXTS       (date order)
+-----
+Ake Wikstrom
+Functional Programming Using Standard ML
+Prentice Hall 1987
+ISBN: 0-13-331661-0
+
+Chris Reade
+Elements of Functional Programming
+Addison-Wesley 1989
+ISBN: 0-201-12915-9
+(see http://www.kingston.ac.uk/~bs_s075/EofFP.html for information and
+updates)
+
+Stefan Sokolowski
+Applicative High Order Programming: The Standard ML perspective
+Chapman & Hall 1991
+ISBN: 0-412-39240-2     0-442-30838-8 (USA)
+
+Ryan Stansifer
+ML Primer
+Prentice Hall, 1992
+ISBN 0-13-561721-9
+
+Colin Myers, Chris Clack, and Ellen Poon
+Programming with Standard ML
+Prentice Hall, 1993
+ISBN 0-13-722075-8 (301pp)
+
+Jeffrey D. Ullman
+Elements of ML Programming
+Prentice-Hall, 1993 (Oct. 15)
+ISBN: 0-13-184854-2
+(See Comp.Lang.ML archives, message from Ullman dated 22 Sep 1993 for
+ chapter headings.)
+
+Rachel Harrison
+Abstract Data Types in Standard ML
+John Wiley & Sons, April 1993
+ISBN: 0-471-938440
+
+Richard Bosworth
+A Practical Course in Functional Programming Using Standard ML,
+McGraw-Hill 1995,
+ISBN: 0-07-707625-7.
+
+Elementary Standard ML
+Greg Michaelson
+UCL Press 1995
+ISBN: 1-85728-398-8 PB
+(available at <ftp://ftp.macs.hw.ac.uk/pub/funcprog/>)
+
+
+Lawrence C Paulson
+ML for the Working Programmer (2nd Edition, ML97)
+Cambridge University Press 1996
+ISBN: 0-521-56543-X (paperback), 0-521-57050-6 (hardback)
+http://www.cl.cam.ac.uk/users/lcp/MLbook/
+
+Jeffrey D. Ullman
+Elements of ML Programming (2nd Edition, ML97)
+MIT Press 1997
+http://www-db.stanford.edu/~ullman/emlp.html
+
+G.Cousineau & M.Mauny
+The Functional Approach to Programming
+Cambridge University Press, 1998
+[Uses CAML]
+
+M.Felleisen & D.P.Friedman
+The Little MLer
+MIT Press, 1998
+
+Chris Okasaki
+Purely Functional Data Structures
+Cambridge University Press, 1998.
+ISBN: 0-521-63124-6
+
+Michael R. Hansen, Hans Rischel
+Introduction to Programming using SML
+Addison-Wesley, 1999
+ISBN: 0-201-39820-6
+http://www.it.dtu.dk/introSML
+
+John Reppy
+Concurrent Programming in ML
+Cambridge University Press 1999
+ISBN: 0-521-48089-2
+
+INFORMATION AVAILABLE BY INTERNET
+---------------------------------
+
+The Fox project at CMU has a WWW page for information about Standard ML,
+which also includes the first two reports below:
+   http://foxnet.cs.cmu.edu/sml.html
+
+The following report covers all of Standard ML, and is available at:
+    ftp://ftp.cs.cmu.edu/afs/cs/project/fox/mosaic/intro-notes.ps
+A revised, though still unstable web version of these notes is
+available at:
+    http://www.cs.cmu.edu/People/rwh/introsml
+  Robert Harper
+  Introduction to Standard ML
+  LFCS Report Series  ECS-LFCS-86-14
+  Laboratory for Foundations of Computer Science
+  Department of Computer Science
+  University of Edinburgh
+  Nov. 1986 (revised Jan. 1989 by Nick Rothwell and Kevin Mitchell)
+
+The following report includes an introduction to Standard ML and 3
+lectures on the modules system.  Available from:
+    http://foxnet.cs.cmu.edu/sml.html
+  Mads Tofte
+  Four Lectures on Standard ML
+  LFCS Report Series  ECS-LFCS-89-73
+  Laboratory for Foundations of Computer Science
+  Department of Computer Science
+  University of Edinburgh
+  March 1989
+
+Extended ML (EML) is a framework for specification and formal
+development of SML programs.  EML specifications look just like SML
+programs except that logical axioms are allowed in signatures and in
+place of code in structures and functors.  Some EML specifications are
+executable, making EML a "wide-spectrum" language which can be used to
+express every stage in the development of a SML program from the
+initial high-level specification to the final program itself and
+including intermediate stages in which specification and program are
+intermingled.  Formally developing a program in EML yields an
+interconnected collection of generic SML modules, each with a complete
+and accurate axiomatic specification of its interface with the rest of
+the system.  Information about EML is available from
+http://www.dcs.ed.ac.uk/home/dts/eml/
+
+Le projet Cristal at INRIA Rocquencourt has set up a WWW server for
+information regarding its activities, especially the Caml and Caml
+Light compilers. The server also offers on-line access to
+documentation, publications and to a database of BibTex references in
+CS.  Welcome to:
+   http://pauillac.inria.fr/
+Please report problems and suggestions to Xavier.Leroy@inria.fr.
+
+Richard Botting has taken Larry Paulson's SML Syntax and
+translated it into a form that can be read by mosaic, netscape,
+lynx and other WWW browsers.  The URL is:
+  http://www.csci.csusb.edu/dick/samples/ml.syntax.html
+
+Andrew Cumming has made availible "A Gentle Introduction to ML".  It
+is aimed at students who are reasonably computer literate but who are
+new to functional programming.  It consists largely of questions and
+diversions broken up into roughly one-hour tutorials, most of the
+questions have hints which the student can follow up if required.  The
+material is intended to be used alongside ML - sections of code may be
+copied from the browser window into an ML session.  The URL is
+   http://www.dcs.napier.ac.uk/course-notes/sml/manual.html
+
+There are some WWW pages based on an info-tree at MIT with a variety
+of useful information on ML.  The URL is:
+   http://www.ai.mit.edu/!info/sml/!!first
+
+There is an interesting collection of news articles at:
+   http://www.cs.jcu.edu.au/ftp/web/FP/ml.html
+
+--------------------------------------------------------------------------
+
+6. Where can I find library code?
+
+a. The Standard ML ('97) Basis Library
+
+ In order to enhance the usefulness of SML as a general-purpose
+ programming language, a group of SML implementers, including
+ representatives of Harlequin's ML Works, Moscow ML and SML/NJ, have
+ put together a proposal for an SML Basis Library, containing a
+ collection of modules to serve as a basic toolkit for the SML
+ programmer. The current draft is available on the web at
+          http://SML.sourceforge.net/Basis/
+
+b. The Edinburgh SML Library
+
+ The Edinburgh SML Library provides a consistent set of functions on the
+ built-in types of the language and on vectors and arrays, and a few
+extras.
+ It includes a "make" system and a consistent set of parsing and unparsing
+ functions.  The library consists of a set of signatures with sample
+portable
+ implementations, full documentation, and implementations for Poly/ML,
+ Poplog ML and SML/NJ that use some of the non-standard primitives
+ available in those systems.  It is distributed with Poly/ML, Poplog ML
+and
+ Standard ML of New Jersey.  It is also available from the LFCS.
+
+ The library documentation is available as a technical report from the
+LFCS
+ (reports@dcs.ed.ac.uk) and costs 5 pounds or 10 US dollars.  The
+ LaTeX source of the report is included with the library.
+
+ Dave Berry
+ The Edinburgh SML Library
+ LFCS Report Series  ECS-LFCS-91-148
+ Laboratory for Foundations of Computer Science
+ Department of Computer Science
+ University of Edinburgh
+ April 1991
+
+c. The SML/NJ Library
+
+ The SML/NJ Library is distributed with the SML of New Jersey compiler.
+ It provides a variety of utilities such as 2-dimensional arrays, sorting,
+ sets, dictionaries, hash tables, formatted output, Unix path name
+ manipulation, etc.  The library compiles under SML/NJ but should
+ be mostly portable to other implementations.
+
+
+d. SML_TK
+
+ sml_tk is a Standard ML package providing a portable, typed and
+ abstract interface to the user interface description and command
+ language Tcl/Tk. It combines the advantages of the Tk toolkit with
+ the advantages of Standard ML (bypassing the shortcomings of Tcl),
+ allowing the implementation of graphical user interfaces in a
+ structured and reusable way, supported by the powerful module system
+ of Standard ML.
+
+ For more information, and to obtain sml_tk, please point your web
+ browser to the sml_tk homepage at
+    http://www.informatik.uni-bremen.de/~cxl/sml_tk
+ or contact us at smltk@informatik.uni-bremen.de.
+
+
+e. Caml-light libraries
+   (Included in the Caml Light distribution unless otherwise noted)
+   (Most of these libraries are also available for Objective Caml)
+
+ CAML-TK
+ TK is a GUI library for the TCL language. Normally, TK is controlled
+ from TCL. The Caml-TK interface provides a Caml Light library to control
+TK
+ from Caml Light programs. Thus, TK can be used to program graphical
+ user-interfaces in Caml Light without knowledge of the TCL language.
+
+ LIBGRAPH
+ The "libgraph" library implements basic graphics primitives (line
+ and text drawing, bitmaps, basic event processing) for the Caml Light
+system.
+ It is portable across all platforms that run Caml Light: X-Windows,
+ Macintosh, MSDOS.
+
+ CAMLWIN
+ Camlwin is a GUI library for Caml Light that provide all the classical
+ graphic objects: buttons, string and text editors, list... and a high
+ level object like windowed file selector. It is based on an extension
+ of the "libgraph" library and therefore highly portable. Its main
+ interest is its ability to compile the same code under many systems.
+ At present time, it works under DOS, Windows, and X11 with unix.
+ Camlwin is distributed at:
+   ftp.inria.fr:lang/caml-light/Usercontribs/camlwin
+ The reference manual is also available on the WWW at:
+   http://liasc.enst-bretagne.fr/~saunier
+
+ LIBNUM
+ The "libnum" library implements exact-precision rational arithmetic
+ for Caml Light. It is built upon a state-of-the-art
+ arbitrary-precision integer arithmetic package, and therefore
+ achieves very good performance (it's much faster than Maple, for
+ instance).
+
+ LIBUNIX
+ The "libunix" library makes many Unix system calls and system-related
+ library functions available to Caml Light programs. It provides Caml
+ programs with full access to Unix capabilities, especially network
+ sockets.
+
+ LIBSTR
+ The "libstr" library for Caml Light provides high-level string
+ processing functions, including regular expression matching and
+ substitution. It is intended to support the kind of text processing
+ that is usually performed with "sed" or "perl".
+
+f. The Qwertz Toolbox
+
+ The qwertz toolbox, a library of Standard ML modules with an emphasis
+ on symbolic Artificial Intelligence programming, may now be obtained
+ by anonymous ftp at:
+    ftp.gmd.de:gmd/ai-research/Software/qwertz.tar.gz
+
+ The qwertz.tar.gz file is a tar archive compressed using the the GNU
+ gzip program.  Use the gunzip program to decompress it.  The
+ README file explains how the install the library.
+
+ The toolbox includes: symbols and symbolic expressions, tables
+ including association lists, sets, queues and priority queues,
+ streams, heuristic search including A* and iterative deepening,
+ and an ATMS reason maintenance system.
+
+
+--------------------------------------------------------------------------
+
+7. Theorem Provers and ML
+
+(Collected by Paul Black, pblack@cs.berkeley.edu.  Thanks Paul!)
+
+- LCF (Edinburgh LCF and Cambridge LCF)
+    * originally written in the Edinburgh dialect of ML from which SML
+      developed.
+
+   "Logic and Computation: Interactive Proof with Cambridge LCF"
+    also by Lawrence C. Paulson.  (Describes a Standard ML [core language
+    only] version of LCF.)  The port was done by M. Hedlund, then at
+    Rutherford Appleton Labs, UK.  It is available by anon. ftp from
+    ftp://ftp.cl.cam.ac.uk/ml/lcf.tar.gz.
+
+- Lego (LFCS, Edinburgh Univ., SML)
+    * originally developed in CAML
+    * latest version (5) now runs under SML/NJ
+    * only higher-order resolution
+    * available via anon. ftp from ftp.dcs.ed.ac.uk:/pub/lego
+
+- HOL90
+   Authors = Konrad Slind, Elsa Gunter
+   kxs@cl.cam.ac.uk, elsa@research.att.com
+   http://www.cl.cam.ac.uk/Research/HVG/HOL/
+
+   hol90 is a free implementation in SML/NJ of Mike Gordon's HOL logic (a
+   polymorphic version of Church's Simple Type Theory). The system
+provides
+   a lot of automated support including:
+
+   - a powerful rewriting package;
+   - pre-installed theories for booleans, products, sums, natural
+     numbers, lists, and trees;
+   - definition facilities for recursive types and recursive functions
+     over those types (mutual recursion is also handled);
+   - extensive libraries for strings, sets, group theory, integers, the
+     real numbers, wellordered sets, automatic solution of goals
+     involving linear arithmetic, tautology checking, inductively
+     defined predicates, Hoare logic, Chandy and Misra's UNITY theory,
+     infinite state automata, and many others.
+
+   The HOL community has a lively mailing list accessible at
+   info-hol-request@leopard.cs.byu.edu and a yearly user's meeting that
+   alternates between Europe and North America. hol90 is available by
+   anonymous ftp from
+
+    machine =
+ftp.informatik.tu-muenchen.de/local/lehrstuhl/nipkow/slind/hol90/
+     or
+    machine = ftp.research.att.com/dist/ml/hol90/
+
+   Tim Leonard mentions that a description of the variant of ML used in
+   HOL88 is online at the following url:
+
+   http://lal.cs.byu.edu/lal/holdoc/Description/ML/ML.html
+
+- NuPrl (from Bob Constable`s group at Cornell)
+
+- Isabelle (Lawrence C. Paulson, Cambridge and Tobias Nipkow, Munich)
+    * has integrated rewriting and classical reasoning
+    * a generic proof tool supporting the following formalisms among
+others:
+                i) FOL - first order logic
+                ii) HOL - higher order logic
+                iii) LCF - Logic of computable functions
+                vi) ZF - Zermelo-Fraenkel set theory
+    * There's a WWW page:
+        http://www.cl.cam.ac.uk/Research/HVG/Isabelle/
+    * There's also a mailing list: isabelle-users@cl.cam.ac.uk
+
+- MERILL (Brian Matthews, U. of Glasgow & Rutherford Appleton Laboratory)
+    * written in standard ML
+    * a general purpose order-sorted equational reasoning system
+    * Allows the user to declare their own object language, allows
+    AC-rewriting and AC-unification of terms and equations, has
+    several completion algorithms, is built on a hierarchy of
+    types known as Order-Sorting, and allows the user to try
+    different termination methods.
+    * available via anonymous ftp from the University of Glasgow,
+    ftp address: ftp.dcs.glasgow.ac.uk (130.209.240.50)
+    * Brian Matthews, brian@dcs.glasgow.ac.uk or bmm@inf.rl.ac.uk
+
+- FAUST (Karlsruhe)
+    * a HOL add-on written in ML.
+    * ftp from goethe.ira.uka.de (129.13.18.22)
+
+- Alf
+    * written in SML
+    * An implementation of Martin-Lofs type theory with dependent types
+    * Proof editor
+    * available by anonymous ftp from cs.chalmers.se
+    * only higher-order resolution
+
+- Coq
+   * written in Objective CAML
+     (previous versions were written in CAML and Caml-Light)
+   * implements the Calculus of Inductive Constructions
+     a logical framework suitable for abstract mathematical formalisation
+     and functional program manipulation.
+   * available via anon. ftp from ftp.ens-lyon.fr:/pub/LIP/COQ/V6.1
+     ftp.inria.fr:INRIA/Projects/coq/coq/V6.1
+   * possible contact: coq@pauillac.inria.fr
+     more information : http://pauillac.inria.fr/coq/systeme_coq-eng.html
+   * Coq has an interface based on Centaur developed by the CROAP project
+     at INRIA Sophia-Antipolis :
+    http://www.inria.fr/croap/ctcoq/ctcoq-eng.html
+
+- ICLHOL/ProofPower (Lemma 1)
+    * a commercial system using a reimplementation of HOL in SML
+    * http://www.lemma-one.com/ProofPower/index/index.html
+
+- Lamdba/DIALOG (Abstract Hardware Ltd)
+    * a commercial tool written in Poly/ML
+    * contact ahl@ahl.co.uk
+
+- Twelf (Frank Pfenning & Carsten Schuermann, Carnegie Mellon Univ)
+  * Twelf is a meta-logical framework for deductive systems.
+  * Twelf includes an implementation of LF, including type
+    reconstruction, the Elf constraint logic programming language,
+    and a preliminary inductive meta-theorem prover for LF.
+  * The implementation is written in SML'97 and has been tested
+    under SML/NJ and MLWorks on Unix and Windows platforms.
+    It also includes a complete user's manual, tutorial,
+    example suites, and an Emacs mode.
+  * Further information, including download instructions, information
+    on the mailing list, publications, etc. can be found at
+    http://www.cs.cmu.edu/~twelf
+
+- Definitional Reasoning (Univerity of Tasmania)
+   * developed with SML/NJ
+   * a study of Boolean Affine Combinations (a highly formal case
+construct)
+   * includes a rich set of term rewriting combinators
+   * ftp://hilbert.maths.utas.edu.au/pub/DR.tar.gz
+   * mail to piggy@acm.org for more information.
+
+References
+   "ML for the Working Programmer" by Lawrence C. Paulson contains a
+    small first-order theorem prover.
+
+    Paulson also has a good chapter on writing theorem provers in ML in
+    "Handbook of logic in computer science",
+    Edited by:  S. Abramsky, Dov M. Gabbay, and T.S.E. Maibaum.
+    Oxford : Clarendon Press, 1992-.
+    CALL#: QA76 .H2785 1992
+
+Others
+    Edinburgh's Concurrency Workbench and Sussex's Process Algebra
+    Mauipulator are also ML systems of note, though neither are
+    interactive theorem provers.
+
+
+--------------------------------------------------------------------------
+
+8. Miscellaneous
+
+Where can I find out about SML'97?
+
+ Look at:
+    http://cm.bell-labs.com/cm/cs/what/smlnj/sml97.html
+
+
+How do I write the Y combinator in SML without using a recursive
+definition (i.e. "fun" or "let rec")?
+
+ datatype 'a t = T of 'a t -> 'a
+
+ val y = fn f => (fn (T x) => (f (fn a => x (T x) a)))
+                   (T (fn (T x) => (f (fn a => x (T x) a))))
+
+
+Where can I find an X-Windows interface to SML?
+
+ Poly/ML, Poplog/ML, MLWorks and SML/NJ all come with X-Windows
+ interfaces.  See the appropriate entries under section 3.  In
+ addition, Poly/ML interfaces to the industry standard OSF/Motif
+ toolkit.
+
+
+How do I call a C function from SML/NJ?
+
+ The new versions of SML/NJ provide much better support for calling
+ out to C than version 93 did.  There is a discussion of how to use
+ the C function interface off of the SML/NJ web page at
+ http://cm.bell-labs.com/cm/cs/what/smlnj/doc/SMLNJ-C/index.html
+
+
+Where can I find an emacs mode for SML?
+
+ Look in the "Contributed Software" section of the SML/NJ distribution
+ page at http://cm.bell-labs.com/cm/cs/what/smlnj/software.html
+
+ Nowadays sml-mode works well with Emacs 19 and XEmacs 19, as well as
+ a number of different SML compilers.
+
+ Stefan Monnier has released a new version (3.9.3) with a number of
+ changes, including improvements to the indentation algorithm.  The
+ new version is available at
+ ftp://rum.cs.yale.edu/pub/monnier/sml-mode
+
+What is the value restriction?
+
+ The value restriction is a feature of SML '97 which was introduced to
+ address some issues with polymorphism in the presence of effects.
+ The basic idea is that when a variable is bound to a polymorphic
+ expression, it must be the case that the expression is tantamount to
+ a value: that is, that it is guaranteed not to raise an exception or
+ allocate memory.  For the purposes of typechecking, the class of
+ values is conservatively approximated by the syntactic notion of
+ "non-expansiveness".
+
+ Values (non-expansive expressions) are:
+
+  - functions
+  - constants
+  - variables
+  - records of values
+  - constructors applied to values
+
+ So for example, while in the following code f has type 'a -> 'b -> 'b,
+ g cannot be given the type 'b -> 'b because of the value restriction.
+
+  fun f x y = y
+  val g = f 3
+
+ The expression (f 3) is polymorphic (at type 'b -> 'b) but is not a
+ value, and so the value restriction forbids g from being bound
+ polymorphically.  Either the code will be rejected, or g will be
+ given a useless "dummy" type.
+
+ In practice, this is usually easy to get around by eta-expanding:
+
+  fun f x y = y
+  val g = fn x => f 3 x
+
+ More information on the value restriction is available from a number
+ of sources, in particular:
+
+  - Section 4.7 of "The Definition of Standard ML".  (see above)
+
+  - Pages 321-326 of Paulson's "ML for the working programmer".  (see
+    above)
+
+  -
+http://cm.bell-labs.com/cm/cs/what/smlnj/doc/Conversion/types.html#Value
+    This includes discussion of the particulars of SML/NJ's treatment
+    of the value restriction.
+
+  - Extensive discussion in the comp.lang.ml archives.
+
+
+What is the difference between OCaml and Standard ML?
+
+  Jen Olsson has created a small chart comparing the OCaml and
+  Standard ML syntax: see
+    http://www.csd.uu.se/~jenso/programming/sml_vs_ml.txt .
+
+  An extended version written by Andreas Rossberg can be found at
+    http://www.ps.uni-sb.de/~rossberg/SMLvsOcaml.html
+  In addition to the original page it covers modules, records, and
+  some more stuff.

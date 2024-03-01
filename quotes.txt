@@ -510,6 +510,77 @@ safe harbour. Explore. Dream.
 
 Mobius strippers never show you their back side.
 
+If the human body's obscene, complain to the manufacturer, not me.
+ - Larry Flynt
+
+People demand freedom of speech to make up for the freedom of thought which 
+they avoid.
+ - Soren Aabye Kierkegaard
+
+Freedom of the press is limited to those who own one
+ - Henry Louis Mencken
+
+If you really want to hurt your parents and you don't have nerve enough to be 
+homosexual, the least you can do is go into the arts.
+ - Kurt Vonnegut
+
+The only difference between myself and a madman is that I am not mad.
+ - Salvador Dali
+
+I am always doing what I cannot do yet, in order to learn how to do it
+ - Van Gogh
+
+Love is an ideal thing, marriage a real thing; a confusion of the real with 
+the ideal never goes unpunished.
+ - Goethe
+
+God is really only another artist. He invented the giraffe, the elephant, and 
+the cat. He has no real style. He just keeps on trying other things.
+ - Pablo Piccaso
+
+Until lions have their historians, tales of the hunt shall always glorify the 
+hunter.
+ - African Proverb
+
+To dare to live alone is the rarest courage; since there are many who had rather 
+meet their bitterest enemy in the field, than their own hearts in their closet.
+ - Charles Caleb Colton
+
+Most of all, perhaps, we need an intimate knowlege of the past. Not that the 
+past has anything magical about it, but we cannot study the future.
+ - C. S. Lewis
+
+Different isn't always better, but better is always different.
+ - Unknown
+
+Simpilico: You need to walk before you can run
+Salvati: No, you need something to run towards!
+ - From Lockhart's laments
+
+Computer Quotes
+===============
+
+You are not expected to understand this.
+ - A Comment From The Source Of Unix 6th Ed, Unix/Slp.C, Line 438
+
+A thorough software professional is one who when his wife yells at him 
+"goto hell" , worries more about the goto statement than what his wife is upset 
+about.
+ - weirdo -
+
+Contrary to popular belief, Unix is user friendly. It just happens to be very 
+selective about who it decides to make friends with.
+ - Anonymous
+
+Beware of bugs in the above code; I have only proved it correct, not tried it.
+ - Donald Knuth
+
+They have computers, and they may have other weapons of mass destruction.
+ - Janet Reno, Us Attorney General, 02-27-98
+
+There are two major products that come out of Berkeley: LSD and UNIX. We don't 
+believe this to be a coincidence.
+ - Jeremy S. Anderson
 
 Chess Quotes
 ============
@@ -529,3 +600,98 @@ on the other side is hidden from us.
 
 Strategy requires thought, tactics require observation.
  - Max Euwe
+
+Scientific Quotes
+=================
+
+You are not thinking. You are merely being logical. 
+ - Niels Bohr to Albert Einstien
+
+Your Highness, I have no need of this hypothesis. 
+ - Pierre Laplace (1749-1827), to Napoleon on why his works on celestial 
+   mechanics make no mention of God. 
+
+God created integers. All the rest is the work of Man. 
+ - Kronecker
+
+Anyone who considers arithmetical methods of producing random digits, is, 
+of course, in a state of sin. 
+ - John von Neumann
+
+It doesn’t matter how beautiful your theory is, it doesn’t matter how smart
+you are. If it doesn’t agree with experiment, it’s wrong. 
+ - Richard Feynman 
+
+It has not escaped our notice that the specific pairing we have postulated 
+immediately suggests a possible copying mechanism for the genetic material. 
+ - Watson and Crick
+
+God runs electromagnetics by wave theory on Monday, Wednesday, and Friday, 
+and the Devil runs them by quantum theory on Tuesday, Thursday, and Saturday.
+ - William Bragg
+
+If a 'religion' is defined to be a system of ideas that contains unprovable 
+statements, then Godel taught us that mathematics is not only a religion, 
+it is the only religion that can prove itself to be one.
+ - John Barrow
+
+This question of trying to figure out whether a book is good or bad by 
+looking at it carefully or by taking the reports of a lot of people who looked 
+at it carelessly is like this famous old problem: 
+Nobody was permitted to see the Emperor of China, and the question was, 
+"What is the length of the Emperor of China’s nose?"
+To find out, you go all over the country asking people what they think the 
+length of the Emperor of China’s nose is, and you average it. And that would 
+be very “accurate” because you averaged so many people. But it’s no way to 
+find anything out; when you have a very wide range of people who contribute 
+without looking carefully at it. You don’t improve your knowledge of the 
+situation by averaging.
+ - Richard Feynman
+
+Political Quotes
+================
+Why of course the people don't want war. Why should some poor slob on a farm 
+want to risk his life in a war when the best he can get out of it is to come 
+back to his farm in one piece? ...Voice or no voice, the people can always be 
+brought to the bidding of the leaders. That is easy. All you have to do is 
+tell them they are being attacked, and denounce the peace makers for lack of 
+patriotism and exposing the country to danger. It works the same in any country.
+ - Herman Goering
+
+Why don't they pass a constitutional amendment prohibiting anybody from learning 
+anything? If it works as well as prohibition did, in five years Americans would be 
+the smartest race of people on Earth.
+ - Will Rogers
+
+You can lead a man to Congress, but you can't make him think. 
+ - Milton Berle 
+
+I had a little fantasy that goes like this: I'm getting to be an influential 
+person in San Francisco; what if I and five other powerful guys with cigars got 
+together in a smoke-filled room to decide who would be the next mayor of 
+San Francisco? We'd do it because we're good guys and we really want the city to 
+be wonderful for everybody. Then I thought, what's the difference between five 
+good guys holding that kind of power and five bad guys? Just good intentions, 
+and intentions can be corrupted.
+ - Francis Ford Coppola
+
+A society of sheep must in time beget a government of wolves.
+ - Bertrand de Jouvenel
+
+Literary Quotes
+===============
+There is an art, it says, or rather, a knack to flying. The knack lies in 
+learning how to throw yourself at the ground and miss.
+ - Hitchhiker's guide to the galaxy
+
+"You are not on the road to Hell,
+You tell me with a fanatic glee --
+Vain boaster, what shall that avail
+If hell is on its road to thee"
+- Saki
+
+"Would you tell me, please, which way I ought to go from here?"
+"That depends a good deal on where you want to get to."
+"I don't much care where..."
+"Then it doesn't matter which way you go..."
+ - Conversation between Alice and the Cheshire cat

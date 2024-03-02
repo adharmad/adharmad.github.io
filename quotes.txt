@@ -678,6 +678,11 @@ and intentions can be corrupted.
 A society of sheep must in time beget a government of wolves.
  - Bertrand de Jouvenel
 
+There are known knowns. These are things we know that we know. There are known 
+unknowns. That is to say, there are things that we know we don’t know. But there 
+are also unknown unknowns. There are things we don’t know we don’t know.
+ - Donald Rumsfeld, U.S. Secretary of Defense
+
 Literary Quotes
 ===============
 There is an art, it says, or rather, a knack to flying. The knack lies in 

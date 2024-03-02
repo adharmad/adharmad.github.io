@@ -152,8 +152,6 @@ I don’t know anything about music. In my line you don’t have to.
 
 The only stupid question is the question you don't ask.
 
-Even a stopped clock is right twice a day.
-
 Expecting the world to treat you fairly because you are good is like
 expecting the bull not to charge because you are a vegetarian.
  - Dennis Wholey
@@ -239,6 +237,7 @@ Power, n.: The only narcotic regulated by the SEC instead of the FDA.
 
 The avoidance of taxes is the only intellectual pursuit that carries any
 reward.
+ - John Maynard Keynes (Attributed)
 
 Nature does nothing uselessly.
  - Aristotle
@@ -302,6 +301,7 @@ dark to read
  - Groucho Marx
 
 There is a pleasure in being mad which none but madmen know.
+ - John Dryden
 
 Dream as if you'll live forever. Live as if you'll die today.
  - James Dean
@@ -317,7 +317,7 @@ We're fools whether we dance or not, so we might as well dance.
  - Japanese Proverb
 
 Life is a sexually transmitted disease.
- - Anonymous
+ - R. D. Liang
 
 Those who never took a chance, never had a chance.
  - unknown
@@ -557,6 +557,13 @@ Simpilico: You need to walk before you can run
 Salvati: No, you need something to run towards!
  - From Lockhart's laments
 
+A great many people think they are thinking when they are acutally rearranging 
+their prejudices.
+ - William James
+
+The right to swing my fist ends where the other man’s nose begins.
+ - Oliver Wendell Holmes
+
 Computer Quotes
 ===============
 
@@ -663,6 +670,25 @@ so simple that there are obviously no deficiencies. And the other way is to
 make it so complicated that there are no obvious deficiencies.
  - C.A.R. Hoare
 
+As soon as we started programming, we found to our surprise that it wasn't 
+as easy to get programs right as we had thought. Debugging had to be 
+discovered. I can remember the exact instant when I realized that a large part
+of my life from then on was going to be spent in finding mistakes in my own 
+programs.
+ - Maurice Wilkes (designer of EDSAC, on programming, 1949)
+
+Virtual memory is like a game you can't win;
+However, without VM there's truly nothing to lose...
+ - Unknown
+
+Premature optimization is the root of all evil (or at least most of it) in 
+programming.
+ - Donald Knuth
+
+Interesting - I use a Mac to help me design the next Cray.
+ - Seymoure Cray (1925-1996) when he was told that Apple Inc. had recently 
+   bought a Cray supercomputer to help them design the next Mac.
+
 Chess Quotes
 ============
 
@@ -672,7 +698,7 @@ culminating in checkmate, contradicts the hypocrite.
  - Emanuel Lasker
 
 Victory goes to the player who makes the next-to-last mistake.
- - Savielly Grigorievitch Tartakower [Chess Grandmaster]
+ - Savielly Grigorievitch Tartakower
 
 The chessboard is the world, the pieces are the phenomena of the Universe,
 the rules of the game are what we call the laws of Nature and the player
@@ -681,6 +707,240 @@ on the other side is hidden from us.
 
 Strategy requires thought, tactics require observation.
  - Max Euwe
+
+Of chess it has been said that life is not long enough for it, but that is 
+the fault of life, not chess.
+ - William Napier
+
+Chess is war over the board. The object is to crush the opponents mind.
+ - Bobby Fischer
+
+ Chess is like life.
+  - Boris Spassky
+
+Chess is life.
+  - Bobby Fischer
+
+For those given to reflection, chess offers a mirror to self-understanding. 
+Can you follow through when you have made a plan? How do you hold up under 
+pressure? Are you impatient? Are you mentally lazy? Can you manage time? 
+Do you play to win or to draw? Does fear of making mistakes prevent you 
+trying something creative? Do you attend to details? Are you a gracious winner, 
+or a sore loser?
+As well as teaching you about your own strengths and weaknesses, chess can 
+develop your ability to understand others. To succeed at chess, you must 
+learn to. Think like your opponent, even if your opponent’s style of thinking 
+is very different from your own. 
+‘Life is like a game of chess: we draw up a plan; this plan, however, is 
+conditional on what — in chess, our opponent, in life, our fate — will choose 
+to do.‘ 
+ - Arthur Schopenhauer, Parerga and Paralipomena, 1851.
+
+No chess grandmaster is normal; they only differ in the extent of their madness
+ - Victor Korchnoi
+
+The hardest game to win is a won game
+ - Emanuel Lasker
+
+Winning isn't everything; but losing is nothing 
+ - Mednis (on the importance of fighting for a draw)
+
+I don’t believe in psychology. I believe in good moves
+ - Bobby Fischer
+
+Modern Chess is too much concerned with things like pawn structure. Forget it, 
+checkmate ends the game
+ - Nigel Short
+
+Even the laziest King flees wildly in the face of a double check!
+ - Aron Nimzowitsch
+
+Only the player with the initiative has the right to attack
+ - Wilhelm Steinitz
+
+I have added these principles to the law: get the Knights into action before 
+both Bishops are developed
+ - Emanuel Lasker
+
+Its just you and your opponent at the board and you’re trying to prove something
+ - Bobby Fischer
+
+It is the aim of the modern school, not to treat every position according to one 
+general law, but according to the principle inherent in the position
+ - Richard Reti
+
+The Pawns are the soul of the game, they alone form the attack and defense
+ - Francois Andre Danican Philidor
+
+In order to improve your game, you must study the endgame before everything else,
+for whereas the endings can be studied and mastered by themselves, the middle 
+game and the opening must be studied in relation to the endgame
+ - Jose Raul Capablanca
+
+Some part of a mistake is always correct
+ - Savielly Tartakover
+
+I like the moment when I break a man’s ego
+ - Bobby Fischer
+
+The mistakes are there, waiting to be made
+ - Savielly Tartakower
+
+Before the endgame, the Gods have placed the middle game
+ - Siegbert Tarrasch
+
+Chess was Capablanca’s mother tongue
+ - Richard Reti
+
+The defensive power of a pinned piece is only imaginary
+ - Aron Nimzowitsch
+
+When the Chess game is over, the Pawn and the King go back to the same box
+ - Irish saying
+
+The most powerful weapon in Chess is to have the next move
+ - David Bronstein
+
+Why must I lose to this idiot?
+ - Aron Nimzowitsch
+
+Help your pieces so they can help you
+ - Paul Morphy
+
+It is not enough to be a good player... you must also play well
+ - Siegbert Tarrasc
+
+A sacrifice is best refuted by accepting it
+ - Wilhelm Steinitz
+
+Later, I began to succeed in decisive games. Perhaps because I realized a very 
+simple truth: not only was I worried, but also my opponent
+ - Mikhail Tal
+
+There are two types of sacrifices: correct ones and mine
+ - Mikhail Tal
+
+Best by test: 1. e4
+ - Bobby Fischer
+
+A bad plan is better than none at all
+ - Frank Marshall
+
+Chess books should be used as we use glasses: to assist the sight, although some 
+players make use of them as if they thought they conferred sight
+ - Jose Raul Capablanca
+
+The passed Pawn is a criminal, who should be kept under lock and key. 
+Mild measures, such as police surveillance, are not sufficient
+ - Aron Nimzowitsch
+
+Chess is a terrible game. If you have no center, your opponent has a freer 
+position. If you do have a center, then you really have something to 
+worry about!
+ - Siegbert Tarrasch
+
+We don’t really know how the game was invented, though there are suspicions. 
+As soon as we discover the culprits, we’ll let you know
+ - Bruce Pandolfini
+
+Chess is a foolish expedient for making idle people believe they are doing 
+something very clever when they are only wasting their time
+ - George Bernard Shaw
+
+You must take your opponent into a deep dark forest where 2+2=5, and the path 
+leading out is only wide enough for one
+ - Mikhail Tal
+
+When your house is on fire, you cant be bothered with the neighbors. Or, as we 
+say in Chess, if your King is under attack you don’t worry about losing a 
+Pawn on the Queen’s side
+ - Gary Kasparov
+
+What is the object of playing a gambit opening?... To acquire a reputation of 
+being a dashing player at the cost of losing a game
+ - Siegbert Tarrasch
+ 
+The tactician must know what to do whenever something needs doing; the strategist 
+must know what to do when nothing needs doing
+ - Savielly Tartakover
+
+You may learn much more from a game you lose than from a game you win. You will 
+have to lose hundreds of games before becoming a good player
+ - Jose Raul Capablanca
+
+The isolated Pawn casts gloom over the entire chessboard
+ - Aron Nimzowitsch
+
+Chess is a cold bath for the mind
+ - Sir John Simon
+
+Capture of the adverse King is the ultimate  but not the first object of the game
+- William Steinitz
+
+Every Pawn is a potential Queen
+ - James Mason
+
+Place the contents of the Chess box in a hat, shake them up vigorously, pour 
+them on the board from a height of two feet, and you get the style of Steinitz
+ - H. E. Bird
+
+Pawns are born free, yet they are everywhere in chains
+ - Rick Kennedy
+
+One of these modest little moves may be more embarrassing to your opponent than 
+the biggest threat
+ - Siegbert Tarrasch
+
+You need not play well - just help your opponent to play badly
+ - Genrikh Chepukaitis
+
+It is difficult to play against Einstein’s theory - on his first loss to Fischer
+ - Mikhail Tal
+
+Bobby just drops the pieces and they fall on the right squares
+ - Miguel Najdorf (on Bobby Fischer)
+
+Do you realize Fischer almost never has any bad pieces? He exchanges them, and 
+the bad pieces remain with his opponents
+ - Yuri Balashov
+
+Checkers is for tramps
+ - Paul Morphy
+
+When you play Bobby, it is not a question if you win or lose. It is a question 
+if you survive
+ - Boris Spassky
+
+We like to think
+ - Gary Kasparov
+
+It was clear to me that the vulnerable point of the American Grandmaster 
+(Bobby Fischer) was in double-edged, hanging, irrational positions, where he 
+often failed to find a win even in a won position
+ - Efim Geller)
+
+In Fischer’s hands, a slight theoretical advantage is as good a being a Queen 
+ahead
+ - Isaac Kashdan
+
+When I asked Fischer why he had not played a certain move in our game, he 
+replied: ‘Well, you laughed when I wrote it down!’
+ - Mikhail Tal
+
+Suddenly it was obvious to me in my analysis I had missed what Fischer had 
+found with the greatest of ease at the board
+ - Mikhail Botvinnik (on game with Bobby Fischer in Varna Olympiad)
+
+The King is a fighting piece. Use it!
+ - Wilhelm Steinitz
+
+The laws of Chess do not permit a free choice: you have to move whether you 
+like it or not
+ - Emanuel Lasker
+
+Up to this point White has been following well-known analysis. But now he 
+makes a fatal error: he begins to use his own head
+ - Siegbert Tarrasch
 
 Scientific Quotes
 =================
@@ -728,6 +988,10 @@ find anything out; when you have a very wide range of people who contribute
 without looking carefully at it. You don’t improve your knowledge of the
 situation by averaging.
  - Richard Feynman
+
+It is wrong to think that the task of physics is to find out how nature is. 
+Physics concerns what we can say about nature.
+ - Neils Bohr
 
 Political Quotes
 ================
@@ -781,3 +1045,48 @@ If hell is on its road to thee"
 "I don't much care where..."
 "Then it doesn't matter which way you go..."
  - Conversation between Alice and the Cheshire cat
+
+There is always hope
+ - J.R.R. Tolkein (LOTR, The Two Towers)
+
+ War is peace. Freedom is slavery. Ignorance is strength.
+  - George Orwell (1984)
+
+Not all those who wander are lost.
+    - J.R.R. Tolkein
+
+It does not do to leave a live dragon out of your calculations, if you live 
+near him.
+    - J.R.R. Tolkein
+
+The wide world is all about you; you can fence yourselves in, but you cannot 
+forever fence it out.
+    - J.R.R. Tolkein  
+
+All we have to decide is what to do with the time that is given to us.
+    - J.R.R. Tolkein (Gandalf in Lord of the Rings)    
+
+Once you eliminate the impossible, whatever remains, no matter how improbable, 
+must be the truth.
+    - Arthur Conan Doyle (Sherlock Holmes)    
+
+All animals are equal, but some animals are more equal than others. 
+    - George Orwell (Animal Farm)
+
+During times of universal deceit, telling the truth becomes a revolutionary act.
+    - George Orwell  (1984)    
+
+I have no data yet. It is a capital mistake to theorize before one has data. 
+Insensibly one begins to twist facts to suit theories instead of theories to 
+suit facts.
+    - Sir Arthur Conan Doyle [Sherlock Holmes]    
+
+In the beginning the Universe was created. This has made a lot of people very 
+angry and is widely regarded as a bad move.
+    - Douglas Adams [Hitchhiker's guide to the galaxy]
+
+The devil can cite Scripture for his purpose.
+    - W. Shakespeare [The Merchent of Venice]
+
+640K ought to be enough for anybody.
+    - Bill Gates in 1981    

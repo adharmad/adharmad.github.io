@@ -689,6 +689,30 @@ Interesting - I use a Mac to help me design the next Cray.
  - Seymoure Cray (1925-1996) when he was told that Apple Inc. had recently 
    bought a Cray supercomputer to help them design the next Mac.
 
+The computing scientist’s main challenge is not to get confused by the 
+complexities of his own making.
+— E. W. Dijkstra
+
+One of my most productive days was throwing away 1000 lines of code.
+ — Ken Thompson
+
+When in doubt, use brute force.
+ — Ken Thompson
+
+Deleted code is debugged code.
+ — Jeff Sickel
+
+Beauty is more important in computing than anywhere else in technology because 
+software is so complicated. Beauty is the ultimate defence against complexity.
+ — David Gelernter
+
+A program that produces incorrect results twice as fast is infinitely slower.
+ — John Osterhout
+
+XML is like violence: if it doesn’t solve your problem, you aren’t using enough 
+of it.
+ — Heard from someone working at Microsoft
+
 Chess Quotes
 ============
 

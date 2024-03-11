@@ -725,6 +725,31 @@ Einstein argued that there must be simplified explanations of nature, because
 God is not capricious or arbitrary. No such faith comforts the software engineer.
  — Fred Brooks
 
+A distributed system is one in which the failure of a computer you didn’t even 
+know existed can render your own computer unusable.
+ — Leslie Lamport
+
+Testing by itself does not improve software quality. Test results are an 
+indicator of quality, but in and of themselves, they don’t improve it. Trying 
+to improve software quality by increasing the amount of testing is like trying 
+to lose weight by weighing yourself more often. What you eat before you step 
+onto the scale determines how much you will weigh, and the software development 
+techniques you use determine how many errors testing will find. If you want to 
+lose weight, don’t buy a new scale; change your diet. If you want to improve 
+your software, don’t test more; develop better.
+ — Steve McConnell (Code Complete)
+
+There’s no sense being exact about something if you don’t even know what you’re
+talking about.
+ — John von Neumann
+
+The problem with object-oriented languages is they’ve got all this implicit 
+environment that they carry around with them. You wanted a banana but what you 
+got was a gorilla holding the banana and the entire jungle.
+ — Joe Armstrong
+
+The trick is to fix the problem you have, rather than the problem you want.
+ — Bram Cohen
 
 Chess Quotes
 ============

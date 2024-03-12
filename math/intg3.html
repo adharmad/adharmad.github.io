@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration 1</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integration Problem 3</span>
+<p>
+  The Gaussian Integral, also called the Euler-Poisson Integral:<br><br>
+
+  \[ I = \int_{-\infty}^\infty e^{-x^2} dx \tag{1} \]
+  
+  We can change the variable of integration and write the same integral as <br>
+  \[ I = \int_{-\infty}^\infty e^{-y^2} dy \tag{2} \]
+
+  Multiplying equations (1) and (2): <br>
+  \[ I^2 = \int_{-\infty}^\infty e^{-x^2} dx \times \int_{-\infty}^\infty e^{-y^2} dy \]
+
+  Rearranging the expression: <br>
+  \[ I^2 = \int_{-\infty}^\infty \int_{-\infty}^\infty e^{-x^2} e^{-y^2} dx dy \]
+
+  \[ I^2 = \int_{-\infty}^\infty \int_{-\infty}^\infty e^{-(x^2 + y^2)} dx dy \]
+
+  Changing from carterian coordinates to polar coordinates we get:<br>
+  \[ x = r \cos \theta , y = r \sin \theta \]
+  \[ x^2 + y^2 = r^2, \theta = \tan^{-1}({\frac{y}{x}}) \]
+  and<br>
+  \[ dx dy = r dr d\theta \]
+
+
+  The limits of integration change from \( -\infty < x < \infty, -\infty < y < \infty \) to \( 0 < r < 0, 0 < \theta < 2\pi \)
+
+  Therefore<br>
+  \[ I^2 = \int_0^\infty \int_0^{2\pi} e^{-r^2} r dr d\theta = \int_0^{2\pi} d\theta \times \int_0^\infty e^{-r^2} r dr \] 
+
+  \[ I^2 =  \Bigr[ \theta \Bigr]_0^{2\pi} \times \int_0^\infty r e^{-r^2} r dr =  2\pi \int_0^\infty r e^{-r^2} dr \] 
+
+  Substituting \( t = r^2, dt = 2 r dr, r dr = \frac{dt}{2} \), we get:
+  \[ I^2 =  =  2\pi \int_0^\infty e^{-t} \frac{dt}{2} = \pi \int_0^\infty e^{-t} dt  = \pi \Bigr[ -e^{-t} \Bigr]_0^\infty = \pi [0 - (-1)] \] 
+
+  \[ I^2 = \pi \] 
+
+  \[ I = \sqrt\pi \] 
+
+
+</p>
+
+</div>
+
+</body>
+</html>

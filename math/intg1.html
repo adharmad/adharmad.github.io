@@ -36,7 +36,7 @@
   \[ \frac{1}{x^3 + 1}  = \frac{A}{x + 1} + \frac{Bx+c}{x^2 - x + 1} \]
 
   \[ 1  = A(x^2 - x + 1) + (Bx+C)(x+1) \]
-  \[ 1  = Ax^2 - Ax + A + Bx^2 + Bx +Cx C \]
+  \[ 1  = Ax^2 - Ax + A + Bx^2 + Bx +Cx + C \]
   \[ 1  = (A+B)x^2  + (-A + B + C)x + (A + C) \]
 
   This yields the following system of equations: <br>
@@ -44,18 +44,28 @@
   \[ -A + B + C = 0 \]
   \[ A + C = 1 \]
 
-  Solving for A, B, C gives: \( A = \frac{1}{3}  \), \( B = -\frac{1}{3}  \), \( C = \frac{2}{3}  \) <br>
+  Solving for A, B, C gives: \( A = \frac{1}{3}  \), \( B = -\frac{1}{3}  \), \( C = \frac{2}{3}  \) <br><br>
 
   Thus:
   \[ I = \int\frac{dx}{(x + 1)(x^2 - x + 1)}  = \int\frac{dx}{3(x + 1)} + \int\frac{(-x+2)}{3(x^2 - x + 1)}dx \] 
+
   \[ I = \frac{1}{3}\ln{\lvert x + 1 \rvert} - \int\frac{(x-2)}{3(x^2 - x + 1)}dx \] 
+
   \[ I = \frac{1}{3}\ln{\lvert x + 1 \rvert} - \int\frac{(2x-4)}{6(x^2 - x + 1)}dx \]
+
   \[ I = \frac{1}{3}\ln{\lvert x + 1 \rvert} - \int\frac{(2x-1-3)}{6(x^2 - x + 1)}dx \]
+
   \[ I = \frac{1}{3}\ln{\lvert x + 1 \rvert} - \int\frac{(2x-1)}{6(x^2 - x + 1)}dx + \int\frac{3}{6(x^2 - x + 1)}dx \]
+
   \[ I = \frac{1}{3}\ln{\lvert x + 1 \rvert} - \frac{1}{6}\ln{\lvert x^2 - x + 1 \rvert}  + \frac{1}{2}\int\frac{1}{x^2 - 2(x)(\frac{1}{2}) + \frac{1}{4} + \frac{3}{4}}dx \] 
+
   \[ I = \frac{1}{3}\ln{\lvert x + 1 \rvert} - \frac{1}{3}\ln{\lvert \sqrt{x^2 - x + 1} \rvert}  + \frac{1}{2}\int\frac{1}{(x - \frac{1}{2})^2 + (\frac{\sqrt{3}}{2})^2} dx \]
+
   \[ I = \frac{1}{3}\ln{\lvert x + 1 \rvert} - \frac{1}{3}\ln{\lvert \sqrt{x^2 - x + 1} \rvert}  + \frac{1}{2}\frac{1}{\frac{\sqrt{3}}{2}}\tan^{-1}{\frac{x-\frac{1}{2}}{\frac{\sqrt{3}}{2}}} + c \] 
+  
   \[ I = \frac{1}{3}\ln{\lvert x + 1 \rvert} - \frac{1}{3}\ln{\lvert \sqrt{x^2 - x + 1} \rvert}  + \frac{1}{\sqrt{3}}\tan^{-1}{\frac{2x-1}{\sqrt{3}}} + c \]
+
+  \[ I = \frac{1}{3}\ln{\lvert \frac{x + 1}{\sqrt{x^2 - x + 1}} \rvert} + \frac{1}{\sqrt{3}}\tan^{-1}{\frac{2x-1}{\sqrt{3}}} + c \]
 
 </p>
 

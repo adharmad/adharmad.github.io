@@ -1,0 +1,83 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration 4</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integration Problem 4</span>
+<p>
+  \[ I = \int \sqrt{\tan x} \; dx \]
+
+  Substitute \( \tan x = t^2\). Then \( \sec^2x \; dx = 2t \; dt \Rightarrow \; dx = \frac{2t}{1+t^4} dt \; \)
+
+  \[ I = \int t \frac{2t}{1+t^4} \; dt  = 2 \int \frac{t^2}{1+t^4} \; dt \]
+
+  \[ I = 2 \int \frac{t^2}{t^4 + 2t^2 + 1 -2t^2} \; dt = = 2 \int \frac{t^2}{(t^2 + 1)^2 -(t\sqrt{2})^2} \; dt = 2 \int \frac{t^2}{(t^2 + t\sqrt{2} + 1)(t^2 - t\sqrt{2} + 1)} \; dt \]
+
+  Decomposing the expression using partial fractions gives us the following: <br>
+  
+  \[ \frac{t^2}{(t^2 + t\sqrt{2} + 1)(t^2 - t\sqrt{2} + 1)}  = \frac{At+B}{(t^2 + t\sqrt{2} + 1)} + \frac{Ct+D}{(t^2 - t\sqrt{2} + 1)} \]
+
+  \[ t^2  = (At+B)(t^2 - t\sqrt{2} + 1) + (Ct+D)(t^2 + t\sqrt{2} + 1) \]
+
+  \[ t^2  = At^3 - A\sqrt{2}t^2 + At + Bt^2 - B\sqrt{2}t + B + Ct^3 + C\sqrt{2}t^2 + Ct + Dt^2 + D\sqrt{2}t + D \]
+
+   \[ t^2  = (A + C)t^3 + (-A\sqrt{2} + B + C\sqrt{2} + D)t^2 + (A - B\sqrt{2}t + C + D\sqrt{2})t + (B+D) \]
+
+  This yields the following system of equations: <br>
+  \[ A + C = 0 \]
+  \[ -A\sqrt{2} + B + C\sqrt{2} + D = 1 \]
+  \[ A - B\sqrt{2}t + C + D\sqrt{2} = 0 \]   
+  \[ B + D = 0 \]
+
+  Solving for A, B, C, D gives: \( A = -\frac{1}{2\sqrt{2}}  \), \( B = 0  \), \( C = \frac{1}{2\sqrt{2}} \), \( D = 0  \) <br><br>
+
+  Thus:
+  \[ I = 2 \int \frac{-t}{2\sqrt{2}(t^2 + t\sqrt{2} + 1)} \; dt + 2 \int \frac{t}{2\sqrt{2}(t^2 - t\sqrt{2} + 1)} \; dt \]
+
+  \[ I = -\frac{1}{2\sqrt{2}} \int \frac{2t}{t^2 + t\sqrt{2} + 1} \; dt + \frac{1}{2\sqrt{2}} \int \frac{2t}{t^2 - t\sqrt{2} + 1} \; dt \]
+
+  \[ I = -\frac{1}{2\sqrt{2}} \int \frac{2t + \sqrt{2} - \sqrt{2}}{t^2 + t\sqrt{2} + 1} \; dt + \frac{1}{2\sqrt{2}} \int \frac{2t - \sqrt{2} + \sqrt{2}}{t^2 - t\sqrt{2} + 1} \; dt \]
+
+  \[ I = -\frac{1}{2\sqrt{2}} \int \frac{2t + \sqrt{2}}{t^2 + t\sqrt{2} + 1} \; dt - \frac{1}{2\sqrt{2}} \int \frac{- \sqrt{2}}{t^2 + t\sqrt{2} + 1} \; dt + \frac{1}{2\sqrt{2}} \int \frac{2t - \sqrt{2}}{t^2 - t\sqrt{2} + 1} \; dt + \frac{1}{2\sqrt{2}} \int \frac{\sqrt{2}}{t^2 - t\sqrt{2} + 1} \; dt \]
+
+  \[ I = -\frac{1}{2\sqrt{2}} \ln{\lvert t^2 + t\sqrt{2} + 1 \rvert} + \frac{1}{2} \int \frac{1}{t^2 + 2t\frac{1}{\sqrt{2}} + \frac{1}{2} + \frac{1}{2}} \; dt + \frac{1}{2\sqrt{2}} \ln{\lvert t^2 - t\sqrt{2} + 1 \rvert} + \frac{1}{2} \int \frac{1}{t^2 - 2t\frac{1}{\sqrt{2}} + \frac{1}{2} + \frac{1}{2}} \; dt \]
+
+
+  \[ I = \frac{1}{2\sqrt{2}} \ln{\Biggl| \frac{t^2 + t\sqrt{2} + 1}{t^2 - t\sqrt{2} + 1} \Biggr|} + \frac{1}{2} \int \frac{1}{(t + \frac{1}{\sqrt{2}})^2 + (\frac{1}{\sqrt{2}})^2} \; dt + \frac{1}{2} \int \frac{1}{(t - \frac{1}{\sqrt{2}})^2 + (\frac{1}{\sqrt{2}})^2} \; dt \]
+
+  \[ I = \frac{1}{2\sqrt{2}} \ln{\Biggl| \frac{t^2 + t\sqrt{2} + 1}{t^2 - t\sqrt{2} + 1} \Biggr|} + \frac{1}{2\frac{1}{\sqrt{2}}} \tan^{-1}(\frac{t + \frac{1}{\sqrt{2}}}{\frac{1}{\sqrt{2}}}) + \frac{1}{2\frac{1}{\sqrt{2}}} \tan^{-1}(\frac{t - \frac{1}{\sqrt{2}}}{\frac{1}{\sqrt{2}}}) + c \]
+
+  \[ I = \frac{1}{2\sqrt{2}} \ln{\Biggl| \frac{t^2 + t\sqrt{2} + 1}{t^2 - t\sqrt{2} + 1} \Biggr|} + \frac{1}{\sqrt{2}} \tan^{-1}(t\sqrt{2} + 1) + \frac{1}{\sqrt{2}} \tan^{-1}(t\sqrt{2} - 1) + c \]
+
+  \[ I = \frac{1}{2\sqrt{2}} \ln{\Biggl| \frac{t^2 + t\sqrt{2} + 1}{t^2 - t\sqrt{2} + 1} \Biggr|} + \frac{1}{\sqrt{2}} \tan^{-1}\Biggl(\frac{t\sqrt{2} + 1 + t\sqrt{2} - 1}{1 - (2t^2 - 1)}\Biggr) + c = \frac{1}{2\sqrt{2}} \ln{\Biggl| \frac{t^2 + t\sqrt{2} + 1}{t^2 - t\sqrt{2} + 1} \Biggr|} + \frac{1}{\sqrt{2}} \tan^{-1}\Biggl(\frac{2t\sqrt{2}}{2 - 2t^2}\Biggr) + c \]
+
+  \[ I = \frac{1}{2\sqrt{2}} \ln{\Biggl| \frac{t^2 + t\sqrt{2} + 1}{t^2 - t\sqrt{2} + 1} \Biggr|} + \frac{1}{\sqrt{2}} \tan^{-1}\Biggl(\frac{t\sqrt{2}}{1 - t^2}\Biggr) + c \]
+
+  
+
+
+</p>
+
+</div>
+
+</body>
+</html>

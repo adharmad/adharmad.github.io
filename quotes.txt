@@ -1027,6 +1027,23 @@ It is wrong to think that the task of physics is to find out how nature is.
 Physics concerns what we can say about nature.
     - Neils Bohr
 
+The law that entropy always increases holds, I think, the supreme position 
+among the laws of Nature. If someone points out to you that your pet theory
+of the universe is in disagreement with Maxwell's equations - then so much the
+worse for Maxwell's equations. If it is found to be contradicted by observation
+- well, these experimentalists do bungle things sometimes. But if your theory
+is found to be against the Second Law of Thermodynamics I can give you no hope;
+there is nothing for it to collapse in deepest humiliation.
+	― Arthur Eddington (New Pathways in Science)
+
+What we observe is not nature itself, but nature exposed to our method of
+questioning.
+	- Werner Heisenberg
+
+The first principle is that you must not fool yourself and you are the easiest
+person to fool. 
+	- Richard P. Feynman
+
 Political Quotes
 ================
 Why of course the people don't want war. Why should some poor slob on a farm

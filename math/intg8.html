@@ -1,0 +1,76 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration 8</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integration Problem 8</span>
+<p>
+
+  \[ I = \int\frac{dx}{x^4 + 1} \]
+
+  Since \( x^4 + 1 = x^4 + 2x^2 + 1 - 2x^2 = (x^2 + 1)^2 - (x\sqrt{2})^2  = (x^2 + x\sqrt{2} + 1)(x^2 - x\sqrt{2} + 1) \), <br>
+
+  \[ I = \int\frac{dx}{(x^2 + x\sqrt{2} + 1)(x^2 - x\sqrt{2} + 1)} \]
+
+  Decomposing the denominator using partial fractions gives us the following: <br>
+  
+  \[ \frac{1}{(x^2 + x\sqrt{2} + 1)(x^2 - x\sqrt{2} + 1)}  = \frac{Ax+B}{x^2 + x\sqrt{2} + 1} + \frac{Cx+D}{x^2 - x\sqrt{2} + 1} \]
+
+  \[ 1  = (Ax+B)(x^2 - x\sqrt{2} + 1) + (Cx+D)(x^2 + x\sqrt{2} + 1) \]
+  \[ 1  = (A+C)x^3  + (-A\sqrt{2} + B + C\sqrt{2} + D)x^2 + (A - B\sqrt{2} + C + D\sqrt{2})x + (B+D) \]
+
+  This yields the following system of equations: <br>
+  \[ A + C = 0 \]
+  \[ -A\sqrt{2} + B + C\sqrt{2} + D = 0 \]
+  \[ A - B\sqrt{2} + C + D\sqrt{2} = 0 \]
+  \[ B + D = 1 \]
+
+  Solving for A, B, C, D gives: \( A = \frac{1}{2\sqrt{2}}  \), \( B = \frac{1}{2}  \), \( C = -\frac{1}{2\sqrt{2}}  \), \( D = \frac{1}{2}  \) <br><br>
+
+  \[ I = \int\frac{\frac{x}{2\sqrt{2}} + \frac{1}{2}}{x^2 + x\sqrt{2} + 1} \; dx + \int\frac{ -\frac{x}{2\sqrt{2}}  + \frac{1}{2} }{x^2 - x\sqrt{2} + 1} \; dx \]
+
+  \[ I = \frac{1}{2\sqrt{2}} \int\frac{x + \sqrt{2}}{x^2 + x\sqrt{2} + 1} \; dx - \frac{1}{2\sqrt{2}} \int\frac{ x - \sqrt{2}}{x^2 - x\sqrt{2} + 1} \; dx \]
+
+  \[ I = \frac{1}{4\sqrt{2}} \int\frac{2x + \sqrt{2} + \sqrt{2}}{x^2 + x\sqrt{2} + 1} \; dx - \frac{1}{4\sqrt{2}} \int\frac{2x - \sqrt{2} - \sqrt{2}}{x^2 - x\sqrt{2} + 1} \; dx \]
+
+  \[ I = \frac{1}{4\sqrt{2}} \int\frac{2x + \sqrt{2}}{x^2 + x\sqrt{2} + 1} \; dx + \frac{1}{4\sqrt{2}} \int\frac{\sqrt{2}}{x^2 + x\sqrt{2} + 1} \; dx - \frac{1}{4\sqrt{2}} \int\frac{2x - \sqrt{2}}{x^2 - x\sqrt{2} + 1} \; dx + \frac{1}{4\sqrt{2}} \int\frac{\sqrt{2}}{x^2 - x\sqrt{2} + 1} \; dx \]
+
+  \[ I = \frac{1}{4\sqrt{2}} \ln{\lvert x^2 + x\sqrt{2} + 1 \rvert} + \frac{1}{4} \int\frac{dx}{x^2 + 2x\frac{1}{\sqrt{2}} + \frac{1}{2} + \frac{1}{2}} - \frac{1}{4\sqrt{2}} \ln{\lvert x^2 - x\sqrt{2} + 1 \rvert} + \frac{1}{4} \int\frac{dx}{x^2 - 2x\frac{1}{\sqrt{2}} + \frac{1}{2} + \frac{1}{2}} \]
+
+  \[ I = \frac{1}{4\sqrt{2}} \ln{\Biggl| \frac{x^2 + x\sqrt{2} + 1}{x^2 - x\sqrt{2} + 1} \Biggr|} + \frac{1}{4} \int\frac{dx}{(x + \frac{1}{\sqrt{2}})^2 + (\frac{1}{\sqrt{2}})^2} + \frac{1}{4} \int\frac{dx}{(x - \frac{1}{\sqrt{2}})^2 + (\frac{1}{\sqrt{2}})^2} \]
+
+  \[ I = \frac{1}{4\sqrt{2}} \ln{\Biggl| \frac{x^2 + x\sqrt{2} + 1}{x^2 - x\sqrt{2} + 1} \Biggr|} + \frac{1}{4} \frac{1}{\frac{1}{\sqrt{2}}} \tan^{-1}(\frac{x + \frac{1}{\sqrt{2}}}{\frac{1}{\sqrt{2}}}) + \frac{1}{4} \frac{1}{\frac{1}{\sqrt{2}}} \tan^{-1}(\frac{x - \frac{1}{\sqrt{2}}}{\frac{1}{\sqrt{2}}}) + c \]
+
+  \[ I = \frac{1}{4\sqrt{2}} \ln{\Biggl| \frac{x^2 + x\sqrt{2} + 1}{x^2 - x\sqrt{2} + 1} \Biggr|} + \frac{1}{2\sqrt{2}} \tan^{-1}(x\sqrt{2} + 1) + \frac{1}{2\sqrt{2}} \tan^{-1}(x\sqrt{2} - 1) + c \]
+
+  \[ I = \frac{1}{4\sqrt{2}} \ln{\Biggl| \frac{x^2 + x\sqrt{2} + 1}{x^2 - x\sqrt{2} + 1} \Biggr|} + \frac{1}{2\sqrt{2}} \tan^{-1} \Biggl( \frac{x\sqrt{2} + 1 + x\sqrt{2} - 1}{1 - (x\sqrt{2} + 1)(x\sqrt{2} - 1)} \Biggr) + c \]
+
+  \[ I = \frac{1}{4\sqrt{2}} \ln{\Biggl| \frac{x^2 + x\sqrt{2} + 1}{x^2 - x\sqrt{2} + 1} \Biggr|} + \frac{1}{2\sqrt{2}} \tan^{-1} \Biggl( \frac{x\sqrt{2}}{1 - x^2} \Biggr) + c \]
+  
+
+
+</p>
+
+</div>
+
+</body>
+</html>

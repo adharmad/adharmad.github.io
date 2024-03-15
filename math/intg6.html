@@ -1,0 +1,67 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration 6</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integration Problem 6</span>
+<p>
+  The \( \frac{22}{7} > \pi \) problem: 
+
+  \[ I = \int_0^1 \frac{x^4 (1-x)^4}{1+x^2} \; dx = \int_0^1 \frac{x^4 (x-1)^4}{1+x^2} \; dx \]
+
+  Substitute \( x = \tan \theta \). Then \( dx = \sec^2\theta \; d\theta \). The limits of integration go from \(x = 0, x = 1 \) to \(\theta = 0, \theta = \frac{\pi}{4} \).
+
+  \[ I = \int_0^\frac{\pi}{4} \frac{\tan^4\theta (\tan\theta - 1)^4}{1 + \tan^2\theta} \; \sec^2\theta \; d\theta = \int_0^\frac{\pi}{4} \tan^4\theta (\tan\theta - 1)^4 \; d\theta \]
+
+  \[ I = \int_0^\frac{\pi}{4} \tan^4\theta (\tan^4\theta - 4\tan^3\theta + 6\tan^2\theta - 4\tan\theta + 1) \; d\theta \]
+
+  \[ I = \int_0^\frac{\pi}{4} (\tan^8\theta - 4\tan^7\theta + 6\tan^6\theta - 4\tan^5\theta + \tan^4\theta) \; d\theta \]
+
+  The following formulae are well known:
+
+  \[ \int \tan\theta \; d\theta = \ln{\lvert \sec\theta \rvert} \]
+  \[ \int \tan^2\theta \; d\theta = \tan\theta - \theta \]
+  \[ \int \tan^3\theta \; d\theta = \frac{\tan^2\theta}{2} - \ln{\lvert \sec\theta \rvert} \]
+  \[ \int \tan^4\theta \; d\theta = \frac{\tan^3\theta}{3} - \tan\theta + \theta \]
+  \[ \int \tan^5\theta \; d\theta = \frac{\tan^4\theta}{4} - \frac{\tan^2\theta}{2} + \ln{\lvert \sec\theta \rvert} \]
+  \[ \int \tan^6\theta \; d\theta = \frac{\tan^5\theta}{5} - \frac{\tan^3\theta}{3} + \tan\theta - \theta \]
+  \[ \int \tan^7\theta \; d\theta = \frac{\tan^6\theta}{6} - \frac{\tan^4\theta}{4} + \frac{\tan^2\theta}{2} - \ln{\lvert \sec\theta \rvert} \]
+  \[ \int \tan^8\theta \; d\theta = \frac{\tan^7\theta}{7} - \frac{\tan^5\theta}{5} + \frac{\tan^3\theta}{3} - \tan\theta + \theta \]
+
+  Thus:
+  \[ I = \displaylines{ \Biggl[ (\frac{\tan^7\theta}{7} - \frac{\tan^5\theta}{5} + \frac{\tan^3\theta}{3} - \tan\theta + \theta) - 4(\frac{\tan^6\theta}{6} - \frac{\tan^4\theta}{4} + \frac{\tan^2\theta}{2} - \ln{\lvert \sec\theta \rvert}) \\ + 6(\frac{\tan^5\theta}{5} - \frac{\tan^3\theta}{3} + \tan\theta - \theta) - 4(\frac{\tan^4\theta}{4} - \frac{\tan^2\theta}{2} + \ln{\lvert \sec\theta \rvert}) + (\frac{\tan^3\theta}{3} - \tan\theta + \theta) \Biggr]_0^\frac{\pi}{4} } \]
+
+  \[ I = \Biggl[ \frac{\tan^7\theta}{7} - \frac{2}{3}\tan^6\theta + \tan^5\theta - \frac{4}{3}\tan^3\theta + 4\tan\theta - 4\theta \Biggr]_0^\frac{\pi}{4} \]
+
+  \[ I = \frac{1}{7} - \frac{2}{3} + 1 - \frac{4}{3} + 4 - 4(\frac{\pi}{4}) \]
+
+  \[ I = \frac{22}{7} - \pi \]
+
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

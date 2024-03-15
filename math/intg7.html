@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration 7</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integration Problem 7</span>
+<p>
+
+  \[ I = \int\frac{dx}{x^4 - 1} \]
+  
+  \[ I = \int\frac{dx}{(x^2 - 1)(x^2 + 1)} \] 
+   
+  \[ I = \frac{1}{2}\int\frac{dx}{x^2 - 1} - \frac{1}{2}\int\frac{dx}{x^2 + 1}  =  \frac{1}{2}\int\frac{dx}{(x - 1)(x + 1)} - \frac{1}{2}\int\frac{dx}{x^2 + 1} \] 
+
+  \[ I = \frac{1}{4}\int\frac{dx}{x - 1} - \frac{1}{4}\int\frac{dx}{x + 1} - \frac{1}{2}\int\frac{dx}{x^2 + 1}  = \frac{1}{4}\ln{\lvert x-1 \rvert} + \frac{1}{4}\ln{\lvert x+1 \rvert} - \frac{1}{2}\tan^{-1}x + c \] 
+
+  \[ I = \frac{1}{4}\ln{\Biggl| \frac{x-1}{x+1} \Biggr|} - \frac{1}{2}\tan^{-1}x + c \] 
+
+
+</p>
+
+</div>
+
+</body>
+</html>

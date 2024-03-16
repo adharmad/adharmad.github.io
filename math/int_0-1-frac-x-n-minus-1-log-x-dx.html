@@ -1,0 +1,65 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^1 \frac{x^n-1}{\ln{x}} dx \): </span>
+<p>
+  
+  \[ I = \int_0^1 \frac{x^n-1}{\ln{x}} \; dx \]
+
+  Using Feynman's method of differentiating under the sign of integral, let us parametrize the integral using n. 
+
+  \[ I(n) = \int_0^1 \frac{x^n-1}{\ln{x}} \; dx \]
+
+  Taking the derivative of both sides, with respect to n,
+
+  \[ \frac{dI}{dn} = \frac{d}{dn} \int_0^1 \frac{x^n-1}{\ln{x}} \; dx = \int_0^1 \frac{\partial}{\partial n} \frac{x^n-1}{\ln{x}} \; dx \]
+
+  \[ \frac{dI}{dn} = \int_0^1 \frac{x^n \ln{x}}{\ln{x}} \; dx = \int_0^1 x^n \; dx \]
+
+  \[ \frac{dI}{dn} = \Biggl| \frac{x^{n+1}}{n+1} \Biggr|_0^1 = \frac{1}{n+1} \]
+
+  Integrating both sides, we get
+
+  \[ I(n) = \int \frac{1}{n+1} \; dn = \ln \lvert n + 1 \rvert + c \]
+
+  Now, \( I(0) = 0 \) from the original integral. Hence, setting \( n = 0 \),
+  \[ I(0) = \ln \lvert 0 + 1 \rvert + c \]
+  \[ 0 = 0 + c \]
+  \[ c = 0 \]
+
+  Thus, 
+  \[ I(n) = \ln \lvert n + 1 \rvert \]
+
+  Using this general result, we can calculate all kinds of special cases such as:
+  \[ \int_0^1 \frac{x^5-1}{\ln{x}} \; dx = \ln {6} \]
+  \[ \int_0^1 \frac{x^\pi-1}{\ln{x}} \; dx = \ln {(\pi + 1)} \]
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

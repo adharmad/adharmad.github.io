@@ -1,0 +1,58 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^1\frac{\ln{(x+1)}}{x^2 + 1} \; dx \)</span>
+<p>
+The Putnam Integral<br><br>
+<em>Method 1:</em>
+
+  \[ I = \int_0^1\frac{\ln{(x+1)}}{x^2 + 1} \; dx \]
+
+  Substitute \( x = \tan \theta \). Then \( dx = \sec^2\theta \; d\theta  \). The limits go from \( x = (0, 1) \) to \( \theta= (0, \frac{\pi}{4}) \) 
+
+  \[ I = \int_0^{\frac{\pi}{4}}\frac{\ln{(\tan \theta + 1)}}{\tan^2 \theta + 1} \sec^2\theta \; d\theta = \int_0^{\frac{\pi}{4}}\frac{\ln{(\tan \theta + 1)}}{\sec^2\theta} \sec^2\theta \; d\theta  \]
+
+  \[ I = \int_0^{\frac{\pi}{4}}\ln{(\tan \theta + 1)} \; d\theta  \]
+
+  Using \( I = \int_a^bf(x) \; dx = \int_a^bf(b+a-x) \; dx  \), we get:
+
+  \[ I = \int_0^{\frac{\pi}{4}}\ln{(\tan (\frac{\pi}{4} - \theta) + 1)} \; d\theta  = \int_0^{\frac{\pi}{4}}\ln{\Biggl( \frac{\tan\frac{\pi}{4} - \tan \theta}{1 + \tan\frac{\pi}{4} \tan \theta} + 1 \Biggr)} \; d\theta \]
+
+  \[ I = \int_0^{\frac{\pi}{4}}\ln{\Biggl( \frac{1 - \tan \theta}{1 + \tan \theta} + 1 \Biggr)} \; d\theta = \int_0^{\frac{\pi}{4}}\ln{\Biggl( \frac{1 - \tan \theta + 1 + \tan \theta}{1 + \tan \theta} \Biggr)} \; d\theta \]
+
+  \[ I = \int_0^{\frac{\pi}{4}}\ln{\Biggl( \frac{2 }{1 + \tan \theta} \Biggr)} \; d\theta  = \int_0^{\frac{\pi}{4}}(\ln{2} - \ln{(\tan \theta + 1)}) \; d\theta = \int_0^{\frac{\pi}{4}}\ln{2} \; d\theta - \int_0^{\frac{\pi}{4}}\ln{(\tan \theta + 1)} \; d\theta \]
+
+  \[ I =  \ln{2}\; [\theta]_0^{\frac{\pi}{4}} - I \]
+
+  \[ 2I =  \frac{\pi}{4}\ln{2} \]
+
+  \[ I =  \frac{\pi}{8}\ln{2} \]
+
+
+</p>
+
+</div>
+
+</body>
+</html>

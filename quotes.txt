@@ -1044,6 +1044,14 @@ The first principle is that you must not fool yourself and you are the easiest
 person to fool. 
 	- Richard P. Feynman
 
+Suppose aliens invade the earth and threaten to obliterate it in a year's 
+time unless human beings can find the Ramsey number for red five and blue 
+five. We could marshal the world's best minds and fastest computers, and 
+within a year we could probably calculate the value. If the aliens demanded 
+the Ramsey number for red six and blue six, however, we would have no choice 
+but to launch a preemptive attack.
+    - Paul Erdos ("Ramsey Theory" - Ronald L. Graham and Joel H. Spencer)
+
 Political Quotes
 ================
 Why of course the people don't want war. Why should some poor slob on a farm

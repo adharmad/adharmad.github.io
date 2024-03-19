@@ -25,7 +25,8 @@
 <span class="h1">Integrate \( \int_0^1\frac{\ln{(x+1)}}{x^2 + 1} \; dx \)</span>
 <p>
 The Putnam Integral<br><br>
-<em>Method 1:</em>
+
+  <em>Method 1: Trigonometric substitution</em>
 
   \[ I = \int_0^1\frac{\ln{(x+1)}}{x^2 + 1} \; dx \]
 
@@ -48,6 +49,24 @@ The Putnam Integral<br><br>
   \[ 2I =  \frac{\pi}{4}\ln{2} \]
 
   \[ I =  \frac{\pi}{8}\ln{2} \]
+
+  <br><br>
+  <em>Method 2: Algebraic substitution</em>
+
+  \[ I = \int_0^1\frac{\ln{(x+1)}}{x^2 + 1} \; dx \]
+
+  Substitute \( x = \frac{1-t}{1+t} \). Then \( dx = \frac{-2}{1+t^2} dt \). The limits go from \( x = (0, 1) \) to \( t= (1, 0) \)
+
+  \[ I = \int_1^0\frac{\ln{\frac{2}{1+t}}}{\frac{2(1+t^2)}{(1+t)^2}} . \frac{-2}{(1+t)^2} \;  dt \]
+
+  \[ I = \int_0^1\frac{\ln{2} - \ln{(1+t)}}{1 + t^2} \;  dt = \int_0^1\frac{\ln{2}}{1 + t^2} \; dt - \int_0^1\frac{\ln{(1+t)}}{1 + t^2} \; dt \]
+
+  \[ I = \int_0^1\frac{\ln{2}}{1 + t^2} \; dt - I \]
+
+  \[ 2I = \ln{2} \int_0^1\frac{1}{1 + t^2} \; dt = \ln{2} \; [tan^{-1}t]_0^1 = \frac{\pi}{4} \ln{2} \]
+
+  \[ I =  \frac{\pi}{8}\ln{2} \]
+
 
 
 </p>

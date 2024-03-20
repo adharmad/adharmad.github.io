@@ -546,11 +546,15 @@ Just because a field sprinkles numbers around doesn't make it a hard science.
 By that definition, marketing research is a hard science.
     - Unknown
 
+The power of instruction is seldom of much efficacy except in those happy 
+dispositions where it is almost superfluous.
+    – Gibbon
+
 Computer Quotes
 ===============
 
 Computer science is as much about computers as astronomy is about telescopes.
-- E. W. Dijkstra
+    - E. W. Dijkstra
 
 You are not expected to understand this.
     - A Comment From The Source Of Unix 6th Ed, Unix/Slp.C, Line 438
@@ -670,37 +674,46 @@ Interesting - I use a Mac to help me design the next Cray.
    bought a Cray supercomputer to help them design the next Mac.
 
 The computing scientist’s main challenge is not to get confused by the
-complexities of his own making. — E. W. Dijkstra
+complexities of his own making. 
+    — E. W. Dijkstra
 
-One of my most productive days was throwing away 1000 lines of code. — Ken
+One of my most productive days was throwing away 1000 lines of code. 
+    — Ken
 Thompson
 
-When in doubt, use brute force. — Ken Thompson
+When in doubt, use brute force. 
+    — Ken Thompson
 
-Deleted code is debugged code. — Jeff Sickel
+Deleted code is debugged code. 
+    — Jeff Sickel
 
 Beauty is more important in computing than anywhere else in technology because
-software is so complicated. Beauty is the ultimate defence against complexity. —
-David Gelernter
+software is so complicated. Beauty is the ultimate defence against complexity. 
+    — David Gelernter
 
-A program that produces incorrect results twice as fast is infinitely slower. —
-John Osterhout
+A program that produces incorrect results twice as fast is infinitely slower. 
+    — John Osterhout
 
 XML is like violence: if it doesn’t solve your problem, you aren’t using enough
-of it. — Heard from someone working at Microsoft
+of it. 
+    — Heard from someone working at Microsoft
 
 Most software today is very much like an Egyptian pyramid with millions of
 bricks piled on top of each other, with no structural integrity, but just done
-by brute force and thousands of slaves. — Alan Kay
+by brute force and thousands of slaves. 
+    — Alan Kay
 
-If you want to go somewhere, goto is the best way to get there. — ken
+If you want to go somewhere, goto is the best way to get there. 
+    — ken
 
 Einstein argued that there must be simplified explanations of nature, because
 God is not capricious or arbitrary. No such faith comforts the software
-engineer. — Fred Brooks
+engineer. 
+    — Fred Brooks
 
 A distributed system is one in which the failure of a computer you didn’t even
-know existed can render your own computer unusable. — Leslie Lamport
+know existed can render your own computer unusable. 
+    — Leslie Lamport
 
 Testing by itself does not improve software quality. Test results are an
 indicator of quality, but in and of themselves, they don’t improve it. Trying to
@@ -709,21 +722,31 @@ lose weight by weighing yourself more often. What you eat before you step onto
 the scale determines how much you will weigh, and the software development
 techniques you use determine how many errors testing will find. If you want to
 lose weight, don’t buy a new scale; change your diet. If you want to improve
-your software, don’t test more; develop better. — Steve McConnell (Code
+your software, don’t test more; develop better. 
+    — Steve McConnell (Code
 Complete)
 
 There’s no sense being exact about something if you don’t even know what you’re
-talking about. — John von Neumann
+talking about. 
+    — John von Neumann
 
 The problem with object-oriented languages is they’ve got all this implicit
 environment that they carry around with them. You wanted a banana but what you
-got was a gorilla holding the banana and the entire jungle. — Joe Armstrong
+got was a gorilla holding the banana and the entire jungle. 
+    — Joe Armstrong
 
-The trick is to fix the problem you have, rather than the problem you want. —
-Bram Cohen
+The trick is to fix the problem you have, rather than the problem you want. 
+    — Bram Cohen
 
 640K ought to be enough for anybody.
     - Bill Gates in 1981
+
+The primary purpose of the DATA statement is to give names to constants; 
+instead of referring to pi as 3.141592653589793 at every appearance, the
+variable PI can be given that value with a DATA statement and used instead of
+the longer form of the constant. This also simplifies modifying the program, 
+should the value of pi change.
+    — Early FORTRAN manual for Xerox Computers (Attributed to David H. Owens)
 
 Chess Quotes
 ============
@@ -1060,7 +1083,7 @@ back to his farm in one piece? ...Voice or no voice, the people can always be
 brought to the bidding of the leaders. That is easy. All you have to do is tell
 them they are being attacked, and denounce the peace makers for lack of
 patriotism and exposing the country to danger. It works the same in any country.
-    - Herman Goering
+    - Herman Goering (Nuremberg trials)
 
 Why don't they pass a constitutional amendment prohibiting anybody from learning
 anything? If it works as well as prohibition did, in five years Americans would

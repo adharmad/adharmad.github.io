@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\infty \frac{\sin x}{x} \; dx \)</span>
+<p>
+  The basic Dirichlet integral:<br><br>
+
+  \[ I = \int_0^\infty \frac{\sin x}{x} \; dx \]
+
+  Using Feynman's technique of differentiating under the sign of the integral, let us first parametrize the integral:
+
+  \[ I(a) = \int_0^\infty \frac{e^{-ax}\sin x}{x} \; dx \]
+
+  \[ \frac{dI}{da} = \frac{d}{da} \int_0^\infty \frac{e^{-ax}\sin x}{x} \; dx = \int_0^\infty \frac{\partial}{\partial a} \frac{e^{-ax}\sin x}{x} \; dx \]
+
+  \[ \frac{dI}{da} = \int_0^\infty \frac{e^{-ax}(-x)\sin x}{x} \; dx = \int_0^\infty -e^{-ax}\sin x \; dx \]
+
+  Using Euler's formula, \( e^{-ix} = \cos x - i\sin x \). Thus, 
+
+  \[ \frac{dI}{da} = \Im \int_0^\infty e^{-ax}e^{-ix} \; dx = \Im \int_0^\infty e^{-(a+i)x} \; dx \]
+
+  \[ \frac{dI}{da} = \Im \Biggl[ \frac{e^{-(a+i)x}}{-(a+i)} \Biggr]_0^\infty = \Im \Biggl\{ 0 - \frac{-1}{a+i} \Biggr\} = \Im \Biggl\{ \frac{1}{a+i} \Biggr\} \]
+
+  \[ \frac{dI}{da} = \Im \Biggl\{ \frac{1}{a+i} . \frac{a-i}{a-i} \Biggr\} = \Im \Biggl\{ \frac{a-i}{a^2+1} \Biggr\} = \frac{-1}{a^2 + 1} \]
+
+  Integrating both sides, we get,
+  \[ I(a) = \int \frac{-1}{a^2 + 1} \; da =  -\tan^{-1}a + c \]
+
+  Now, \( I(\infty) = 0 \), since \( \lim_{a \to \infty}e^{-ax} = 0  \). Thus,
+  \[ I(\infty) = -\tan^{-1}\infty + c \]
+  \[ 0 = -\frac{\pi}{2} + c \]
+  \[ c = \frac{\pi}{2} \]
+
+  Hence, 
+  \[ I(a) = \frac{\pi}{2} -\tan^{-1}a \]
+
+
+  \[ \int_0^\infty \frac{\sin x}{x} \; dx = I(0) = \frac{\pi}{2} -\tan^{-1} 0 \]
+  \[ \int_0^\infty \frac{\sin x}{x} \; dx = \frac{\pi}{2} \]
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

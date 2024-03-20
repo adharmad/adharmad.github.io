@@ -1,0 +1,56 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_{-\infty}^\infty \cos (x^2) \; dx \)</span>
+<p>
+  The basic Fresnel integral:<br><br>
+
+  \[ I = \int_{-\infty}^\infty \cos (x^2) \; dx \]
+
+  Using Euler's identity, \( e^{-ix^2} = \cos (x^2) - i\sin (x^2) \). Thus, 
+
+  \[ I = \Re \int_{-\infty}^\infty e^{-ix^2} \; dx \]
+
+  Since \( e^{-ix^2} \) is an even function, 
+
+  \[ I = 2 \Re \int_0^\infty e^{-ix^2} \; dx \]
+
+  Substituting \( ix^2 = t \), \( 2ix dx = dt \Rightarrow dx = \frac{1}{2\sqrt{it}} dt \). 
+
+  \[ I = 2 \Re \int_0^\infty e^{-t} \frac{1}{2\sqrt{it}} \; dt = \Re \frac{1}{\sqrt{i}} \int_0^\infty t^{-\frac{1}{2}} e^{-t} \; dt = \Re \frac{1}{\sqrt{i}} \int_0^\infty t^{\frac{3}{2} - 1} e^{-t} \; dt \]
+
+  \[ I = \Re \frac{1}{\sqrt{i}} \Gamma{(\frac{3}{2})} = \Re \frac{1}{\sqrt{i}} \Gamma{(1 + \frac{1}{2})} = \Re \frac{1}{\sqrt{e^{i\frac{\pi}{2}}}} \frac{1}{2}\Gamma{(\frac{1}{2})} \]
+
+  \[ I = \Re \; e^{-i\frac{\pi}{4}} \frac{1}{2} \sqrt{\pi} = \Re \; (\cos{\frac{\pi}{4}} - i\sin{\frac{\pi}{4}}) \frac{1}{2} \sqrt{\pi} \]
+
+  \[ I = (\cos{\frac{\pi}{4}}) \frac{1}{2} \sqrt{\pi} = \frac{1}{\sqrt{2}} \frac{1}{2} \sqrt{\pi} = \sqrt{\frac{\pi}{8}} \]
+
+  
+
+</p>
+
+</div>
+
+</body>
+</html>

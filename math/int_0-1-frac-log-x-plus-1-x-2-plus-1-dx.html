@@ -67,6 +67,73 @@ The Putnam Integral<br><br>
 
   \[ I =  \frac{\pi}{8}\ln{2} \]
 
+  <br><br>
+  <em>Method 3: Feynman's method</em>
+
+  \[ I = \int_0^1\frac{\ln{(x+1)}}{x^2 + 1} \; dx \]
+
+  Let us parametrize the integral as below using an arbitrary variable:
+
+  \[ I = \int_0^1\frac{\ln{(ax+1)}}{x^2 + 1} \; dx \]
+
+  We need to find the value of the original integral which will be when \( a = 1 \;\; i.e. \;\; I(1) \)<br><br>
+
+  Using Feynman's technique of differentiating under the sign of integral:
+
+  \[ \frac{dI}{da} = \frac{d}{da} \; \int_0^1\frac{\ln{(ax+1)}}{x^2 + 1} \; dx = \int_0^1 \frac{\partial}{\partial a} \frac{\ln{(ax+1)}}{x^2 + 1} \; dx\]
+
+  \[ \frac{dI}{da} = \int_0^1 \frac{x}{(ax+1)(x^2 + 1)} \; dx\]
+
+  Decomposing the denominator using partial fractions gives us the following: <br>
+  
+  \[ \frac{x}{(ax+1)(x^2 + 1)}  = \frac{A}{ax+1} + \frac{Bx+c}{x^2 + 1} \]
+
+  \[ x  = A(x^2 + 1) + (Bx+C)(ax+1) \]
+  \[ x  = Ax^2 + A + Bax^2 + Bx +Cax + C \]
+  \[ x  = (A+Ba)x^2  + (B + Ca)x + (A + C) \]
+
+  This yields the following system of equations: <br>
+  \[ A + Ba = 0 \]
+  \[ B + Ca = 1 \]
+  \[ A + C = 0 \]
+
+  Solving for A, B, C gives: \( A = -\frac{a}{a^2+1}  \), \( B = \frac{1}{a^2+1}  \), \( C = \frac{a}{a^2+1}  \) <br><br>
+
+  Thus:
+  \[ \frac{dI}{da} = \int_0^1 \Biggl( -\frac{a}{a^2+1} \frac{1}{ax+1} + \frac{1}{a^2+1} \frac{x + a}{x^2+1} \Biggr) \; dx\]
+
+  \[ \frac{dI}{da} = -\frac{a}{a^2+1} \int_0^1 \frac{1}{ax+1} \; dx + \frac{1}{a^2+1} \int_0^1 \frac{x}{x^2+1} \; dx + \frac{a}{a^2+1} \int_0^1 \frac{1}{x^2+1} \; dx\]
+
+  \[ \frac{dI}{da} = -\frac{a}{a^2+1} \frac{\ln{(ax+1)}}{a} \Biggr|_0^1 + \frac{1}{a^2+1} \frac{\ln(x^2+1)}{2} \Biggr|_0^1 + \frac{a}{a^2+1} \tan^{-1} x \Biggr|_0^1 \; dx \]
+
+  \[ \frac{dI}{da} = -\frac{\ln{(ax+1)}}{a^2+1} + \frac{1}{2(a^2+1)} \ln{2} + \frac{a}{a^2+1} \frac{\pi}{4} \]
+
+  Integrating both sides w.r.t a from \(a = 0 \) to \( a = 1 \), we get:
+
+  \[ \int_0^1 \frac{dI}{da} \; da = \int_0^1 -\frac{\ln{(a+1)}}{a^2+1} \; da + \int_0^1 \frac{\ln{2}}{2(a^2+1)} \; da + \int_0^1 \frac{\pi}{4} \frac{a}{a^2+1} \; da \]
+
+  \[ \int_0^1 \frac{dI}{da} \; da = - \int_0^1 \frac{\ln{(a+1)}}{a^2+1} \; da + \frac{\ln{2}}{2} \int_0^1 \frac{1}{a^2+1} \; da + \frac{\pi}{4} \int_0^1 \frac{a}{a^2+1} \; da \]
+
+  Using the fundamental theorem of calculus:
+  \[ \int_0^1 \frac{dI}{da} \; da = I(1) - I(0) \]
+
+  Also noting that:
+  \[ I(0) = \int_0^1\frac{\ln{(0+1)}}{x^2 + 1} \; dx = 0 \]  
+
+  \[ \int_0^1 \frac{dI}{da} \; da = I(1) - 0 = I(1) \]
+
+  Also, since the switching the variable of definite integral makes no difference to its value,
+  \[ \int_0^1 \frac{\ln{(a+1)}}{a^2+1} \; da = \int_0^1 \frac{\ln{(x+1)}}{x^2+1} \; dx = I(1) \]
+
+  Hence,
+  \[ I(1) = -I(1) + \frac{\ln{2}}{2} (\tan^{-1}a) \Biggr|_0^1 + \frac{\pi}{4} (\frac{\ln{(a^2+1)}}{2}) \Biggr|_0^1 \]
+
+  \[ 2I(1) = \frac{\ln{2}}{2} (\frac{\pi}{4} - 0) + \frac{\pi}{4} (\frac{\ln{2}}{2} - 0) = \frac{\pi\ln{2}}{8} + \frac{\pi\ln{2}}{8} = \frac{\pi\ln{2}}{4} \]
+
+  \[ I = I(1) = \frac{\pi}{8}\ln{2} \]
+
+
+
 
 
 </p>

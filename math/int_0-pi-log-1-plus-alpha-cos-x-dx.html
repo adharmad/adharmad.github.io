@@ -1,0 +1,104 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\pi \ln{(1 + \alpha\cos x)} \; dx \)</span>
+<p>
+  \[ I = \int_0^\pi \ln{(1 + \alpha\cos x)} \; dx \]
+
+  The equation is already parametrized with \( \alpha \). 
+  \[ I(\alpha) = \int_0^\pi \ln{(1 + \alpha\cos x)} \; dx \]
+
+  Using Feynman's technique of differentiating under the sign of the integral, we get:
+
+  \[ \frac{dI}{d\alpha} = \frac{d}{d\alpha} \int_0^\pi \ln{(1 + \alpha\cos x)} \; dx = \int_0^\pi \frac{\partial}{\partial \alpha} \ln{(1 + \alpha\cos x)} \; dx \]
+
+  \[ \frac{dI}{d\alpha} = \int_0^\pi \frac{1}{1 + \alpha\cos x} \cos x \; dx = \frac{1}{\alpha} \int_0^\pi \frac{\alpha \cos x}{1 + \alpha\cos x} \; dx = \frac{1}{\alpha} \int_0^\pi \frac{\alpha \cos x + 1 - 1}{1 + \alpha\cos x} \; dx \]
+
+  \[ \frac{dI}{d\alpha} = \frac{1}{\alpha} \int_0^\pi \Biggl( 1 - \frac{1}{1 + \alpha\cos x} \Biggr) \; dx = \frac{1}{\alpha} \int_0^\pi \; dx - \frac{1}{\alpha} \int_0^\pi \frac{1}{1 + \alpha\cos x} \; dx \]
+
+  \[ \frac{dI}{d\alpha} = \frac{1}{\alpha} x \Biggr|_0^\pi - \frac{1}{\alpha} \int_0^\pi \frac{1}{1 + \alpha\cos x} \; dx \]
+
+  \[ \frac{dI}{d\alpha} = \frac{\pi}{\alpha} - \frac{1}{\alpha} \int_0^\pi \frac{1}{1 + \alpha\cos x} \; dx \tag{1} \]
+
+  Let 
+  \[ I_1 = \int_0^\pi \frac{1}{1 + \alpha\cos x} \; dx \]
+
+  Using Weierstrass Substitution \( \tan (\frac{x}{2} = t \), we know that:
+  \[ dx = \frac{2\; dt}{1+t^2}, \;\; \cos x = \frac{1-t^2}{1+t^2}  \]
+
+  The limits of the integration after the substitution change from \(x = 0, x = \pi \) to \(t = 0, t = \infty \)
+
+  Hence the integral \( I_1 \) becomes:
+  \[ I_1 = \int_0^\infty \frac{1}{1 + \alpha(\frac{1-t^2}{1+t^2})} \;  \frac{2\; dt}{1+t^2} = 2 \int_0^\infty \frac{1+t^2}{1+t^2 + \alpha({1-t^2})} \;  \frac{dt}{1+t^2}  \]
+
+  \[ I_1 = 2 \int_0^\infty \frac{1}{1+\alpha + t^2(1 - \alpha)} \;  dt = \frac{2}{1-\alpha} \int_0^\infty \frac{1}{t^2 + \frac{1+\alpha}{1-\alpha}} \;  dt \]
+
+  \[ I_1 = \frac{2}{\sqrt{1-\alpha^2}} \tan^{-1} \frac{t}{\sqrt{ \frac{1+\alpha}{1-\alpha}}} \Biggr|_0^\infty  \]
+
+  \[ I_1 = \frac{2}{\sqrt{1-\alpha^2}} (\frac{\pi}{2} - 0) = \frac{\pi}{\sqrt{1-\alpha^2}} \]
+
+  Going back to equation (1) with the this, we get:
+  \[ \frac{dI}{d\alpha} = \frac{\pi}{\alpha} - \frac{1}{\alpha} \frac{\pi}{\sqrt{1-\alpha^2}} = \pi \Biggl( \frac{1}{\alpha} - \frac{1}{\alpha\sqrt{1-\alpha^2}} \Biggr) \] 
+
+  Integrating w.r.t \( \alpha \):
+  \[ I = \int \pi \Biggl( \frac{1}{\alpha} - \frac{1}{\alpha\sqrt{1-\alpha^2}} \Biggr) d\alpha = \pi \int \frac{d\alpha}{\alpha} - \pi \int \frac{d\alpha}{\alpha\sqrt{1-\alpha^2}} \]
+
+  \[ I = \pi \ln{\alpha} - \pi \int \frac{d\alpha}{\alpha\sqrt{1-\alpha^2}} \tag{2} \]
+
+  Let 
+  \[ I_2 = \int \frac{d\alpha}{\alpha\sqrt{1-\alpha^2}} \]
+
+  Substituting \( \alpha = \sin \theta \Rightarrow d\alpha = \cos \theta \; d\theta \), we get:
+  \[ I_2 = \int \frac{\cos \theta}{\sin \theta \sqrt{1-\sin^2 \theta}} \; d\theta = \int \frac{\cos \theta}{\sin \theta \cos \theta} \; d\theta  = \int \csc \theta \; d\theta \]
+
+  \[ I_2 = -\ln{\lvert \csc \theta + \cot \theta \rvert} \]
+
+  Now,
+  \[ \csc \theta = \frac{1}{\alpha}, \; \cot \theta = \frac{\sqrt{1-\alpha^2}}{\alpha} \]
+
+  Thus, 
+  \[ I_2 = -\ln{\Biggl| \frac{1}{\alpha} + \frac{\sqrt{1-\alpha^2}}{\alpha} \Biggr|} =  -\ln{\Biggl| \frac{1 + \sqrt{1-\alpha^2}}{\alpha} \Biggr|} \]
+
+  Using this value of \(I_2 \) in equation (2), we get:
+  \[ I(\alpha) = \pi \ln{\alpha} - \pi  \Biggl( -\ln{\Biggl| \frac{1 + \sqrt{1-\alpha^2}}{\alpha} \Biggr|} \Biggr)  + c  = \pi \ln{\alpha} + \pi  \ln{\Biggl| \frac{1 + \sqrt{1-\alpha^2}}{\alpha} \Biggr|}   + c \]
+
+  \[ I(\alpha) = \pi \ln{\alpha} + \pi \ln{(1 + \sqrt{1-\alpha^2})} - \pi \ln{\alpha}    + c  = \pi \ln{(1 + \sqrt{1-\alpha^2})} + c \]
+
+  From the original equation, we know that \( I(0) = 0 \). Hence,
+  \[ I(0) =  \pi \ln{(1 + \sqrt{1-0^2})} + c = \pi \ln{2} + c \]
+  \[ c =  -\pi \ln{2} \]
+
+  Hence finally,
+  \[ I(\alpha) = \pi \ln{(1 + \sqrt{1-\alpha^2})} -\pi \ln{2} \]
+  \[ I(\alpha) = \pi \ln{(\frac{1 + \sqrt{1-\alpha^2}}{2})} \]
+
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\frac{\pi}{2} \frac{x}{\tan x} \; dx \)</span>
+<p>
+  \[ I = \int_0^\frac{\pi}{2} \frac{x}{\tan x} \; dx \]
+
+  <em>Method 1: Feynman's method</em> 
+  In order to use Feynman's method of differentiating under the sign of the integral, we need to parametrize the integral.  We know that \(x = \tan^{-1} (\tan x) \). Hence we can write the integral as:
+  \[ I(a) = \int_0^\frac{\pi}{2} \frac{\tan^{-1} (a\tan x)}{\tan x} \; dx \]
+
+  Taking the derivative of both sides w.r.t a, 
+  \[ \frac{dI}{da} = \frac{d}{da} \int_0^\frac{\pi}{2} \frac{\tan^{-1} (a\tan x)}{\tan x} \; dx = \int_0^\frac{\pi}{2} \frac{\partial}{\partial a} \frac{\tan^{-1} (a\tan x)}{\tan x} \; dx \]
+
+  \[ \frac{dI}{da} = \int_0^\frac{\pi}{2} \frac{1}{\tan x} \frac{\partial}{\partial a} \tan^{-1} (a\tan x) \; dx = \int_0^\frac{\pi}{2} \frac{1}{\tan x} \frac{1}{1 + a^2\tan^2 x} \tan x \; dx \]
+
+  \[ \frac{dI}{da} = \int_0^\frac{\pi}{2} \frac{1}{1 + a^2\tan^2 x} \; dx \]
+
+  Substituting \( tan x = t \Rightarrow \sec^2 x \; dx = dt \Rightarrow dx = \frac{dt}{1+t^2} \), the limits of integration go from \( x=0, x=\frac{\pi}{2} to t = 0, t = \infty \):
+  \[ \frac{dI}{da} = \int_0^\infty \frac{1}{1 + a^2t^2} \; \frac{dt}{1+t^2} \]
+
+  Using partial fractions, we know that:
+  \[ \frac{1}{(1 + a^2t^2)(1+t^2)} = \frac{1}{a^2-1} \Biggl( \frac{a^2}{1 + a^2t^2} - \frac{1}{1 + t^2} \Biggr) \]
+
+  Hence,
+  \[ \frac{dI}{da} = \int_0^\infty \frac{1}{a^2-1} \Biggl( \frac{a^2}{1 + a^2t^2} - \frac{1}{1 + t^2} \Biggr) \; dt = \int_0^\infty \frac{1}{a^2-1} \Biggl( \frac{1}{1 + \frac{t^2}{a^2}}  - \frac{1}{1 + t^2} \Biggr) \; dt \]
+
+  \[ \frac{dI}{da} = \frac{1}{a^2-1} \Biggl[ \frac{1}{\frac{1}{a}} tan^{-1} (\frac{t}{\frac{1}{a}})  - tan^{-1}t \Biggr]_0^\infty = \frac{1}{a^2-1} \Biggl[ a \; tan^{-1} (at)  - tan^{-1}t \Biggr]_0^\infty  \]
+
+  \[ \frac{dI}{da} = \frac{1}{a^2-1} \Biggl[ (a \frac{\pi}{2}  - \frac{\pi}{2}) - (0 - 0) \Biggr]  = \frac{1}{a^2-1} (a-1) \frac{\pi}{2}  \]
+
+  \[ \frac{dI}{da} = \frac{\pi}{2(a+1)}  \]
+
+  Integrating w.r.t a, we get:
+  \[ I(a) = \int \frac{\pi}{2(a+1)} \; da + c =  \frac{\pi}{2} \int \frac{da}{a+1} + c \]
+
+  \[ I(a) = \frac{\pi}{2} \ln{(a+1)} + c \]
+
+  Since, \( I(0) = 0 \), 
+  \[ I(0) = \frac{\pi}{2} \ln{(0+1)} + c = 0 + c \]
+  \[ c = 0 \]
+
+  \[ I(a) = \frac{\pi}{2} \ln{(a+1)} \]
+
+  To evaluate the original integral, we set \( a = 1 \):
+  \[ I(a) = \frac{\pi}{2} \ln{(1+1)} = \frac{\pi}{2} \ln{2} \]
+
+  Thus,
+
+  \[ \int_0^\frac{\pi}{2} \frac{x}{\tan x} \; dx = \frac{\pi}{2} \ln{2} \]
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

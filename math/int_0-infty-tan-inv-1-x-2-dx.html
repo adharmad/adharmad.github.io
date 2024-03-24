@@ -1,0 +1,56 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\infty (\tan^{-1} \frac{1}{x})^2 \; dx \)</span>
+<p>
+  \[ I = \int_0^\infty (\tan^{-1} \frac{1}{x})^2 \; dx \]
+
+  Substituting \( \tan^{-1} \frac{1}{x} = t \Rightarrow x = \cot t \Rightarrow dx = d(\cot t) \), the limits of integration change from \( x = 0, x = \infty to t = \frac{\pi}{2}, t = 0 \):
+  \[ I = \int_\frac{\pi}{2}^0 t^2 \; d(\cot t) \]
+
+  Using integration by parts,
+  \[ I = t^2 \cot t \Biggr|_\frac{\pi}{2}^0 - \int_\frac{\pi}{2}^0 \cot t \; d(t^2) = (0-0) - \int_\frac{\pi}{2}^0 \cot t \; 2t \; dt  \]
+
+  \[ I = 2 \int_0^\frac{\pi}{2} t \cot t \; dt = 2 \int_0^\frac{\pi}{2} t \; d(\ln{(\sin t)}) \]
+
+  Using integration by parts again,
+  \[ I = 2t \ln{(\sin t)} \Biggr|_0^\frac{\pi}{2} - 2 \int_0^\frac{\pi}{2} \ln{(\sin t)} \; dt = (0-0) - 2 \int_0^\frac{\pi}{2} \ln{(\sin t)} \; dt \]
+
+  \[ I = - 2 \int_0^\frac{\pi}{2} \ln{(\sin t)} \; dt \]
+
+  Now we know that the solution of \( \int_0^\frac{\pi}{2} \ln{(\sin x)} \; dx = -\frac{\pi}{2} \ln{2} \) from <a href="int_0-pi-2-log-sin-x-dx.html">here</a>.
+
+  Hence,
+  \[ I = - 2  (-\frac{\pi}{2} \ln{2}) \]
+
+  \[ I = \pi \ln{2}) \]
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\infty \frac{\sin^3 x}{x^3} \; dx \)</span>
+<p>
+  \[ I = \int_0^\infty \frac{\sin^3 x}{x^3} \; dx \]
+
+  In this integral, we will use the result from <a href="int_0-infty-frac-sin-x-x-dx.html">\( \int_0^\infty \frac{\sin x}{x} \; dx \)</a><br><br>
+
+  Using Feynman's technique of differentiating under the sign of the integral, let us first parametrize the integral:
+
+  \[ I(a) = \int_0^\infty \frac{\sin^3 (ax)}{x^3} \; dx \tag{1} \]
+
+  \[ \frac{dI}{da} = \frac{d}{da} \int_0^\infty \frac{\sin^3 (ax)}{x^3} \; dx = \int_0^\infty \frac{\partial}{\partial a} \frac{\sin^3 (ax)}{x^3} \; dx \]
+
+  \[ \frac{dI}{da} = \int_0^\infty \frac{1}{x^3} 3 \sin^2 (ax) \cos (ax) \; x \; dx = \int_0^\infty \frac{3 \sin^2 (ax) \cos (ax)}{x^2}  \; dx \]
+
+  \[ \frac{dI}{da} = 3 \int_0^\infty \frac{\sin^2 (ax) \cos (ax)}{x^2}  \; dx \]
+
+  Differentiating one more time with respect to a, we get:
+  \[ \frac{d^2I}{da^2} = 3 \int_0^\infty \frac{2 \sin (ax) \cos^2 (ax) x + \sin^2 (ax) (-\sin (ax)) x }{x^2}  \; dx \tag{2} \]
+
+  \[ \frac{d^2I}{da^2} = 3 \int_0^\infty \frac{2 \sin (ax) \cos^2 (ax) - \sin^3 (ax)}{x}  \; dx \]
+
+  Now:
+  \[ 2 \sin (ax) \cos^2 (ax) - \sin^3 (ax) = 2 \sin (ax) (1 - \sin^2(ax)) - \sin^3 (ax) = 2 \sin (ax) - 3 \sin^3 (ax) \]
+
+  Also, 
+  \[ \sin (3ax) = 3\sin(ax) - 4 \sin^3(ax) \Rightarrow  \sin^3(ax) = \frac{1}{4} (3\sin(ax) - \sin (3ax) ) \]
+
+  Thus:
+  \[ \frac{d^2I}{da^2} = 3 \int_0^\infty \frac{2 \sin (ax) - 3 \sin^3 (ax)}{x}  \; dx  = 3 \int_0^\infty \frac{2 \sin (ax) - \frac{3}{4} (3\sin(ax) - \sin (3ax) ) }{x}  \; dx \]
+
+  \[ \frac{d^2I}{da^2} = \frac{3}{4} \int_0^\infty \frac{3 \sin (ax) - \sin(ax) }{x}  \; dx = \frac{3}{4} \Biggl[ 3 \int_0^\infty \frac{\sin (ax)}{x}  \; dx - \int_0^\infty \frac{\sin(ax)}{x}  \; dx \Biggr] \]
+
+  Now we know from the above referenced link that:
+  \[ \int_0^\infty \frac{\sin x}{x} \; dx = \frac{\pi}{2} \]
+
+  Thus:
+  \[ \frac{d^2I}{da^2} = \frac{3}{4} (3 \frac{\pi}{2} - \frac{\pi}{2}) = \frac{3\pi}{4} \] 
+
+  Integrating both sides w.r.t a, we get:
+  \[ \frac{dI}{da} = \int \frac{3\pi}{4} \; da =  \frac{3\pi}{4} a + c_1 \]
+
+  From equation \( (2) \), \( I^\prime(0) = 0 \). Hence
+  \[ I^\prime(0) =  \frac{3\pi}{4} (0) + c_1 \]
+  \[ c_1 = 0 \]
+
+  \[ \frac{dI}{da} =  \frac{3\pi}{4} a \]
+
+  Integrating both sides w.r.t a again, we get:
+  \[ I = \int \frac{3\pi}{4} \; da =  \frac{3\pi}{4} \frac{a^2}{2} + c_2 =  \frac{3\pi a^2}{8} + c_2 \]
+
+
+  From equation \( (1) \), \( I(0) = 0 \). Hence
+  \[ I(0) =  \frac{3\pi (0^2)}{8} + c_2 \]
+  \[ c_2 = 0 \]
+
+  \[ I(a) = \frac{3\pi a^2}{8} \]
+
+  The value of the integral that we set out to solve is when we set a = 1:
+  \[ I(1) = \frac{3\pi (1^2)}{8} = \frac{3\pi}{8} \]
+  \[ \int_0^\infty \frac{\sin^3 x}{x^3} \; dx = \frac{3\pi}{8} \]
+
+
+</p>
+
+</div>
+
+</body>
+</html>

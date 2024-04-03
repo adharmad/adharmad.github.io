@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int \sqrt{\frac{e^x-1}{e^x+1}} \; dx \)</span>
+<p>
+  \[ I = \int \sqrt{\frac{e^x-1}{e^x+1}} \; dx \]
+
+  Substituting \( \frac{e^x-1}{e^x+1} = t^2 \Rightarrow e^x = \frac{1+t^2}{1-t^2} \Rightarrow dx = \frac{4t}{(1-t^2)(1+t^2)} \; dt \):
+  \[ I = \int \sqrt{t^2} \frac{4t}{(1-t^2)(1+t^2)} \; dt = \int \frac{4t^2}{(1-t^2)(1+t^2)} \; dt \]
+
+  \[ I = \int ( \frac{2}{1-t^2} - \frac{2}{1+t^2} ) \; dt = \int ( \frac{2}{(1-t)(1+t)} - \frac{2}{1+t^2} ) \; dt \]
+
+  \[ I = \int ( \frac{1}{1-t} + \frac{1}{1+t} - \frac{2}{1+t^2} ) \; dt \]
+
+  \[ I = -\ln \left| 1-t \right| + \ln \left| 1+t \right| - \tan^{-1}t  + c \]
+
+  \[ I = \ln \Biggl| \frac{1+t}{1-t} \Biggr| - \tan^{-1}t + c \]
+
+  \[ I = \ln \Biggl| \frac{1+\sqrt{\frac{e^x-1}{e^x+1}}}{1-\sqrt{\frac{e^x-1}{e^x+1}}} \Biggr| - \tan^{-1}(\sqrt{\frac{e^x-1}{e^x+1}}) + c \]
+
+
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

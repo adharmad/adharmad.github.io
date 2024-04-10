@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^1 \cos( 2 \cot^{-1} \sqrt{\frac{1-x}{1+x}}) \; dx \)</span>
+<p>
+  \[ I = \int_0^1 \cos( 2 \cot^{-1} \sqrt{\frac{1-x}{1+x}}) \; dx \]
+
+  Substituting \( x = \cos \theta \Rightarrow dx = -\sin \theta \; d\theta \), and changing the limits from \(x=0, x=1 \) to \( \theta=\frac{\pi}{2}, \theta =0 \), we get:
+
+  \[ I = \int_\frac{\pi}{2}^0 \cos \Biggl( 2 \cot^{-1} \sqrt{\frac{1-\cos \theta}{1+\cos \theta}} \Biggr) \; (-\sin \theta) \; d\theta = \int_0^\frac{\pi}{2} \cos \Biggl( 2 \cot^{-1} \sqrt{\frac{2 \sin^2 \frac{\theta}{2}}{2 \cos^2 \frac{\theta}{2}}} \Biggr) \; \sin \theta \; d\theta \]
+
+  \[ I = \int_0^\frac{\pi}{2} \cos ( 2 \cot^{-1} \sqrt{\tan^2 \frac{\theta}{2}} ) \; \sin \theta \; d\theta = \int_0^\frac{\pi}{2} \cos ( 2 \cot^{-1} (\tan \frac{\theta}{2})) \; \sin \theta \; d\theta \]
+
+  \[ I = \int_0^\frac{\pi}{2} \cos ( 2 \cot^{-1} (\cot ( \frac{\pi}{2} - \frac{\theta}{2}))) \; \sin \theta \; d\theta = \int_0^\frac{\pi}{2} \cos ( 2 (\frac{\pi}{2} - \frac{\theta}{2})) \; \sin \theta \; d\theta  \]
+
+  \[ I = \int_0^\frac{\pi}{2} \cos (\pi - \theta) \; \sin \theta \; d\theta  = - \int_0^\frac{\pi}{2} \cos \theta \sin \theta \; d\theta \]
+
+  \[ I = - \frac{1}{2} \int_0^\frac{\pi}{2} \sin 2\theta \; d\theta = - \frac{1}{2}  \frac{\cos 2\theta}{2} \Biggr|_0^\frac{\pi}{2} \]
+
+  \[ I = - \frac{1}{4}  (\cos \pi -  \cos 0) = - \frac{1}{4} (-1-1) \]
+
+  \[ I = \frac{1}{2} \]
+
+
+</p>
+
+</div>
+
+</body>
+</html>

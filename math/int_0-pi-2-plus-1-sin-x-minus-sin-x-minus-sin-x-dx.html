@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^{\frac{\pi}{2}+1} \sin(x - \sin(x - \sin(x - ...))) \; dx \)</span>
+<p>
+  \[ I = \int_0^{\frac{\pi}{2}+1} \sin(x - \sin(x - \sin(x - ...))) \; dx \]
+
+  Consider the integrand:
+  \[ \sin(x - \sin(x - \sin(x - ...))) = y \]
+
+  \[ \sin(x - y) = y \]
+
+  \[ x = y + \sin^{-1}y \tag{1} \]
+
+  Then:
+  \[ dx = (1 + \frac{1}{\sqrt{1-y^2}}) \; dy \]
+
+  Performing the substitution in equation (1), the limits of integration go from \( x = 0, x = \frac{\pi}{2}+1 \) to \( y = 0, y = \frac{\pi}{2} \)
+
+  Thus
+  \[ I = \int_0^\frac{\pi}{2} y \Biggl( 1 + \frac{1}{\sqrt{1-y^2}} \Biggr) \; dy = \int_0^\frac{\pi}{2} y \; dy + \int_0^\frac{\pi}{2}  \frac{y}{\sqrt{1-y^2}} \; dy \]
+
+  \[ I =  \frac{y^2}{2} \Biggr|_0^\frac{\pi}{2} + \left[ -\sqrt{1-y^2} \right]_0^\frac{\pi}{2} \]
+
+  \[ I =  \frac{1}{2}(\frac{\pi^2}{4} -0) - (\sqrt{1-\frac{\pi^2}{4}} - 1) \]
+
+  \[ I =  \frac{\pi^2}{8} - \sqrt{1-\frac{\pi^2}{4}} + 1 \]
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

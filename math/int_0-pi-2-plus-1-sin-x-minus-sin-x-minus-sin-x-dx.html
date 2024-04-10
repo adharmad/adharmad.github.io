@@ -36,16 +36,16 @@
   Then:
   \[ dx = (1 + \frac{1}{\sqrt{1-y^2}}) \; dy \]
 
-  Performing the substitution in equation (1), the limits of integration go from \( x = 0, x = \frac{\pi}{2}+1 \) to \( y = 0, y = \frac{\pi}{2} \)
+  Performing the substitution in equation (1), the limits of integration go from \( x = 0, x = \frac{\pi}{2}+1 \) to \( y = 0, y = 1 \)
 
   Thus
-  \[ I = \int_0^\frac{\pi}{2} y \Biggl( 1 + \frac{1}{\sqrt{1-y^2}} \Biggr) \; dy = \int_0^\frac{\pi}{2} y \; dy + \int_0^\frac{\pi}{2}  \frac{y}{\sqrt{1-y^2}} \; dy \]
+  \[ I = \int_0^1 y \Biggl( 1 + \frac{1}{\sqrt{1-y^2}} \Biggr) \; dy = \int_0^1 y \; dy + \int_0^1  \frac{y}{\sqrt{1-y^2}} \; dy \]
 
-  \[ I =  \frac{y^2}{2} \Biggr|_0^\frac{\pi}{2} + \left[ -\sqrt{1-y^2} \right]_0^\frac{\pi}{2} \]
+  \[ I =  \frac{y^2}{2} \Biggr|_0^1 + \left[ -\sqrt{1-y^2} \right]_0^1 \]
 
-  \[ I =  \frac{1}{2}(\frac{\pi^2}{4} -0) - (\sqrt{1-\frac{\pi^2}{4}} - 1) \]
+  \[ I =  \frac{1}{2}(1 - 0) - (0 - 1) = \frac{1}{2} + 1 \]
 
-  \[ I =  \frac{\pi^2}{8} - \sqrt{1-\frac{\pi^2}{4}} + 1 \]
+  \[ I =  \frac{3}{2} \]
 
 
 

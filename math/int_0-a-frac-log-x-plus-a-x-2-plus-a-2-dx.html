@@ -1,0 +1,60 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^a \frac{\ln{(x + a)}}{x^2 + a^2} \; dx \)</span>
+<p>
+  \[ I = \int_0^a \frac{\ln{(x + a)}}{x^2 + a^2} \; dx \]
+
+  Substituting \( x = a \tan \theta \Rightarrow dx = a \sec^2 \theta \; d\theta \), and changing the limits from \(x=0, x=a \) to \( \theta=0, \theta =\frac{\pi}{4} \), we get:
+  \[ I = \int_0^\frac{\pi}{4} \frac{\ln{(a \tan \theta + a)}}{a^2\tan^2 \theta + a^2} a \sec^2 \theta \; d\theta = \int_0^\frac{\pi}{4} \frac{\ln{(a (\tan \theta + 1))}}{a^2\sec^2 \theta} a \sec^2 \theta \; d\theta \]
+
+  \[ I = \frac{1}{a} \int_0^\frac{\pi}{4} \ln{(a (\tan \theta + 1))} \; d\theta =  \frac{1}{a} \int_0^\frac{\pi}{4} ( \ln{a} + \ln{(\tan \theta + 1))} \; d\theta  \]
+
+  \[ I = \frac{1}{a} \int_0^\frac{\pi}{4} \ln{a} \; d\theta + \frac{1}{a} \int_0^\frac{\pi}{4} \ln{(\tan \theta + 1)} \; d\theta  = \frac{\ln{a}}{a} \theta \Biggr|_0^\frac{\pi}{4} + \frac{1}{a} \int_0^\frac{\pi}{4} \ln{(\tan \theta + 1)} \; d\theta \]
+
+  \[ I = \frac{\pi\ln{a}}{4a} + \frac{1}{a} \int_0^\frac{\pi}{4} \ln{(\tan \theta + 1)} \; d\theta \]
+
+  \[ I = \frac{\pi\ln{a}}{4a} + \frac{1}{a} J  \tag{1} \]
+
+  Where
+  \[ J = \int_0^\frac{\pi}{4} \ln{(\tan \theta + 1)} \; d\theta \]
+
+  Using the result from <a href="int_0-pi-4-log-1-plus-tan-x-dx.html">\( \int_0^\frac{\pi}{4} \ln{(1 + \tan x)} \; dx \)</a>, the value of J is:
+  \[ J =  \frac{\pi}{8} \ln{2} \] 
+
+  Substituting back in equation (1), we get:
+  \[ I = \frac{\pi\ln{a}}{4a} + \frac{1}{a} \frac{\pi}{8} \ln{2} = \frac{2\pi\ln{a}}{8a} + \frac{\pi \ln{2}}{8a} = \frac{\pi}{8a} (\ln{a^2} + \ln{2}) \]
+
+  \[ I = \frac{\pi}{8a} \ln{2a^2} \]
+
+
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

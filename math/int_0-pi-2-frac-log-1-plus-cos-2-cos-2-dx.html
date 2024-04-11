@@ -1,0 +1,76 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\frac{\pi}{2} \frac{\ln{(1 + \cos^2x)}}{\cos^2 x} \; dx \)</span>
+<p>
+  \[ I = \int_0^\frac{\pi}{2} \frac{\ln{(1 + \cos^2x)}}{\cos^2 x} \; dx \]
+  
+  Let us parametrize the integral as below using an arbitrary variable:
+  \[ I(a) = \int_0^\frac{\pi}{2} \frac{\ln{(1 + a\cos^2x)}}{\cos^2 x} \; dx \tag{1} \]
+
+  Using Feynman's technique of differentiating under the sign of integral:
+
+  \[ \frac{dI}{da} = \frac{d}{da} \; \int_0^\frac{\pi}{2} \frac{\ln{(1 + a\cos^2x)}}{\cos^2 x} \; dx  = \int_0^\frac{\pi}{2} \frac{\partial}{\partial a} \frac{\ln{(1 + a\cos^2x)}}{\cos^2 x} \; dx \]
+
+  \[ \frac{dI}{da} = \int_0^\frac{\pi}{2} \frac{1}{\cos^2x} \frac{1}{1 + a\cos^2x} \cos^2 x \; dx = \int_0^\frac{\pi}{2} \frac{1}{1 + a\cos^2x} \; dx \]
+
+  \[ \frac{dI}{da} = \int_0^\frac{\pi}{2} \frac{1}{1 + a\frac{1+\cos(2x)}{2}} \; dx = \int_0^\frac{\pi}{2} \frac{2}{2 + a + a\cos(2x)} \; dx \]
+
+  Substituting \( u = 2x \Rightarrow du = 2 dx  \) and the limits go from \( x = 0, x=\frac{\pi}{2} \) to \( u= 0, u = \pi \):
+  \[ \frac{dI}{da} = \int_0^\pi \frac{1}{a \cos u + a + 2} \; du \]  
+
+  Using Weierstrass substitution \( \tan \frac{u}{2} = t \Rightarrow du = \frac{2 dt}{1+t^2}, \cos u = \frac{1-t^2}{1+t^2} \) and changing the limits from \( u = 0, u= \pi \) to \( t= 0, t = \infty \):
+  \[ \frac{dI}{da} = \int_0^\infty \frac{1}{a \frac{1-t^2}{1+t^2} + a + 2} \; \frac{2 dt}{1+t^2} = 2 \int_0^\infty \frac{dt}{(a+2)(1+t^2) + a(1-t^2) }  \]  
+
+  \[ \frac{dI}{da} = 2 \int_0^\infty \frac{dt}{a+2 + at^2 + 2t^2 + a -at^2} =  2 \int_0^\infty \frac{dt}{2t^2 + 2a + 2}  \]
+
+  \[ \frac{dI}{da} =  \int_0^\infty \frac{dt}{t^2 + a + 1} = \int_0^\infty \frac{dt}{t^2 + (\sqrt{a + 1})^2 }  \] 
+
+  \[ \frac{dI}{da} =  \frac{1}{\sqrt{a + 1}} \tan^{-1} \frac{t}{\sqrt{a + 1}} \Biggr|_0^\infty =  \frac{1}{\sqrt{a + 1}} \left[ \tan^{-1} \infty - \tan^{-1} 0 \right] \] 
+
+  \[ \frac{dI}{da} =  \frac{\pi}{2\sqrt{a + 1}} \]  
+
+  Integrating both sides w.r.t a, we get:
+
+  \[ I(a) = \int \frac{\pi}{2\sqrt{a + 1}} \; da + c = \pi \sqrt{a + 1} + c \]
+
+  Now, we know that from equation (1) that I(0) = 0. Thus:
+  \[ I(0) = \pi \sqrt{0 + 1} + c \]
+  \[ c = 0 \]
+
+  \[ I(a) = \pi \sqrt{a + 1} \]
+
+  To get the value of the original integral, we set a = 1:
+  \[ I(1) = \pi \sqrt{1 + 1} = \pi \sqrt{2} \]
+
+  Thus:
+  \[ \int_0^\frac{\pi}{2} \frac{\ln{(1 + \cos^2x)}}{\cos^2 x} \; dx = \pi \sqrt{2} \]
+
+
+</p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^1 \frac{1}{\sqrt{-\ln{x}}} \; dx  \)</span>
+<p>
+  \[ I = \int_0^1 \frac{1}{\sqrt{-\ln{x}}} \; dx \]
+
+  Substituting \( \sqrt{-\ln{x}} = t \Rightarrow x = e^{-t^2} \Rightarrow dx = -2t e^{-t^2} \; dt \), and changing the limits from \(x=0, x=1 \) to \( t=\infty, t =0 \), we get:
+  \[ I = \int_\infty^0 \frac{1}{t} (-2t e^{-t^2}) \; dt =  2 \int_0^\infty   e^{-t^2} \; dt \]
+
+  From the <a href="int_minus-infty-infty_e-x-2.html">Gaussian integral</a>, we know that:
+  \[ \int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2} \]
+
+  \[ I =  2 (\frac{\sqrt{\pi}}{2}) \]
+
+  \[ I =  \sqrt{\pi} \]
+
+
+</p>
+
+</div>
+
+</body>
+</html>

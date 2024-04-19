@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_{-\pi}^\pi \frac{x^2}{1 + \sin x + \sqrt{1 + sin^2 x}} \; dx \)</span>
+<p>
+  \[ I = \int_{-\pi}^\pi \frac{x^2}{1 + \sin x + \sqrt{1 + \sin^2 x}} \; dx \tag{1} \]
+
+  Using \( I = \int_a^bf(x) \; dx = \int_a^bf(b+a-x) \; dx  \), we get:
+
+  \[ I = \int_{-\pi}^\pi \frac{(\pi - \pi - x)^2}{1 + \sin (\pi - \pi - x) + \sqrt{1 + \sin^2 (\pi - \pi - x)}} \; dx \]
+
+  \[ I = \int_{-\pi}^\pi \frac{x^2}{1 - \sin x + \sqrt{1 + \sin^2 x}} \; dx \tag{2} \]
+
+  Adding equations (1) and (2):
+
+  \[ 2I = \int_{-\pi}^\pi \frac{x^2}{1 + \sin x + \sqrt{1 + \sin^2 x}} \; dx + \int_{-\pi}^\pi \frac{x^2}{1 - \sin x + \sqrt{1 + \sin^2 x}} \; dx \]
+
+  \[ 2I = \int_{-\pi}^\pi ( \frac{x^2}{1 + \sin x + \sqrt{1 + \sin^2 x}} + \frac{x^2}{1 - \sin x + \sqrt{1 + \sin^2 x}} ) \; dx \]
+
+  \[ 2I = \int_{-\pi}^\pi x^2 ( \frac{1}{1 + \sin x + \sqrt{1 + \sin^2 x}} + \frac{1}{1 - \sin x + \sqrt{1 + \sin^2 x}} ) \; dx \]
+
+  \[ 2I = \int_{-\pi}^\pi x^2 ( \frac{1 - \sin x + \sqrt{1 + \sin^2 x} + 1 + \sin x + \sqrt{1 + \sin^2 x} }{(1 - \sin x + \sqrt{1 + \sin^2 x})(1 + \sin x + \sqrt{1 + \sin^2 x})} ) \; dx \]
+
+  \[ 2I = \int_{-\pi}^\pi 2x^2 ( \frac{1 + \sqrt{1 + \sin^2 x}}{(1 + \sqrt{1 + \sin^2 x})^2 - \sin^2 x} \; dx  = \int_{-\pi}^\pi 2x^2 ( \frac{1 + \sqrt{1 + \sin^2 x}}{2(1 + \sqrt{1 + \sin^2 x})} \; dx \]
+
+  \[ 2I = \int_{-\pi}^\pi x^2 \; dx = \frac{x^3}{3} \Biggr|_{-\pi}^\pi = \frac{\pi^3}{3} - (\frac{-\pi^3}{3}) =  \frac{2\pi^3}{3} \]
+
+  \[ I = \frac{\pi^3}{3} \]
+
+
+  
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

@@ -748,6 +748,10 @@ the longer form of the constant. This also simplifies modifying the program,
 should the value of pi change.
     — Early FORTRAN manual for Xerox Computers (Attributed to David H. Owens)
 
+The generation of random numbers is too important to be left to chance.
+    — Robert R. Coveyou
+
+
 Chess Quotes
 ============
 

@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\frac{\pi}{2} \frac{dx}{1+\sin^4x +\cos^4x} \)</span>
+<p>
+  \[ I = \int_0^\frac{\pi}{2} \frac{dx}{1+\sin^4x +\cos^4x} \]
+
+  \[ I = \int_0^\frac{\pi}{2} \frac{dx}{1+\sin^4 x +\cos^4 x + 2 \sin^2 x \cos^2x - 2 \sin^2 x \cos^2x } \]
+
+  \[ I = \int_0^\frac{\pi}{2} \frac{dx}{1+ (\sin^2 x +\cos^2 x)^2 - 2 \sin^2 x \cos^2x } \]
+
+  \[ I = \int_0^\frac{\pi}{2} \frac{dx}{1+ 1 - 2 \sin^2 x \cos^2x } = \int_0^\frac{\pi}{2} \frac{dx}{2 - 2 \sin^2 x \cos^2 x } \]
+
+  \[ I = \int_0^\frac{\pi}{2} \frac{2}{4- 4 \sin^2 x \cos^2x } \; dx = \int_0^\frac{\pi}{2} \frac{2}{4- (2 \sin x \cos x)^2 } \; dx \]
+
+  \[ I = \int_0^\frac{\pi}{2} \frac{2}{4- \sin^2 (2x) } \; dx \]
+
+  \[ I = 2 \int_0^\frac{\pi}{2} \frac{1}{4- \sin^2 (2x) } \; dx \]
+
+  Substituting \( 2x = t \Rightarrow 2 dx = dt \) and the limits of the both the integrals change from \( x = 0, x = \frac{\pi}{2} \) to \( t = 0, t = \pi \):
+
+  \[ I = 2 \int_0^\pi \frac{1}{4- \sin^2 t } \; \frac{dt}{2} = \int_0^\pi \frac{1}{4- \sin^2 t } \; dt = 2 \int_0^\frac{\pi}{2} \frac{1}{4- \sin^2 t } \; dt \]
+
+  \[ I = 2 \int_0^\frac{\pi}{2} \frac{1}{4- \sin^2 (\frac{\pi}{2} - t) } \; dt = 2 \int_0^\frac{\pi}{2} \frac{1}{4- \cos^2 t } \; dt \]
+
+  \[ I = 2 \int_0^\frac{\pi}{2} \frac{1}{4- \frac{1}{\sec^2 t} } \; dt = 2 \int_0^\frac{\pi}{2} \frac{\sec^2 t}{4 \sec^2 t- 1} \; dt  \]
+
+  \[ I = 2 \int_0^\frac{\pi}{2} \frac{\sec^2 t}{4 (\tan^2 t + 1) - 1} \; dt = 2 \int_0^\frac{\pi}{2} \frac{\sec^2 t}{4 + 3 \tan^2 t} \; dt  \]
+
+  Substituting \( \tan t = u \Rightarrow \sec^2 t dt = du \) and the limits of the both the integrals change from \( t = 0, t = \frac{\pi}{2} \) to \( u = 0, u = \infty \):
+  \[ I = 2 \int_0^\infty \frac{du}{4 + 3 u^2} = \frac{2}{3} \int_0^\infty \frac{du}{u^2 + \frac{4}{3}} \]
+
+  \[ I = \frac{2}{3} \frac{1}{\frac{2}{\sqrt{3}}} \tan^{-1} ( \frac{u}{\frac{2}{\sqrt{3}}} ) \Biggr|_0^\infty =  \frac{1}{\sqrt{3}}  ( \tan^{-1} \infty - \tan^{-1} 0 ) =  \frac{1}{\sqrt{3}} ( \frac{\pi}{2} - 0 )  \]
+
+  \[ I = \frac{\pi}{2\sqrt{3}} \]
+
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

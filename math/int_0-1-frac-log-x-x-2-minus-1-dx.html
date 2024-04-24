@@ -1,0 +1,78 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^1 \frac{\ln x}{x^2-1} \; dx \)</span>
+<p>
+  \[ I = \int_0^1 \frac{\ln x}{x^2-1} \; dx \]
+
+  Using Feynman's technique of differentiating under the sign of the integral, let us first re-organize the integral:
+
+  \[ I = \frac{1}{2} \int_0^1 \frac{2 \ln x}{x^2-1} \; dx = \frac{1}{2} \int_0^1 \frac{\ln x^2}{x^2-1} \; dx = \frac{1}{2} \int_0^1 \frac{\ln (x^2-1+1)}{x^2-1} \; dx \]
+
+  Parametrizing the integral for applying Feynman's technique:
+
+  \[ I(a) = \frac{1}{2} \int_0^1 \frac{\ln (a(x^2-1)+1)}{x^2-1} \; dx \]
+
+  \[ \frac{dI}{da} = \frac{d}{da} \frac{1}{2} \int_0^1 \frac{\ln (a(x^2-1)+1)}{x^2-1} \; dx = \frac{1}{2} \int_0^1 \frac{\partial}{\partial a} \frac{\ln (a(x^2-1)+1)}{x^2-1} \; dx \]
+
+  \[ \frac{dI}{da} = \frac{1}{2} \int_0^1 \frac{1}{x^2-1} \frac{1}{a(x^2-1)+1} (x^2-1) \; dx = \frac{1}{2} \int_0^1 \frac{1}{ax^2-a+1} \; dx \]
+
+  \[ \frac{dI}{da} = \frac{1}{2a} \int_0^1 \frac{1}{x^2 + \frac{1-a}{a}} \; dx \]
+
+  \[ \frac{dI}{da} = \frac{1}{2a} \frac{1}{\sqrt{\frac{1-a}{a}}} \tan^{-1} \Biggl( \frac{x}{\sqrt{\frac{1-a}{a}}} \Biggr) \Biggr|_0^1 = \frac{1}{2\sqrt{a(1-a)}} \tan^{-1} (x \sqrt{\frac{a}{1-a}} ) \Biggr|_0^1 \]
+
+  \[ \frac{dI}{da} = \frac{1}{2\sqrt{a(1-a)}} \tan^{-1} (\sqrt{\frac{a}{1-a}}) \]
+
+  Integrating both sides w.r.t a, we get:
+  \[ I = \int \frac{1}{2\sqrt{a(1-a)}} \tan^{-1} (\sqrt{\frac{a}{1-a}}) \; da + c \]
+
+  Substituting \( a = \sin^2 \theta \Rightarrow da = 2 \sin \theta \cos \theta \;  d\theta \), we get:
+  \[ I = \int \frac{1}{2\sqrt{\sin^2 \theta (1-\sin^2 \theta)}} \tan^{-1} (\sqrt{\frac{\sin^2 \theta}{1-\sin^2 \theta}}) 2 \sin \theta \cos \theta \; d\theta + c \]
+
+  \[ I = \int \frac{1}{\sin \theta \cos \theta} \tan^{-1} (\sqrt{\frac{\sin^2 \theta}{\cos^2 \theta}}) \sin \theta \cos \theta \; d\theta + c = \int \tan^{-1} (\tan \theta) \; d \theta + c \]
+
+  \[ I = \int \theta \; d \theta + c = \frac{\theta^2}{2} + c \]
+
+  \[ I = \frac{(\sin^{-1} \sqrt{a})^2}{2} + c \]
+  
+
+  From the original parametrized integral, \( I(0) = 0 \). Hence
+  \[ I(0) =  \frac{(\sin^{-1} \sqrt{0})^2}{2} + c \]
+  \[ c = 0 \]
+
+  \[ I = \frac{(\sin^{-1} \sqrt{a})^2}{2} \]
+
+  The value of the integral that we set out to solve is when we set a = 1:
+  \[ I(1) = \frac{(\sin^{-1} \sqrt{1})^2}{2} = \frac{1}{2} (\frac{\pi}{2})^2 \]
+
+  \[ I(1) = \frac{\pi^2}{8} \]
+
+  \[ \int_0^1 \frac{\ln x}{x^2-1} \; dx = \frac{\pi^2}{8} \]
+
+</p>
+
+</div>
+
+</body>
+</html>

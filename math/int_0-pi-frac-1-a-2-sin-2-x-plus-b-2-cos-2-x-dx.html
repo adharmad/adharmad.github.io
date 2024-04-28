@@ -1,0 +1,58 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^{\frac{\pi}{2}} \frac{1}{a^2 \sin^2 x +b^2 \cos^2 x} \; dx \)</span>
+<p>
+  \[ I = \int_0^{\frac{\pi}{2}} \frac{1}{a^2 \sin^2 x +b^2 \cos^2 x} \; dx \]
+
+  \[ I = \int_0^{\frac{\pi}{2}} \frac{1}{a^2 (1 - \cos^2 x) +b^2 \cos^2 x} \; dx = \int_0^{\frac{\pi}{2}} \frac{1}{a^2 + (b^2 - a^2) \cos^2 x} \; dx \]
+
+  \[ I = \int_0^{\frac{\pi}{2}} \frac{1}{a^2 + (b^2 - a^2) (\frac{1 + \cos 2x}{2})} \; dx = \int_0^{\frac{\pi}{2}} \frac{2}{(a^2 + b^2) + (b^2 - a^2)\cos 2x} \; dx \]
+
+  Substituting \( 2x = u \Rightarrow 2 dx = du \), and changing the limits of integration from \( x= \frac{\pi}{2}, x = 0 \) to \( u = \pi, u = 0 \), we get:
+  \[ I = \int_0^\pi \frac{1}{(a^2 + b^2) + (b^2 - a^2)\cos u} \; du \]
+
+  Using Weierstrass substitution \( \tan \frac{u}{2} = t \Rightarrow du = \frac{2 dt}{1+t^2}, \cos u = \frac{1-t^2}{1+t^2} \) and changing the limits from \( u = 0, u= \pi \) to \( t= 0, t = \infty \):
+  \[ I = \int_0^\infty \frac{\frac{2}{1 + t^2}}{(a^2 + b^2) + (b^2 - a^2) (\frac{1-t^2}{1+t^2})} \; dt = 2 \int_0^\infty \frac{1}{(a^2 + b^2)(1+t^2) + (b^2 - a^2)(1-t^2)} \; dt \]
+
+  \[ I = 2 \int_0^\infty \frac{dt}{2b^2 + 2a^2t^2} \; dt = \int_0^\infty \frac{dt}{b^2 + a^2t^2} \; dt \]
+
+  \[ I = \frac{1}{a^2} \int_0^\infty \frac{dt}{t^2 + \frac{b^2}{a^2}} \; dt \]
+
+  \[ I = \frac{1}{a^2} \frac{1}{\frac{b}{a}} \tan^{-1} (\frac{t}{\frac{b}{a}}) \Biggr|_0^\infty = \frac{1}{ab} \tan^{-1} (\frac{at}{b}) \Biggr|_0^\infty \]
+
+  \[ I = \frac{1}{ab} (\tan^{-1} \infty - \tan^{-1} 0 ) = \frac{1}{ab} (\frac{\pi}{2} - 0 ) \]
+
+  \[ I = \frac{\pi}{2ab} \]
+  
+
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

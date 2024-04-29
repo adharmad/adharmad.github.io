@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\infty \frac{\ln(2e^x-1)}{e^x-1} \; dx \)</span>
+<p>
+  \[ I = \int_0^\infty \frac{\ln(2e^x-1)}{e^x-1} \; dx \]
+
+  Substituting \( 2e^x-1 = t \Rightarrow 2e^x \; dx = dt \Rightarrow dx = \frac{dt}{t+1} \) and changing the limits of the integration change from \( x=\infty, x=0 \) to \( t=\infty, t=1 \), we get:
+  \[ I = \int_1^\infty \frac{\ln t}{\frac{t+1}{2} - 1} \; \frac{dt}{t+1} = 2 \int_1^\infty \frac{\ln t}{(t-1)(t+1)} \; dt \]
+
+  \[ I = 2 \int_1^\infty \frac{\ln t}{t^2-1} \; dt \]
+
+  Substituting \( t = \frac{1}{u} \Rightarrow dt = -\frac{1}{u^2} \; du \) and changing the limits of the integration change from \( t=\infty, t=1 \) to \( u=0, u=1 \), we get:
+  \[ I = 2 \int_1^0 \frac{\ln \frac{1}{u}}{\frac{1}{u^2} - 1} (-\frac{1}{u^2}) \; du = 2 \int_0^1 \frac{- \ln u}{\frac{1-u^2}{u^2}} \frac{1}{u^2} \; du \]
+
+  \[ I = 2 \int_0^1 \frac{\ln u}{u^2-1} \; du \]
+
+  Using the result from <a href="int_0-1-frac-log-x-x-2-minus-1-dx.html">\( \int_0^1 \frac{\ln x}{x^2-1} \; dx \)</a>, we know that:
+  \[ \int_0^1 \frac{\ln x}{x^2-1} \; dx = \frac{\pi^2}{8} \]
+
+  Hence,
+  \[ I = 2 (\frac{\pi^2}{8}) \] 
+  \[ I = \frac{\pi^2}{4} \] 
+
+
+</p>
+
+</div>
+
+</body>
+</html>

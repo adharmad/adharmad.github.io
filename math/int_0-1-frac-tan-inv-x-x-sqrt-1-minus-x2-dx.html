@@ -1,0 +1,82 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^1 \frac{tan^{-1}x}{x\sqrt{1-x^2}} \; dx  \)</span>
+<p>
+  \[ I = \int_0^1 \frac{tan^{-1}x}{x\sqrt{1-x^2}} \; dx \]
+
+  Substituting \( x = sin \theta \Rightarrow dx = \cos \theta \; d\theta \) and changing the limits of integration from \( x = 0, x = 1 \) to \( \theta = 0, \theta = \frac{\pi}{2} \), we get:
+  \[ I = \int_0^\frac{\pi}{2} \frac{tan^{-1}(\sin \theta)}{\sin \theta\sqrt{1-\sin^2 \theta}} \cos \theta \; d\theta  = \int_0^\frac{\pi}{2} \frac{tan^{-1}(\sin \theta)}{\sin \theta \cos \theta} \cos \theta \; d\theta  \]
+
+  \[ I = \int_0^\frac{\pi}{2} \frac{tan^{-1}(\sin \theta)}{\sin \theta} \; d\theta  \]
+
+  Let us parametrize the above integral to use Feynman's technique of differentiating under the sign of integral:
+  \[ I(\alpha) = \int_0^\frac{\pi}{2} \frac{tan^{-1}(\alpha \sin \theta)}{\sin \theta} \; d\theta  \tag{1} \]
+
+  \[ \frac{dI}{d\alpha} = \frac{d}{d\alpha} \int_0^\frac{\pi}{2} \frac{tan^{-1}(\alpha \sin \theta)}{\sin \theta} \; d\theta = \int_0^\frac{\pi}{2} \frac{\partial}{\partial \alpha}  \frac{tan^{-1}(\alpha \sin \theta)}{\sin \theta} \; d\theta  \]
+
+  \[ \frac{dI}{d\alpha} = \int_0^\frac{\pi}{2} \frac{1}{\sin \theta} \frac{1}{1 + \alpha^2 \sin^2 \theta} \sin \theta \; d\theta = \int_0^\frac{\pi}{2} \frac{1}{1 + \alpha^2 \sin^2 \theta} \; d\theta  \]
+
+  \[ \frac{dI}{d\alpha} = \int_0^\frac{\pi}{2} \frac{1}{1 + \alpha^2 \frac{1 - \cos 2 \theta}{2}} \; d\theta = 2 \int_0^\frac{\pi}{2} \frac{1}{2 + \alpha^2  - \alpha^2 \cos 2 \theta} \; d\theta  \]
+
+  Substituting \( 2 \theta = u \Rightarrow 2 d\theta = du \) and changing the limits of integration from \( \theta = 0, \theta = \frac{\pi}{2} \) to \( u = 0, u = \pi \), we get:
+  \[ \frac{dI}{d\alpha} = \int_0^\pi \frac{1}{\alpha^2 + 2  - \alpha^2 \cos u} \; du  \]
+
+  Using Weierstrass substitution \( \tan \frac{u}{2} = t \Rightarrow du = \frac{2 dt}{1+t^2}, \cos u = \frac{1-t^2}{1+t^2} \) and changing the limits from \( u = 0, u= \pi \) to \( t= 0, t = \infty \):
+  \[ \frac{dI}{d\alpha} = \int_0^\infty \frac{1}{\alpha^2 + 2  - \alpha^2 \frac{1-t^2}{1+t^2}} \; \frac{2 dt}{1+t^2}  = 2 \int_0^\infty \frac{1}{(\alpha^2 + 2)(1+t^2)  - \alpha^2 (1-t^2)} \; dt \]
+
+  \[ \frac{dI}{d\alpha} = 2 \int_0^\infty \frac{1}{2\alpha^2t^2 + 2t^2 + 2} \; dt = \int_0^\infty \frac{1}{\alpha^2t^2 + t^2 + 1} \; dt \]
+
+  \[ \frac{dI}{d\alpha} = \frac{1}{1+\alpha^2} \int_0^\infty \frac{1}{t^2 + \frac{1}{1+\alpha^2}} \; dt \]
+
+  \[ \frac{dI}{d\alpha} = \frac{1}{1+\alpha^2} \frac{1}{\frac{1}{\sqrt{1+\alpha^2}}} \tan^{-1} \Biggl( \frac{t}{\frac{1}{\sqrt{1+\alpha^2}}} \Biggr) \Biggr|_0^\infty = \frac{1}{\sqrt{1+\alpha^2}} \tan^{-1} (t \sqrt{1+\alpha^2}) \Biggr|_0^\infty  \]
+
+  \[ \frac{dI}{d\alpha} = \frac{1}{\sqrt{1+\alpha^2}} (\tan^{-1} \infty - \tan^{-1} 0) = \frac{1}{\sqrt{1+\alpha^2}} (\frac{\pi}{2} - 0)  \]
+
+  \[ \frac{dI}{d\alpha} = \frac{\pi}{2} \frac{1}{\sqrt{1+\alpha^2}}  \]
+
+  Integrating both sides w.r.t \( \alpha \), we get:
+  \[ I = \int \frac{\pi}{2} \frac{1}{\sqrt{1+\alpha^2}} + c \]
+  \[ I = \frac{\pi}{2} \ln{(\alpha + \sqrt{1+\alpha^2})} + c \]
+
+  Now, we know from equation (1) that \( I(0) = 0 \). Thus:
+  \[ I(0) = \frac{\pi}{2} \ln{(0 + \sqrt{1+0^2})} + c \]
+  \[ c = 0 \]
+
+  \[ I = \frac{\pi}{2} \ln{(\alpha + \sqrt{1+\alpha^2})} \]
+
+  Now, the solution to the original integral can be obtained by setting \( \alpha=1 \) as follows:
+  \[ I(1) = \frac{\pi}{2} \ln{(1 + \sqrt{1+1^2})} = \frac{\pi}{2} \ln{(1 + \sqrt{2})} \]
+
+  Hence,
+  \[ \int_0^1 \frac{tan^{-1}x}{x\sqrt{1-x^2}} \; dx = \frac{\pi}{2} \ln{(1 + \sqrt{2})} \]
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

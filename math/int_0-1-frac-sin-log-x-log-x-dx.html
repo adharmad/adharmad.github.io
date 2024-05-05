@@ -1,0 +1,79 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^1 \frac{\sin (\ln{x})}{\ln{x}} \; dx \)</span>
+<p>
+  \[ I = \int_0^1 \frac{\sin (\ln{x})}{\ln{x}} \; dx \]
+
+  Parametrizing the integral with an arbitrary parameter a: 
+  \[ I(a) = \int_0^1 \frac{\sin (a\ln{x})}{\ln{x}} \; dx \tag{1} \]
+
+  Using Feynman's technique of differentiating under the sign of the integral, we get:
+
+  \[ \frac{dI}{da} = \frac{d}{da} \int_0^1 \frac{\sin (a\ln{x})}{\ln{x}} \; dx = \int_0^1 \frac{\partial}{\partial a} \frac{\sin (a\ln{x})}{\ln{x}} \; dx \]
+
+  \[ \frac{dI}{da} = \int_0^1 \frac{\cos (a\ln{x})}{\ln{x}} \ln{x} \; dx = \int_0^1 \cos (a\ln{x}) \; dx \]
+
+  To solve \( \int \cos (a\ln{x}) \; dx \), let us substitute \( a \ln{x} = t \Rightarrow x = e^{\frac{t}{a}} \Rightarrow dx = \frac{1}{a} e^{\frac{t}{a}} \; dt \) and evaluate the indefinite integral:
+  \[ J = \int \cos (a\ln{x}) \; dx = \int \cos t \frac{1}{a} \; e^{\frac{t}{a}} \; dt = \frac{1}{a} \int \cos t \; e^{\frac{t}{a}} \; dt \]
+
+  \[ J = \Re \; \frac{1}{a} \int e^{-it} e^{\frac{t}{a}} \; dt = \Re \; \frac{1}{a} \int e^{-(it-\frac{t}{a})}  \; dt = \Re \; \frac{1}{a} \int e^{-(i-\frac{1}{a})t}  \; dt \]
+
+  \[ J = \Re \; \frac{1}{a} (\frac{e^{-(i-\frac{1}{a})t}}{-(i-\frac{1}{a})}) = \Re \;  \frac{e^{-it} e^{\frac{t}{a}}}{-ia + 1} \]
+
+  Resubstituting \( t = a \ln{x}  \), we get:
+  \[ J = \Re \;  \frac{e^{-ia \ln{x}} e^{\frac{a \ln{x}}{a}}}{-ia + 1} = \Re \;  \frac{e^{-ia \ln{x}} e^{ \ln{x}}}{-ia + 1} \]
+
+  \[ J = \Re \; \frac{e^{-ia \ln{x}}}{-ia + 1} \]
+
+  Thus,
+  \[ \frac{dI}{da} = \Re \; \frac{e^{-ia \ln{x}}}{-ia + 1}  \Biggr|_0^1 = \Re \;  \frac{1-0}{1-ia} \]
+
+  \[ \frac{dI}{da} = \Re \;  \frac{1}{1-ia} = \Re \; \frac{1}{1-ia} \frac{1+ia}{1+ia} = \Re \; \frac{1+ia}{1+a^2} \]
+
+  \[ \frac{dI}{da} = \frac{1}{1+a^2} \]
+
+  Integrating both sides w.r.t a, we get:
+  \[ I = \int \frac{1}{1+a^2} + c = \tan^{-1} a + c \]
+
+  Now we know from equation (1) that \( I = 0 \), when \( a = 0 \). Hence:
+  \[ I(0) = 0 = \tan^{-1} 0 + c \]
+  \[ c = 0 \]
+
+
+  \[ I = \tan^{-1} a \]
+
+  The value of the original integral to be evaluated is obtained by setting \( a = 1 \).
+  \[ I(1) = \tan^{-1} 1 = \frac{\pi}{4} \]
+
+  \[ \int_0^1 \frac{\sin (\ln{x})}{\ln{x}} \; dx = \frac{\pi}{4} \]
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^1 x^x \; dx \): </span>
+<p>
+  
+  \[ I = \int_0^1 x^x \; dx \]
+
+  Using \( x^x = e^{\ln{x^x}} = e^{x\ln{x}} \), we get:
+  \[ I = \int_0^1 e^{x\ln{x}} \; dx \]
+
+  The Taylor series expansion for \( e^x \) is:
+  \[ e^x = \sum_{n=0}^\infty \frac{x^n}{n!} \]
+
+  Hence, the Taylor series expansion for \( e^{x\ln{x}} \) is:
+  \[ e^{x\ln{x}} = \sum_{n=0}^\infty \frac{(x\ln{x})^n}{n!} \]
+
+  Thus:
+  \[ I = \int_0^1 \sum_{n=0}^\infty \frac{(x\ln{x})^n}{n!} \; dx = \sum_{n=0}^\infty \frac{1}{n!} \int_0^1 (x\ln{x})^n \; dx \]
+
+  Using integration by parts we get:
+  \[ I = \sum_{n=0}^\infty \frac{1}{n!} \Biggl( \int_0^1 (\ln{x})^n \; d(\frac{x^{n+1}}{n+1}) \Biggr) = \sum_{n=0}^\infty \frac{1}{n!} \Biggl((\ln{x})^n \frac{x^{n+1}}{n+1} \Biggr|_0^1 - \int_0^1 \frac{x^{n+1}}{n+1} \; d((\ln{x})^n) \Biggr)  \]
+
+  \[ I = \sum_{n=0}^\infty \frac{1}{n!} \Biggl(0 - \int_0^1 \frac{x^{n+1}}{n+1} n (\ln{x})^{n-1} \frac{1}{x} \; dx \Biggr)  = \sum_{n=0}^\infty \frac{1}{n!} (-1) \Biggl(\int_0^1 \frac{n x^n}{n+1}  (\ln{x})^{n-1} \; dx \Biggr) \]
+
+  \[ I = \sum_{n=0}^\infty \frac{1}{n!} (-1) \frac{n}{n+1}  \Biggl(\int_0^1 x^n  (\ln{x})^{n-1} \; dx \Biggr) \]
+
+  \[ I = \sum_{n=0}^\infty \frac{1}{n!} (-1) \frac{n}{n+1}  \Biggl(\int_0^1 (\ln{x})^{n-1} \; d(\frac{x^{n+1}}{n+1}) \Biggr) = \sum_{n=0}^\infty \frac{1}{n!} (-1) \frac{n}{n+1}  \Biggl( (\ln{x})^{n-1} \frac{x^{n+1}}{n+1} \Biggr|_0^1 - \int_0^1 \frac{x^{n+1}}{n+1}  \; d((\ln{x})^{n-1}) \Biggr) \]
+
+  \[ I = \sum_{n=0}^\infty \frac{1}{n!} (-1) \frac{n}{n+1}  \Biggl(0 - \int_0^1 \frac{x^{n+1}}{n+1} (n-1) (\ln{x})^{n-2} \frac{1}{x} \; dx \Biggr) \]
+
+  \[ I = \sum_{n=0}^\infty \frac{1}{n!} (-1)^2 \frac{n(n-1)}{(n+1)^2}  \Biggl(\int_0^1 x^n (\ln{x})^{n-2}  \; dx \Biggr) \]
+
+
+  Applying integration by parts repeatedly k times, we get:
+  \[ I = \sum_{n=0}^\infty \frac{1}{n!} (-1)^k \frac{n(n-1)(n-2)...(n-k+1)}{(n+1)^k}  \Biggl(\int_0^1 x^n (\ln{x})^{n-k}  \; dx \Biggr) \]
+
+  Setting k=n to make the logarithmic term disappear:
+  \[ I = \sum_{n=0}^\infty \frac{1}{n!} (-1)^n \frac{n!}{(n+1)^n}  \Biggl(\int_0^1 x^n \; dx \Biggr) = \sum_{n=0}^\infty \frac{(-1)^n}{(n+1)^n}  \Biggl(\int_0^1 x^n \; dx \Biggr) \]
+
+  \[ I = \sum_{n=0}^\infty \frac{(-1)^n}{(n+1)^n}  \Biggl(\frac{x^{n+1}}{n+1} \Biggr|_0^1 \Biggr) = \sum_{n=0}^\infty \frac{(-1)^n}{(n+1)^n}  \Biggl(\frac{1 - 0}{n+1} \Biggr) \]
+
+  \[ I = \sum_{n=0}^\infty \frac{(-1)^n}{(n+1)^{n+1}} \]
+
+
+  
+
+
+
+  
+
+</p>
+
+</div>
+
+</body>
+</html>

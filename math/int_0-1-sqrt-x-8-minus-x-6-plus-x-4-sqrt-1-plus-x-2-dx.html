@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^1 \sqrt{x^8 - x^6 + x^4} \; \sqrt{1 + x^2} \; dx  \)</span>
+<p>
+  \[ I = \int_0^1 \sqrt{x^8 - x^6 + x^4}  \; \sqrt{1 + x^2} \; dx \]
+
+  \[ I = \int_0^1 \sqrt{x^4(x^4 - x^2 + 1)}  \; \sqrt{1 + x^2} \; dx = \int_0^1 x^2 \sqrt{x^4 - x^2 + 1}  \; \sqrt{1 + x^2} \; dx \]
+
+  \[ I = \int_0^1 x^2 \sqrt{(x^4 - x^2 + 1)(1 + x^2)} \; dx = \int_0^1 x^2 \sqrt{x^6 + 1} \; dx \]
+
+  Substituting \( x^3 = t \Rightarrow 3x^2 \; dx = dt \), and changing the limits from \(x=0, x=1 \) to \( t=0, t=1 \), we get:
+  \[ I = \int_0^1 \sqrt{t^2 + 1} \; \frac{dt}{3} = \frac{1}{3} \int_0^1 \sqrt{t^2 + 1} \; dt \]
+
+  Substituting \( t = \tan \theta \Rightarrow dt = \sec^2 \theta \; d\theta \), and changing the limits from \(t=0, t=1 \) to \( \theta=0, \theta=\frac{\pi}{4} \), we get:
+  \[ I = \frac{1}{3} \int_0^\frac{\pi}{4} \sqrt{\tan^2 \theta+ 1} \sec^2 \theta \; d\theta =  \frac{1}{3} \int_0^\frac{\pi}{4} \sec^3 \theta \; d\theta \]
+
+  Using \( \int \sec^3 \theta = \frac{1}{2} ( \sec \theta \tan \theta + \ln{(\sec \theta + \tan \theta)} ) \), we get:
+  \[ I = \frac{1}{3} \Biggl( \frac{1}{2} \sec \theta \tan \theta + \frac{1}{2} \ln{(\sec \theta + \tan \theta)} \Biggr) \Biggr|_0^\frac{\pi}{4} = \frac{1}{6} \Biggl( \sec \theta \tan \theta + \ln{(\sec \theta + \tan \theta)} \Biggr) \Biggr|_0^\frac{\pi}{4} \]
+
+  \[ I = \frac{1}{6} \Biggl( (\sec \frac{\pi}{4} \tan \frac{\pi}{4} + \ln{(\sec \frac{\pi}{4} + \tan \frac{\pi}{4})}) - (\sec 0 \tan 0 + \ln{(\sec 0 + \tan 0)})  \Biggr) \]
+
+  \[ I = \frac{1}{6} \Biggl( (\sqrt{2} + \ln{(\sqrt{2} + 1)}) - (0 + \ln{(1 + 0)})  \Biggr) \]
+
+  \[ I = \frac{1}{6} (\sqrt{2} + \ln{(\sqrt{2} + 1)}) \]
+
+
+</p>
+
+</div>
+
+</body>
+</html>

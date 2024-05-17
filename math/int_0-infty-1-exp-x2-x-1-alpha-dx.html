@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\infty \frac{1}{(x^2+x+1)^\alpha} \; dx \)</span>
+<p>
+  \[ I = \int_0^\infty \frac{1}{(x^2+x+1)^\alpha} \; dx \]
+
+  \[ I = \int_0^\infty \frac{1}{(x^2+2\frac{1}{2}x+\frac{1}{4} +\frac{3}{4} )^\alpha} \; dx = \int_0^\infty \frac{1}{(x+\frac{1}{2})^2 + (\frac{\sqrt{3}}{2})^2 )^\alpha} \; dx \]
+  
+  Substituting \( x+\frac{1}{2} = \frac{\sqrt{3}}{2} \tan \theta \Rightarrow dx = \frac{\sqrt{3}}{2} \sec^2 \theta \; d\theta \), and changing the limits from \(x=0, x=\infty \) to \( \theta=0, \theta = \frac{\pi}{2} \), we get:
+  \[ I = \int_0^\frac{\pi}{2} \frac{\frac{\sqrt{3}}{2} \sec^2 \theta}{((\frac{\sqrt{3}}{2} \tan \theta)^2 + (\frac{\sqrt{3}}{2})^2)^\alpha} \; d\theta = \frac{\sqrt{3}}{2} \int_0^\frac{\pi}{2} \frac{\sec^2 \theta}{(\frac{3}{4})^\alpha ((\tan^2 \theta + 1)^2)^\alpha} \; d\theta  \]
+
+  \[ I = \frac{\sqrt{3}}{2} (\frac{4}{3})^\alpha \int_0^\frac{\pi}{2} \frac{\sec^2 \theta}{\sec^{2 \alpha} \theta} \; d\theta = (\frac{4}{3})^\alpha  \frac{\sqrt{3}}{2} \int_0^\frac{\pi}{2} \cos^{2 \alpha - 2}  \; d\theta  \]
+
+  \[ I = (\frac{4}{3})^\alpha  \frac{\sqrt{3}}{2} \int_0^\frac{\pi}{2} \sin^{2 (\frac{1}{2}) - 1} \cos^{2( \alpha -\frac{1}{2}) - 1}  \; d\theta  \]
+
+
+  Using the trigonometric definition of the Beta function:
+  \[ B(p, q) = \int_0^\frac{\pi}{2} \sin^{2p-1} \theta \cos^{2q-1} \theta \; d\theta \]
+
+  \[ I = (\frac{4}{3})^\alpha  \frac{\sqrt{3}}{2} \; B(\frac{1}{2}, \alpha -\frac{1}{2})  \]
+
+  Using the relation between the beta and gamma function:
+  \[ B(p, q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)} \]
+
+  \[ I = (\frac{4}{3})^\alpha \frac{\sqrt{3}}{2} \; \frac{\Gamma(\frac{1}{2}) \Gamma(\alpha -\frac{1}{2})}{\Gamma(\frac{1}{2} + \alpha -\frac{1}{2})}  \]
+
+  \[ I = (\frac{4}{3})^{\alpha -\frac{1}{2}} \; \sqrt{\pi} \frac{\Gamma(\alpha -\frac{1}{2})}{\Gamma(\alpha)}  \]
+
+
+</p>
+
+</div>
+
+</body>
+</html>

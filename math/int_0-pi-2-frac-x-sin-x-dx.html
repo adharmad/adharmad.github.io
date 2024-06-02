@@ -1,0 +1,71 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\frac{\pi}{2} \frac{x}{\sin x} \; dx \)</span>
+<p>
+  \[ I = \int_0^\frac{\pi}{2} \frac{x}{\sin x} \; dx \]
+
+  In order to use Feynman's method of differentiating under the sign of the integral, we need to parametrize the integral.  We know that \(x = \sin^{-1} (\sin x) \). Hence we can write the integral as:
+  \[ I(a) = \int_0^\frac{\pi}{2} \frac{\sin^{-1} (a\sin x)}{\sin x} \; dx \tag{1} \]
+
+  Taking the derivative of both sides w.r.t a, 
+  \[ \frac{dI}{da} = \frac{d}{da} \int_0^\frac{\pi}{2} \frac{\sin^{-1} (a\sin x)}{\sin x} \; dx = \int_0^\frac{\pi}{2} \frac{\partial}{\partial a} \frac{\sin^{-1} (a\sin x)}{\sin x} \; dx \]
+
+  \[ \frac{dI}{da} = \int_0^\frac{\pi}{2} \frac{1}{\sin x} \frac{\partial}{\partial a} \sin^{-1} (a\sin x) \; dx = \int_0^\frac{\pi}{2} \frac{1}{\sin x} \frac{1}{\sqrt{1 - a^2\sin^2 x}} \sin x \; dx \]
+
+  \[ \frac{dI}{da} = \int_0^\frac{\pi}{2} \frac{1}{\sqrt{1 - a^2\sin^2 x}} \; dx \]
+
+  We can see that the above integral is a special case of the <a href="complete_ellpitic_1st_kind.html">complete elliptic integral of first kind</a>. The solution to the complete elliptic integral of the first kind is:
+  \[ K(k) = \frac{\pi}{2} \sum_{n=0}^\infty (\frac{(2n-1)!!}{(2n)!!})^2 k^{2n} \]
+
+  Thus,
+  \[ \frac{dI}{da} = K(a) = \frac{\pi}{2} \sum_{n=0}^\infty (\frac{(2n-1)!!}{(2n)!!})^2 a^{2n} \]
+
+  Integrating w.r.t a, we get:
+  \[ I(a) = \int \frac{\pi}{2} \sum_{n=0}^\infty (\frac{(2n-1)!!}{(2n)!!})^2 a^{2n} \; da + c \]
+
+  \[ I(a) = \frac{\pi}{2} \sum_{n=0}^\infty (\frac{(2n-1)!!}{(2n)!!})^2 \int  a^{2n} \; da + c \]
+
+  \[ I(a) = \frac{\pi}{2} \sum_{n=0}^\infty (\frac{(2n-1)!!}{(2n)!!})^2 \frac{a^{(2n+1)}}{2n+1} + c \]
+
+  From equation (1), we know that \( I(0) = 0 \), 
+  \[ I(0) = \frac{\pi}{2} \sum_{n=0}^\infty (\frac{(2n-1)!!}{(2n)!!})^2 \frac{0^{(2n+1)}}{2n+1} + c = 0 + c \]
+  \[ c = 0 \]
+
+  \[ I(a) = \frac{\pi}{2} \sum_{n=0}^\infty (\frac{(2n-1)!!}{(2n)!!})^2 \frac{a^{(2n+1)}}{2n+1} \]
+
+  Now, the original integral is simply the special case when \( a = 1 \):
+  \[ \int_0^\frac{\pi}{2} \frac{x}{\sin x} \; dx = I(1) = \frac{\pi}{2} \sum_{n=0}^\infty (\frac{(2n-1)!!}{(2n)!!})^2 \frac{1^{(2n+1)}}{2n+1} \]
+
+  \[ \int_0^\frac{\pi}{2} \frac{x}{\sin x} \; dx = \frac{\pi}{2} \sum_{n=0}^\infty (\frac{(2n-1)!!}{(2n)!!})^2 \frac{1}{2n+1} \]
+
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

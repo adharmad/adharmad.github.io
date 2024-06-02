@@ -1,0 +1,100 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Solution to complete elliptic integral of the first kind</span>
+<p>
+  The complete elliptic integral of the first kind, which arises from the problem of finding arc length of an ellipse:
+  \[ E(k) = \int_0^\frac{\pi}{2} \sqrt{1-k^2 \sin^2\theta} \; d\theta \tag{1} \]
+
+  \[ E(k) = \int_0^\frac{\pi}{2} (1-k^2 \sin^2\theta)^{\frac{1}{2}} \; d\theta \]
+
+  The Taylor expansion for \( (1+x)^n \) is: 
+  \[ (1+x)^n = \sum_{r=0}^\infty {n \choose r} x^r \]
+
+  From this, we get:
+  \[ (1-k^2 \sin^2\theta)^{\frac{1}{2}} = \sum_{r=0}^\infty {{\frac{1}{2}} \choose r} (-1)^r k^{2r} \sin^{2r}\theta \]
+
+  Using this in equation (1), we have:
+  \[ E(k) = \int_0^\frac{\pi}{2} \sum_{r=0}^\infty {{\frac{1}{2}} \choose r} (-1)^r (-1)^r  k^{2r} \sin^{2r}\theta \; d\theta \]
+
+  Interchanging the summation and the integral operations:
+  \[ E(k) = \sum_{r=0}^\infty {{\frac{1}{2}} \choose r} (-1)^r k^{2r} \int_0^\frac{\pi}{2} \sin^{2r}\theta \; d\theta \]
+
+  Using the trigonometric definition of the Beta function:
+  \[ B(p, q) = \int_0^\frac{\pi}{2} 2 \sin^{2p-1} \theta \cos^{2q-1} \theta \; d\theta \]
+
+  The integral now can be evaluated as below:
+  \[ E(k) = \frac{1}{2} \sum_{r=0}^\infty {{\frac{1}{2}} \choose r} (-1)^r  k^{2r} \int_0^\frac{\pi}{2} \sin^{2(r + \frac{1}{2})-1}\theta \cos^{2(\frac{1}{2})-1}\theta \; d\theta = \frac{1}{2}  \sum_{r=0}^\infty {{\frac{1}{2}} \choose r} (-1)^r k^{2r} \; B(r + \frac{1}{2}, \frac{1}{2}) \]
+
+  Using the relation between the beta and gamma function:
+  \[ B(p, q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)} \]
+
+  \[ E(k) = \frac{1}{2}  \sum_{r=0}^\infty {{\frac{1}{2}} \choose r} (-1)^r k^{2r} \; \frac{\Gamma(r + \frac{1}{2}) \Gamma(\frac{1}{2})}{\Gamma(r + \frac{1}{2} + \frac{1}{2})} = \frac{1}{2}  \sum_{r=0}^\infty {{\frac{1}{2}} \choose r} (-1)^r k^{2r} \; \frac{\Gamma(r + \frac{1}{2}) \Gamma(\frac{1}{2})}{\Gamma(r + 1)} = \frac{1}{2}  \sum_{r=0}^\infty {{\frac{1}{2}} \choose r} (-1)^r k^{2r} \; \frac{\Gamma(r + \frac{1}{2}) \Gamma(\frac{1}{2})}{r!} \]
+
+  Now we also know that:
+  \[ {{\frac{1}{2}} \choose r} = \frac{\Gamma(\frac{3}{2})}{r! \;  \Gamma(\frac{3}{2}-r)} \]
+
+  Thus:
+  \[ E(k) = \frac{1}{2}  \sum_{r=0}^\infty \frac{\Gamma(\frac{3}{2})}{r! \;  \Gamma(\frac{3}{2}-r)} (-1)^r k^{2r} \; \frac{\Gamma(r + \frac{1}{2}) \Gamma(\frac{1}{2})}{r!} = \frac{1}{2}  \sum_{r=0}^\infty \frac{\Gamma(r + \frac{1}{2}) \Gamma(\frac{1}{2})^2}{(r!)^2 \; (1-2r) \;  \Gamma(\frac{1}{2}-r)} (-1)^r k^{2r} \]
+
+  Since \( \Gamma(\frac{1}{2})^2  = \pi \)
+  \[ E(k) = \frac{\pi}{2} \sum_{r=0}^\infty \frac{\Gamma(\frac{1}{2} + r)}{(r!)^2 \; (1-2r) \; \Gamma(\frac{1}{2}-r)} (-1)^r k^{2r} \]
+
+  To evaluate \( \frac{\Gamma(\frac{1}{2} + r)}{\Gamma(\frac{1}{2}-r)} \), let us substitute \( \frac{1}{2} + r = z \):
+  \[ \frac{\Gamma(\frac{1}{2} + r)}{\Gamma(\frac{1}{2}-r)} = \frac{\Gamma(z)}{\Gamma(1-z)} \]
+
+  Using <a href="https://en.wikipedia.org/wiki/Reflection_formula">Euler's Reflection Formula</a>: 
+  \[ \Gamma(z) \Gamma(1-z) = \frac{\pi}{\sin (\pi z)}  \]
+
+  \[ \frac{\Gamma(\frac{1}{2} + r)}{\Gamma(\frac{1}{2}-r)} = \frac{\Gamma(z)}{\Gamma(1-z)} = \frac{\Gamma(z)^2 \sin (\pi z)}{\pi} \]
+
+  \[ \frac{\Gamma(\frac{1}{2} + r)}{\Gamma(\frac{1}{2}-r)} = \frac{\Gamma(\frac{1}{2} + r)^2 \sin (\pi (\frac{1}{2} + r))}{\pi} \]
+
+  The integral can now be simplified to:
+  \[ E(k) = \frac{\pi}{2} \sum_{r=0}^\infty \frac{\Gamma(\frac{1}{2} + r)^2 \sin (\pi (\frac{1}{2} + r))}{\pi (r!)^2 (1-2r) } (-1)^r k^{2r} = \frac{1}{2} \sum_{r=0}^\infty \frac{\Gamma(\frac{1}{2} + r)^2 \sin (\pi (\frac{1}{2} + r))}{(r!)^2 (1-2r)} (-1)^r k^{2r} \]
+
+  Now we also know that \( (-1)^r \sin (\pi (\frac{1}{2} + r)) = 1 \; \forall \; r\). Thus,
+  \[ E(k) = \frac{1}{2} \sum_{r=0}^\infty \frac{\Gamma(\frac{1}{2} + r)^2 }{(r!)^2 (1-2r)} k^{2r} \]
+
+  Using the relation between the Gamma function and the double factorial identity:
+  \[ (2r-1)!! = \frac{2^r \; \Gamma(\frac{1}{2} + r)}{\sqrt{\pi}} \]
+  \[ \Gamma(\frac{1}{2} + r) = \frac{\sqrt{\pi} (2r-1)!!}{2^r} \]
+
+  Hence,
+  \[ E(k) = \frac{1}{2} \sum_{r=0}^\infty (\frac{\sqrt{\pi} (2r-1)!!}{2^r})^2 \frac{1}{(r!)^2 (1-2r)} k^{2r} = \frac{\pi}{2} \sum_{r=0}^\infty \frac{((2r-1)!!)^2}{2^{2r} \; (r!)^2 (1-2r)} k^{2r} \]
+
+  Observing that \( 2^{2r} \; (r!)^2 = ((2r)!!)^2 \)
+  \[ E(k) = \frac{\pi}{2} \sum_{r=0}^\infty (\frac{(2r-1)!!}{(2r)!!})^2 \frac{k^{2r}}{1-2r}  \]
+
+  An expanded form of the series can be written as:
+  \[ E(k) = \frac{\pi}{2} \Biggl[1 - (\frac{1}{2})^2 \frac{k^2}{1} - (\frac{1.3}{2.4})^2 \frac{k^4}{3} - (\frac{1.3.5}{2.4.6})^2 \frac{k^6}{5} - ...   \Biggr] \]
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

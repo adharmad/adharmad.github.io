@@ -1,0 +1,55 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\pi \frac{e^{\cos x} \sin x}{(1+\cos^2 x)(e^{\cos x} + e^{-\cos x})} \; dx \)</span>
+<p>
+  \[ I = \int_0^\pi \frac{e^{\cos x} \sin x}{(1+\cos^2 x)(e^{\cos x} + e^{-\cos x})} \; dx \tag{1} \]
+
+  Using King's identity, \( I = \int_a^bf(x) \; dx = \int_a^bf(b+a-x) \; dx  \), we get:
+  \[ I = \int_0^\pi \frac{e^{\cos (\pi-x)} \sin (\pi-x)}{(1+\cos^2 (\pi-x))(e^{\cos (\pi-x)} + e^{-\cos (\pi-x)})} \; dx \]
+
+  Since \( \cos (\pi-x) = - \cos x \) and \( \sin (\pi-x) =  \sin x \):
+  \[ I = \int_0^\pi \frac{e^{-\cos x} \sin x}{(1+\cos^2 x)(e^{-\cos x} + e^{+\cos x})} \; dx \tag{2} \]
+
+  Adding equations (1) and (2):
+  \[ 2I = \int_0^\pi \frac{(e^{\cos x} + e^{-\cos x}) \sin x}{(1+\cos^2 x)(e^{-\cos x} + e^{+\cos x})} \; dx \]
+
+  \[ I = \frac{1}{2} \int_0^\pi \frac{\sin x}{1+\cos^2 x} \; dx \]
+
+  Substituting \( \cos x = t \Rightarrow -\sin x dx = dt \) and changing the limits of integration from \( x = 0, x = \pi to t = 1, t = -1 \), we get:
+  \[ I = \frac{1}{2} \int_1^{-1} \frac{1}{1+t^2} \; (- dt) = \frac{1}{2} \int_{-1}^1 \frac{1}{1+t^2} \; dt \]
+
+  \[ I = \frac{1}{2} 2 \int_0^1 \frac{1}{1+t^2} \; dt =  \int_0^1 \frac{1}{1+t^2} \; dt \]
+
+  \[ I = \Biggl[ \tan^{-1} t \Biggr]_0^1 = \tan^{-1} 1 - \tan^{-1} 0 = \frac{\pi}{4} - 0 \]
+
+  \[ I =  \frac{\pi}{4}  \]
+
+
+</p>
+
+</div>
+
+</body>
+</html>

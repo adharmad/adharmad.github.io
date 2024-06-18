@@ -1,0 +1,85 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\infty \frac{\sin^2 x}{x^2(x^2+1)} \; dx \)</span>
+<p>
+  \[ I = \int_0^\infty \frac{\sin^2 x}{x^2(x^2+1)} \; dx \]
+
+  In order to use Feynman's method of differentiating under the sign of the integral, we need to parametrize the integral as:
+  \[ I(a) = \int_0^\infty \frac{\sin^2 (ax)}{x^2(x^2+1)} \; dx \tag{1} \]
+
+  Differentiating both sides w.r.t a, we get:
+  \[ \frac{dI}{da} = \frac{d}{da} \; \int_0^\infty \frac{\sin^2 (ax)}{x^2(x^2+1)} \; dx  = \int_0^\infty \frac{\partial}{\partial a} \frac{\sin^2 (ax)}{x^2(x^2+1)} \; dx  \]
+
+  \[ \frac{dI}{da} = \int_0^\infty \frac{2 \sin (ax) \cos (ax)}{x^2(x^2+1)} 2x \; dx = \int_0^\infty \frac{2 \sin (ax) \cos (ax)}{x(x^2+1)} \; dx \]
+
+  \[ \frac{dI}{da} = \int_0^\infty \frac{\sin (2ax)}{x(x^2+1)} \; dx \tag{2} \]
+
+  Differentiating both sides w.r.t a again, we get:
+  \[ \frac{d^2I}{da^2} = \frac{d}{da} \; \int_0^\infty \frac{\sin (2ax)}{x(x^2+1)} \; dx  =  \int_0^\infty \frac{\partial}{\partial a} \frac{\sin (2ax)}{x(x^2+1)} \; dx \]
+
+  \[ \frac{d^2I}{da^2} = \int_0^\infty \frac{\cos (2ax)}{x(x^2+1)} 2x \; dx \]
+
+  \[ \frac{d^2I}{da^2} = 2 \int_0^\infty \frac{\cos (2ax)}{x^2+1} \; dx \]
+  
+  Using the result from the <a href="int_0-infty-frac-cos-x-x2-plus-1-dx.html">\( \int_0^\infty \frac{\cos x}{x^2+1} \; dx \)</a>, we know that: 
+  \[ \int_0^\infty \frac{\cos (ax)}{x^2+1} \; dx = \frac{\pi}{2} e^{-a} \]
+
+  Thus,
+  \[ \frac{d^2I}{da^2} = 2 \frac{\pi}{2} e^{-2a} = \pi e^{-2a} \]
+
+  Integrating both sides, we have:
+  \[ \frac{dI}{da} = \int \pi e^{-2a} \; da + c_1 = - \frac{\pi e^{-2a}}{2} + c_1 \]
+
+  Now we know from equation (2) that \( I^{\prime}(0) = 0 \). Hence substituting a = 0 in above equation:
+  \[ I^{\prime}(0) = - \frac{\pi e^{-20}}{2} + c_1 \]
+  \[ c_1 = \frac{\pi}{2} \]
+
+  \[ \frac{dI}{da} = - \frac{\pi e^{-2a}}{2} + \frac{\pi}{2} \]
+
+  Integrating both sides again:
+  \[ I(a) = \frac{\pi e^{-2a}}{4} + \frac{\pi a}{2} + c_2 \]
+
+  Now we know from equation (1) that \( I(0) = 0 \). Hence substituting a = 0 in above equation:
+  \[ I(0) = \frac{\pi e^{-20}}{4} + 0 + c_2 \]
+  \[ c_2 = - \frac{\pi}{4} \]
+
+  Thus, finally:
+  \[ I(a) = \frac{\pi e^{-2a}}{4} + \frac{\pi a}{2} - \frac{\pi}{4} \]
+
+  The solution to the original equation is obtained when we substitute a = 1. 
+  \[ I(1) = \frac{\pi e^{-2}}{4} + \frac{\pi}{2} - \frac{\pi}{4} \]
+  \[ I(1) = \frac{\pi}{4 e^2} + \frac{\pi}{4} \]
+
+  Hence,
+  \[ \int_0^\infty \frac{\sin^2 x}{x^2(x^2+1)} \; dx = \frac{\pi}{4 e^2} + \frac{\pi}{4} \]
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

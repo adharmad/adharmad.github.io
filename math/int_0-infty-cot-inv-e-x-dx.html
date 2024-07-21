@@ -1,0 +1,53 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\infty \cot^{-1} (e^{x}) \; dx \)</span>
+<p>
+  \[ I = \int_0^\infty \cot^{-1} (e^{x}) \; dx = \int_0^\infty \tan^{-1} (e^{-x}) \; dx \]
+
+  Substituting \( e^{-x} = t \Rightarrow -e^{-x} dx = dt \Rightarrow dx = -\frac{1}{t} dt \), the limits of integration change from \( x = 0, x = \infty \) to \( t = 1, t = 0 \):
+  \[ I = \int_1^0 \tan^{-1} (t) \; (-\frac{1}{t} dt) = \int_0^1 \frac{1}{t} \tan^{-1} (t) \; dt \]
+
+  Using integration by parts,
+  \[ I = \int_0^1 \tan^{-1} (t) \; d(\ln{t}) = \ln{(t)} \tan^{-1} (t) \Biggr|_0^1 - \int_0^1 \ln{t} \; d(\tan^{-1} (t)) \]
+
+  \[ I = (0-0) - \int_0^1 \ln{t} \; \frac{dt}{1+t^2} \]
+
+  \[ I = - \int_0^1 \frac{\ln{t}}{1+t^2} \; dt \]
+
+  Now we know that the solution of \( \int_0^1 \frac{\ln{x}}{1+x^2} \; dx \) from <a href="int_0-1-frac-log-x-x-2-plus-1-dx.html">here</a>.
+
+  Hence,
+  \[ I = - (-G) \]
+
+  \[ I = G \]
+
+  Where G is <a href="https://en.wikipedia.org/wiki/Catalan%27s_constant">Catalan's constant</a>.
+
+</p>
+
+</div>
+
+</body>
+</html>

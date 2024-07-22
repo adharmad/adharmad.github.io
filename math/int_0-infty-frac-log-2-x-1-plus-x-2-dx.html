@@ -1,0 +1,98 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\infty\frac{\ln^2 {(x)}}{(1+x)^2} \; dx \)</span>
+<p>
+
+  \[ I = \int_0^\infty \frac{\ln^2 {(x)}}{(1+x)^2} \; dx \]
+
+  \[ I = \int_0^1 \frac{\ln^2 {(x)}}{(1+x)^2} \; dx + \int_1^\infty \frac{\ln^2 {(x)}}{(1+x)^2} \; dx \tag{1} \]
+
+  Let us evaluate:
+  \[ I_1 = \int_1^\infty \frac{\ln^2 {(x)}}{(1+x)^2} \; dx \] 
+
+  Substituting \( x = \frac{1}{t} \Rightarrow dx = -\frac{1}{t^2} dt \) and changing the limits of the integration from \( x = 1, x = \infty \) to \( t = 1, t = 0 \), we get:
+  \[ I_1 = \int_1^0 \frac{\ln^2 {\frac{1}{t}}}{(1+\frac{1}{t})^2} \; (-\frac{1}{t^2}) dt = \int_0^1 \frac{\ln^2 {t}}{\frac{(t+1)^2}{t^2}} \frac{1}{t^2} \;  dt \] 
+
+  \[ I_1 = \int_0^1 \frac{\ln^2 {t}}{(t+1)^2} \;  dt \] 
+
+  Since the variable of integration is superfluous in a definite integral:
+  \[ I_1 = \int_0^1 \frac{\ln^2 {(x)}}{(x+1)^2} \;  dx \] 
+
+  Substituting back in equation (1), we get:
+  \[ I = \int_0^1 \frac{\ln^2 {(x)}}{(1+x)^2} \; dx + \int_0^1 \frac{\ln^2 {(x)}}{(1+x)^2} \; dx \]
+  \[ I = 2 \int_0^1 \frac{\ln^2 {(x)}}{(1+x)^2} \; dx \tag{2} \]
+
+  Now we know that:
+  \[ \frac{1}{1+x} = \sum_{n=0}^\infty (-1)^{n} x^n \]
+
+  Taking the derivative of both sides w.r.t x:
+  \[ -\frac{1}{(1+x)^2} = \sum_{n=0}^\infty (-1)^{n} nx^{n-1} \]
+
+  \[ \frac{1}{(1+x)^2} = \sum_{n=0}^\infty (-1)^{n+1} nx^{n-1} \]
+
+  Substituting this in equation (2), we get:
+  \[ I = 2 \int_0^1 \ln^2 {(x)} \sum_{n=0}^\infty (-1)^{n+1} nx^{n-1} \; dx \]
+
+  Switching the order of the summation and integral:
+  \[ I = 2 \sum_{n=0}^\infty (-1)^{n+1} n \int_0^1 \ln^2 {(x)} x^{n-1} \; dx = 2 \sum_{n=1}^\infty (-1)^{n+1} n \int_0^1 \ln^2 {(x)} x^{n-1} \; dx \]
+
+  Using integration by parts repeatedly:
+  \[ I = 2 \sum_{n=1}^\infty (-1)^{n+1} n \int_0^1 \ln^2 {(x)} \; d(\frac{x^{n}}{n}) = 2 \sum_{n=1}^\infty (-1)^{n+1} n \Biggl( \frac{x^{n}}{n} \ln^2 {(x)} \Biggr|_0^1 - \int_0^1 \frac{x^{n}}{n} \; d(\ln^2 {(x)}) \Biggr)  \]
+
+  \[ I = 2 \sum_{n=1}^\infty (-1)^{n+1} n \Biggl( (0-0) - \frac{1}{n} \int_0^1 x^{n} \; 2\ln{(x)} \frac{1}{x} \; dx \Biggr)  \]
+
+  \[ I = 4 \sum_{n=1}^\infty (-1)^{n} \int_0^1 x^{n-1} \; \ln{(x)} \; dx = 4 \sum_{n=1}^\infty (-1)^{n} \int_0^1 \ln{(x)} \; d(\frac{x^n}{n}) \]
+
+  \[ I = 4 \sum_{n=1}^\infty (-1)^{n} \Biggl( \frac{x^n}{n} \ln{(x)} \Biggr|_0^1 - \int_0^1 \frac{x^n}{n} \; d(\ln{(x)}) \Biggr) \]
+
+  \[ I = 4 \sum_{n=1}^\infty (-1)^{n} \Biggl( (0-0) - \int_0^1 \frac{x^n}{n} \frac{1}{x} \; dx \Biggr) \]
+
+  \[ I = 4 \sum_{n=1}^\infty (-1)^{n+1} \frac{1}{n} \int_0^1 x^{n-1} \; dx = 4 \sum_{n=1}^\infty (-1)^{n+1} \frac{1}{n} \frac{x^n}{n} \Biggr|_0^1 \]
+
+  \[ I = 4 \sum_{n=1}^\infty (-1)^{n+1} \frac{1}{n^2} (1 - 0) \]
+
+  \[ I = 4 \sum_{n=1}^\infty (-1)^{n+1} \frac{1}{n^2} \]
+
+  Now in order to evaluate this sum, we use the infinite sum of reciprocal squares which is the solution to the <a href="https://en.wikipedia.org/wiki/Basel_problem">Basel problem</a> which tells us that:
+  \[ \frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + ... = \frac{\pi^2}{6} \]
+
+  \[ I = 4 \Biggl( \frac{1}{1^2} - \frac{1}{2^2} + \frac{1}{3^2} - \frac{1}{4^2} + ... \Biggr) \]
+
+  \[ I = 4 \Biggl( \Biggl[\frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + ... \Biggr] - 2 \Biggl[\frac{1}{2^2} + \frac{1}{4^2} + \frac{1}{6^2} + \frac{1}{8^2} + ... \Biggr] \Biggr) \]
+
+  \[ I = 4 \Biggl( \Biggl[\frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + ... \Biggr] - 2 \frac{1}{2^2} \Biggl[\frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + ... \Biggr] \Biggr) \]
+
+  \[ I = 4 \Biggl( \frac{\pi^2}{6} - \frac{1}{2} \frac{\pi^2}{6} \Biggr) = 2 \frac{\pi^2}{6} \]
+
+  \[ I = \frac{\pi^2}{3} \]
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

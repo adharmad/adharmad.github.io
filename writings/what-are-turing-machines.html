@@ -1,0 +1,113 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>What are Turing Machines?</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+
+<h1>What are Turing Machines?</h1>
+
+<h2>Introduction</h2>
+
+The Turing machine is a hypothetical computer, described first by Alan Turing in the 1936. It is not meant as much for practical computation, as for describing, reasoning and performing "thought experiments" about the nature and limitations of computation and programs. Theoretical computer scientists use it as a useful model for a bare-bones, stripped down abstraction of a computing device without all its trimmings, but which can  still be used to reason about computation and computer algorithms. 
+
+<br><br>
+
+<h2>A simple Turing Machine</h2>
+
+There are many descriptions of Turing machines, a number of which can be found at the Turing Machine gallary. Note, however that what Turing described is not a physical machine, but a mathematical description. Essentially, a Turing machine consists of:
+<br>
+
+<ul>
+<li>A single tape of infinite size which is divided into cells. The cells contain symbols from a fixed alphabet i.e. a finite set of symbols that form the basis of the language. The alphabet also contains a special blank symbol. 
+<li>A head, that It can be moved either left or write. The head can read or write the symbol on the square beneath it. 
+<li>An set of instructions (called action table), that provides instructions on to manipulate the symbol on the tape. The action table will take as its input the current state of the machine, and the symbol beneath the tape and will tell the machine to:
+    <ul>
+        <li>Either erase the symbol under the head (write a blank symbol) or write some alternate symbol value.
+        <li>Move the tape to the left, right or stay put
+        <li>Assume the new state or keep the current state
+    </ul>
+</ul>
+
+<br>
+
+Consider the following diagram - 
+
+<br>
+<pre>
+      _________________________________________________________________________
+       |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+       |  1 | 2  | X  | A  | _  | _  | _  | A  | B  | 4  | F  | _  | _  | M  |
+      _|____|____|____|____|____|____|____|____|____|____|____|____|____|____|_
+                                       ^
+</pre>
+<br>
+
+The above represents the tape, and each cell has a symbol. The underscore "_" represents the blank symbol and the caret ^ represents the current position of the head. After reading the tape and possibly changing it, the head can move either left , right or stay at its current position on the tape. In short, the Turing machine is a state machine. 
+
+<br><br>
+
+<h2>A simple example</h2>
+
+The below is a simple example of a Turing machine that prints an alternating sequence of 0's and 1's endlessly. This was one of Alan Turing's first examples. The machine uses four states, labelled s1, s2, s3 and s4. s1 is the initial state of the machine.  The action table is shown below:
+
+<br>
+
+<table align="center" border="1">
+    <tr>
+        <td>state</td>   
+        <td>current symbol</td>  
+        <td>symbol to write</td> 
+        <td>move</td>    
+        <td>next state</td>
+    </tr>
+    <tr>
+        <td>s1</td>
+        <td>blank</td> 
+        <td>0</td>
+        <td>right</td>
+        <td>s2</td>
+    </tr>
+    <tr>
+        <td>s2</td>  
+        <td>blank</td>   
+        <td>blank</td>   
+        <td>right</td>   
+        <td>s3</td>
+    </tr>
+    <tr>
+        <td>s3</td>
+        <td>blank</td>
+        <td>1</td>
+        <td>right</td>
+        <td>s4</td>
+    </tr>
+    <tr>
+        <td>s4</td>
+        <td>blank</td>
+        <td>blank</td>
+        <td>right</td>
+        <td>s1</td>
+    </tr>
+</table>
+
+<br>
+
+The output of this Turing Machine is that the following values are written on the tape: 0, blank, 1, blank, 0, blank, 1, blank ...
+
+<br><br>
+
+<h2>Significance of Turing Machines</h2>
+
+As stated in a number of places, Turing Machines are useful for modelling computation itself.  But what does it really mean?
+<br>
+
+<li> A Turing machine can compute anything that a regular computer can. In general, this means that any limits on the what a Turing machine can compute also apply to regular computers. 
+<li> Turing machines can be used for describing computation, without worrying about physical limitations of machines (like memory, storage space etc.). Due to this, Turing machines can be used for analyzing computation and its limitations, independent of advances in computer hardware. 
+<li> Since a Turing machine is a mathematical concept, it can be used for idealized description of algorithms. This can typically allow us to make statements about the algorithm complexity that are more generic.  
+
+</body>
+</html>

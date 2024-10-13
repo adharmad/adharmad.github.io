@@ -1061,7 +1061,7 @@ worse for Maxwell's equations. If it is found to be contradicted by observation
 - well, these experimentalists do bungle things sometimes. But if your theory
 is found to be against the Second Law of Thermodynamics I can give you no hope;
 there is nothing for it to collapse in deepest humiliation.
-	― Arthur Eddington (New Pathways in Science)
+	- Arthur Eddington (New Pathways in Science)
 
 What we observe is not nature itself, but nature exposed to our method of
 questioning.
@@ -1078,6 +1078,55 @@ within a year we could probably calculate the value. If the aliens demanded
 the Ramsey number for red six and blue six, however, we would have no choice 
 but to launch a preemptive attack.
     - Paul Erdos ("Ramsey Theory" - Ronald L. Graham and Joel H. Spencer)
+
+Action is one of the two terms in pre-relativity physics which survive 
+unmodified in a description of the absolute world. The only other survival 
+is entropy. The coming theory of relativity had cast its shadow before; 
+and physics was already converging to two great generalisations, the 
+principle of least action and the second law of thermodynamics or principle 
+of maximum entropy.
+    - Arthur Eddington (Space, Time and Gravitation)
+
+Entia non sunt multiplicanda praeter necessitatem.  
+(It is vain to do with more what can be done with less. -- Ockham's Razor.)
+    - Ockham of Surrey, Order of the Fransiscan Friars
+
+If all of mathematics disappeared, physics would be set back by exactly one 
+week.
+    - Richard P. Feynman
+
+The victory [on the law of refraction] was still with Monsieur Descartes since
+in effect his opinion was confirmed to be true even by reasoning different from
+his, after all the most famous conquerors did not consider themselves less
+happy when victory was obtained by auxiliary troops instead of by their own.
+    - Pierre de Fermat
+
+The grand aim of all science is to cover the greatest number of empirical 
+facts by logical deduction from the smallest number of hypotheses or axioms.
+    - Albert Einstein
+
+It was about three o’clock at night when the final result of the calculation 
+[demonstrating the sensibility of matrix mechanics] lay before me ... At first
+I was deeply shaken ... I was so excited that I could not think of sleep. So 
+I left the house ... and awaited the sunrise on top of a rock. That was 
+‘the night of Helgoland.’
+    - Werner Heisenberg
+
+I cannot give any scientist of any age better advice than this: the intensity
+of conviction that a hypothesis is true has no bearing over whether it is true
+or not.
+    - Peter Medawar
+
+Those who do not stop asking silly questions become scientists.
+    - Leon Lederman
+
+If you want to make a simulation of nature, you'd better make it quantum 
+mechanical.
+    - Richard Feynman
+
+Nature uses only the longest threads to weave her patterns, so that each piece
+of her fabric reveals the organization of the entire tapestry.
+    - Richard Feynman
 
 Political Quotes
 ================

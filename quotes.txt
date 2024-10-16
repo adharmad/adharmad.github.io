@@ -546,7 +546,7 @@ Just because a field sprinkles numbers around doesn't make it a hard science.
 By that definition, marketing research is a hard science.
     - Unknown
 
-The power of instruction is seldom of much efficacy except in those happy 
+The power of instruction is seldom of much efficacy except in those happy
 dispositions where it is almost superfluous.
     – Gibbon
 
@@ -674,45 +674,45 @@ Interesting - I use a Mac to help me design the next Cray.
    bought a Cray supercomputer to help them design the next Mac.
 
 The computing scientist’s main challenge is not to get confused by the
-complexities of his own making. 
+complexities of his own making.
     — E. W. Dijkstra
 
-One of my most productive days was throwing away 1000 lines of code. 
+One of my most productive days was throwing away 1000 lines of code.
     — Ken
 Thompson
 
-When in doubt, use brute force. 
+When in doubt, use brute force.
     — Ken Thompson
 
-Deleted code is debugged code. 
+Deleted code is debugged code.
     — Jeff Sickel
 
 Beauty is more important in computing than anywhere else in technology because
-software is so complicated. Beauty is the ultimate defence against complexity. 
+software is so complicated. Beauty is the ultimate defence against complexity.
     — David Gelernter
 
-A program that produces incorrect results twice as fast is infinitely slower. 
+A program that produces incorrect results twice as fast is infinitely slower.
     — John Osterhout
 
 XML is like violence: if it doesn’t solve your problem, you aren’t using enough
-of it. 
+of it.
     — Heard from someone working at Microsoft
 
 Most software today is very much like an Egyptian pyramid with millions of
 bricks piled on top of each other, with no structural integrity, but just done
-by brute force and thousands of slaves. 
+by brute force and thousands of slaves.
     — Alan Kay
 
-If you want to go somewhere, goto is the best way to get there. 
+If you want to go somewhere, goto is the best way to get there.
     — ken
 
 Einstein argued that there must be simplified explanations of nature, because
 God is not capricious or arbitrary. No such faith comforts the software
-engineer. 
+engineer.
     — Fred Brooks
 
 A distributed system is one in which the failure of a computer you didn’t even
-know existed can render your own computer unusable. 
+know existed can render your own computer unusable.
     — Leslie Lamport
 
 Testing by itself does not improve software quality. Test results are an
@@ -722,29 +722,29 @@ lose weight by weighing yourself more often. What you eat before you step onto
 the scale determines how much you will weigh, and the software development
 techniques you use determine how many errors testing will find. If you want to
 lose weight, don’t buy a new scale; change your diet. If you want to improve
-your software, don’t test more; develop better. 
+your software, don’t test more; develop better.
     — Steve McConnell (Code
 Complete)
 
 There’s no sense being exact about something if you don’t even know what you’re
-talking about. 
+talking about.
     — John von Neumann
 
 The problem with object-oriented languages is they’ve got all this implicit
 environment that they carry around with them. You wanted a banana but what you
-got was a gorilla holding the banana and the entire jungle. 
+got was a gorilla holding the banana and the entire jungle.
     — Joe Armstrong
 
-The trick is to fix the problem you have, rather than the problem you want. 
+The trick is to fix the problem you have, rather than the problem you want.
     — Bram Cohen
 
 640K ought to be enough for anybody.
     - Bill Gates in 1981
 
-The primary purpose of the DATA statement is to give names to constants; 
+The primary purpose of the DATA statement is to give names to constants;
 instead of referring to pi as 3.141592653589793 at every appearance, the
 variable PI can be given that value with a DATA statement and used instead of
-the longer form of the constant. This also simplifies modifying the program, 
+the longer form of the constant. This also simplifies modifying the program,
 should the value of pi change.
     — Early FORTRAN manual for Xerox Computers (Attributed to David H. Owens)
 
@@ -1054,7 +1054,7 @@ It is wrong to think that the task of physics is to find out how nature is.
 Physics concerns what we can say about nature.
     - Neils Bohr
 
-The law that entropy always increases holds, I think, the supreme position 
+The law that entropy always increases holds, I think, the supreme position
 among the laws of Nature. If someone points out to you that your pet theory
 of the universe is in disagreement with Maxwell's equations - then so much the
 worse for Maxwell's equations. If it is found to be contradicted by observation
@@ -1068,30 +1068,30 @@ questioning.
 	- Werner Heisenberg
 
 The first principle is that you must not fool yourself and you are the easiest
-person to fool. 
+person to fool.
 	- Richard P. Feynman
 
-Suppose aliens invade the earth and threaten to obliterate it in a year's 
-time unless human beings can find the Ramsey number for red five and blue 
-five. We could marshal the world's best minds and fastest computers, and 
-within a year we could probably calculate the value. If the aliens demanded 
-the Ramsey number for red six and blue six, however, we would have no choice 
+Suppose aliens invade the earth and threaten to obliterate it in a year's
+time unless human beings can find the Ramsey number for red five and blue
+five. We could marshal the world's best minds and fastest computers, and
+within a year we could probably calculate the value. If the aliens demanded
+the Ramsey number for red six and blue six, however, we would have no choice
 but to launch a preemptive attack.
     - Paul Erdos ("Ramsey Theory" - Ronald L. Graham and Joel H. Spencer)
 
-Action is one of the two terms in pre-relativity physics which survive 
-unmodified in a description of the absolute world. The only other survival 
-is entropy. The coming theory of relativity had cast its shadow before; 
-and physics was already converging to two great generalisations, the 
-principle of least action and the second law of thermodynamics or principle 
+Action is one of the two terms in pre-relativity physics which survive
+unmodified in a description of the absolute world. The only other survival
+is entropy. The coming theory of relativity had cast its shadow before;
+and physics was already converging to two great generalisations, the
+principle of least action and the second law of thermodynamics or principle
 of maximum entropy.
     - Arthur Eddington (Space, Time and Gravitation)
 
-Entia non sunt multiplicanda praeter necessitatem.  
+Entia non sunt multiplicanda praeter necessitatem.
 (It is vain to do with more what can be done with less. -- Ockham's Razor.)
     - Ockham of Surrey, Order of the Fransiscan Friars
 
-If all of mathematics disappeared, physics would be set back by exactly one 
+If all of mathematics disappeared, physics would be set back by exactly one
 week.
     - Richard P. Feynman
 
@@ -1101,14 +1101,14 @@ his, after all the most famous conquerors did not consider themselves less
 happy when victory was obtained by auxiliary troops instead of by their own.
     - Pierre de Fermat
 
-The grand aim of all science is to cover the greatest number of empirical 
+The grand aim of all science is to cover the greatest number of empirical
 facts by logical deduction from the smallest number of hypotheses or axioms.
     - Albert Einstein
 
-It was about three o’clock at night when the final result of the calculation 
+It was about three o’clock at night when the final result of the calculation
 [demonstrating the sensibility of matrix mechanics] lay before me ... At first
-I was deeply shaken ... I was so excited that I could not think of sleep. So 
-I left the house ... and awaited the sunrise on top of a rock. That was 
+I was deeply shaken ... I was so excited that I could not think of sleep. So
+I left the house ... and awaited the sunrise on top of a rock. That was
 ‘the night of Helgoland.’
     - Werner Heisenberg
 
@@ -1120,13 +1120,16 @@ or not.
 Those who do not stop asking silly questions become scientists.
     - Leon Lederman
 
-If you want to make a simulation of nature, you'd better make it quantum 
+If you want to make a simulation of nature, you'd better make it quantum
 mechanical.
     - Richard Feynman
 
 Nature uses only the longest threads to weave her patterns, so that each piece
 of her fabric reveals the organization of the entire tapestry.
     - Richard Feynman
+
+Spacetime tells matter how to move; matter tells spacetime how to curve.
+    - John Wheeler
 
 Political Quotes
 ================

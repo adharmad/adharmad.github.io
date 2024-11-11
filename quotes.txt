@@ -751,6 +751,11 @@ should the value of pi change.
 The generation of random numbers is too important to be left to chance.
     — Robert R. Coveyou
 
+Church’s lambda calculus and the Turing machine are equally powerful but differ
+in the fact that Turing machines use mutable state. To this day, there is a rift 
+between functional and imperative programming languages, because of the separation
+of Church and state.
+    - Guy Steele
 
 Chess Quotes
 ============

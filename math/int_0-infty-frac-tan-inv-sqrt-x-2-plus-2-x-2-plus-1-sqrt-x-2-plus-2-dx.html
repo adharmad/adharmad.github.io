@@ -1,0 +1,110 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\infty \frac{tan^{-1}\sqrt{x^2+2}}{(x^2+1)\sqrt{x^2+2}} \; dx  \)</span>
+<p>
+  \[ I = \int_0^\infty \frac{tan^{-1}\sqrt{x^2+2}}{(x^2+1)\sqrt{x^2+2}} \; dx \]
+
+    Let us parametrize the above integral to use Feynman's technique of differentiating under the sign of integral:
+  \[ I(a) = \int_0^\infty \frac{tan^{-1}(a\sqrt{x^2+2})}{(x^2+1)\sqrt{x^2+2}} \; dx  \tag{1} \]
+
+  \[ \frac{dI}{da} = \frac{d}{da} \int_0^\infty \frac{tan^{-1}(a\sqrt{x^2+2})}{(x^2+1)\sqrt{x^2+2}} \; dx = \int_0^\infty \frac{\partial}{\partial a} \frac{tan^{-1}(a\sqrt{x^2+2})}{(x^2+1)\sqrt{x^2+2}} \; dx  \]
+
+  \[ \frac{dI}{da} = \int_0^\infty \frac{1}{(x^2+1)\sqrt{x^2+2}} \; \frac{1}{1 + a(x^2 + 2)} \; \sqrt{x^2+2} \; dx  = \int_0^\infty \frac{dx}{(x^2 + 1)(1 + a^2x^2 + 2a^2)} \]
+
+  Using partial fractions to decompose the above fraction, we have:
+  \[ \frac{1}{(x^2 + 1)(1 + a^2x^2 + 2a^2)} = \frac{A}{x^2 + 1} + \frac{B}{1 + a^2x^2 + 2a^2} \]
+
+  \[ 1 = A(a^2x^2 + 2a^2 + 1) + B(x^2+1) = Aa^2x^2 + 2Aa^2 + A + Bx^2 + B\]
+
+  \[ 1 = x^2(Aa^2 + B) + 2Aa^2 + A + B \tag{2} \]
+
+  Solving for A and B gives:
+  \[ A = \frac{1}{a^2 + 1}, \; B = \frac{-a^2}{a^2 + 1} \]
+
+  Thus,
+  \[ \frac{1}{(x^2 + 1)(1 + a^2x^2 + 2a^2)} = \frac{1}{(a^2 + 1)(x^2 + 1)} - \frac{a^2}{(a^2 + 1)(a^2x^2 + 2a^2 + 1)} \]
+
+  \[ \frac{dI}{da} = \int_0^\infty (\frac{1}{(a^2 + 1)(x^2 + 1)} - \frac{a^2}{(a^2 + 1)(a^2x^2 + 2a^2 + 1)}) \; dx = \frac{1}{a^2 + 1} \int_0^\infty (\frac{1}{x^2 + 1} - \frac{a^2}{a^2x^2 + 2a^2 + 1}) \; dx \]
+
+  \[ \frac{dI}{da} = \frac{1}{a^2 + 1} \int_0^\infty (\frac{1}{x^2 + 1} - \frac{1}{x^2 + 2 + \frac{1}{a^2}}) \; dx \]
+
+  \[ \frac{dI}{da} = \frac{1}{a^2 + 1} \Biggl[ \tan^{-1} x - \frac{1}{\sqrt{2 + \frac{1}{a^2}}} \tan^{-1} \Biggl( \frac{x}{\sqrt{2 + \frac{1}{a^2}}} \Biggr) \Biggr]_0^\infty \]
+
+  \[ \frac{dI}{da} = \frac{1}{a^2 + 1} \Biggl[ \frac{\pi}{2} - \frac{\pi}{2} \frac{1}{\sqrt{2 + \frac{1}{a^2}}} \Biggr] = \frac{\pi}{2} \frac{1}{a^2 + 1} \Biggl[ 1 -  \frac{a}{\sqrt{2a^2 + 1}} \Biggr] \]
+
+  Integrating both sides w.r.t a, we get:
+  \[ I = \int \frac{\pi}{2} \frac{1}{a^2 + 1} \Biggl( 1 -  \frac{a}{\sqrt{2a^2 + 1}} \Biggr) \; da = \frac{\pi}{2} \frac{1}{a^2 + 1} \int \Biggl( 1 -  \frac{a}{\sqrt{2a^2 + 1}} \Biggr) \; da \]
+
+  \[ I = \frac{\pi}{2} \int \frac{1}{a^2 + 1} \; da  - \frac{\pi}{2} \int \frac{a}{(a^2 + 1)\sqrt{2a^2 + 1}} \; da \]
+
+  \[ I = \frac{\pi}{2} \tan^{-1}a  - \frac{\pi}{2}  I_1 + c \tag{3} \]
+
+  Where
+  \[ I_1 = \int \frac{a}{(a^2 + 1)\sqrt{2a^2 + 1}} \; da \tag{4} \]
+
+  Let us solve the integral \( I_1 \) by substituting \( b = \sqrt{2a^2 + 1} \). Then, \( db = \frac{2a}{\sqrt{2a^2 + 1}} \; da \) and \( a^2 + 1 = \frac{b^2 + 1}{2} \)
+
+  Thus,
+  \[ I_1 = \int \frac{1}{\frac{b^2 + 1}{2}} \; \frac{db}{2}  = \int \frac{db}{b^2 + 1} \]
+
+  \[ I_1 = \tan^{-1} b = \tan^{-1} \sqrt{2a^2 + 1} \]
+
+  Substituting this result back in equation (3), we get:
+  \[ I = \frac{\pi}{2} \tan^{-1}a  - \frac{\pi}{2} \tan^{-1} \sqrt{2a^2 + 1} + c = \frac{\pi}{2} (\tan^{-1}a - \tan^{-1} \sqrt{2a^2 + 1} ) + c \]
+
+  Now, we know from equation (1) that \( I(0) = 0 \). Thus
+  \[ I(0) = \frac{\pi}{2} (\tan^{-1} 0 - \tan^{-1} \sqrt{2(0) + 1} )  + c \]
+
+  \[ 0 = \frac{\pi}{2} (0 - \tan^{-1} 1)  + c = \frac{\pi}{2} (- \frac{\pi}{4})  + c \]
+
+  \[ c = \frac{\pi^2}{8} \]
+
+  Hence:
+  \[ I = \frac{\pi}{2} (\tan^{-1}a - \tan^{-1} \sqrt{2a^2 + 1} )  + \frac{\pi^2}{8} \]
+
+  To find the solution to the original equation, we need to find \( I(1) \), i.e. substitute \( a = 1 \):
+  \[ I = \frac{\pi}{2} (\tan^{-1} 1 - \tan^{-1} \sqrt{2(1) + 1} )  + \frac{\pi^2}{8} = \frac{\pi}{2} (\tan^{-1} 1 - \tan^{-1} \sqrt{3} )  + \frac{\pi^2}{8} \]
+
+  \[ I = \frac{\pi}{2} (\frac{\pi}{4} - \frac{\pi}{3} )  + \frac{\pi^2}{8} = \frac{\pi}{2} (-\frac{\pi}{12}) + \frac{\pi^2}{8} =  \frac{\pi^2}{8} - \frac{\pi^2}{24} \]
+
+  \[ I = \frac{\pi^2}{12} \]
+
+
+
+
+
+
+
+
+
+
+
+
+</p>
+
+</div>
+
+</body>
+</html>

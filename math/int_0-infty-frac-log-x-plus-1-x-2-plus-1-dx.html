@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\infty\frac{\ln{(x+1)}}{x^2 + 1} \; dx \)</span>
+<p>
+
+  <em>Method 2: Algebraic substitution</em>
+
+  \[ I = \int_0^\infty\frac{\ln{(x+1)}}{x^2 + 1} \; dx \]
+
+  \[ I = \int_0^1\frac{\ln{(x+1)}}{x^2 + 1} \; dx + \int_1^\infty\frac{\ln{(x+1)}}{x^2 + 1} \; dx \]
+
+  \[ I = I_1 + I_2 \]
+
+  where 
+  \[ I_1 = \int_0^1\frac{\ln{(x+1)}}{x^2 + 1} \; dx \tag{1} \]
+  and 
+  \[ I_2 = \int_1^\infty\frac{\ln{(x+1)}}{x^2 + 1} \; dx \tag{2} \]
+
+  We know the solution to the integral \( I_1 \) from <a href="int_0-1-frac-log-x-plus-1-x-2-plus-1-dx.html">\( \int_0^1\frac{\ln{(x+1)}}{x^2 + 1} \; dx \)</a>:
+  \[ I_1 = \frac{\pi}{8}\ln{2} \tag{3} \]
+
+  Substituting \( x = \frac{1}{t} \) to solve  the integral \( I_2 \), we have \( dx = -\frac{1}{t^2} dt \) and changing the limits of the integral change from \( x=1, x= \infty \) to \(t =1, t = 0 \), we have:
+  \[ I_2 = \int_1^0\frac{\ln{(\frac{1}{t} +1)}}{\frac{1}{t^2} + 1} \; (-\frac{1}{t^2}) \; dt  = \int_0^1\frac{\ln{(\frac{1+t}{t}})}{t^2 + 1} \; dt \]
+
+  \[ I_2 = \int_0^1\frac{\ln{(1+t)} - \ln{t}}{t^2 + 1} \; dt = \int_0^1\frac{\ln{(1+t)}}{t^2 + 1} \; dt - \int_0^1\frac{\ln{t}}{t^2 + 1} \; dt \]
+
+  Since the variable of integration is fungible in a definite integral:
+  \[ I_2 = \int_0^1\frac{\ln{(1+x)}}{x^2 + 1} \; dt - \int_0^1\frac{\ln{t}}{t^2 + 1} \; dt  = I_1 - \int_0^1\frac{\ln{t}}{t^2 + 1} \; dt \]
+
+  \[ I_2 = I_1 - I_3 \]
+  where 
+  \[ I_3 =  \int_0^1\frac{\ln{t}}{t^2 + 1} \; dt \]
+
+  We also know the solution to the integral \( I_3 \) from <a href="int_0-1-frac-log-x-x-2-plus-1-dx.html">\( \int_0^1\frac{\ln{x}}{x^2 + 1} \; dx \)</a>:
+  \[ I_3 = -G \tag{4} \]
+
+  where G is the <a href="https://en.wikipedia.org/wiki/Catalan%27s_constant">Catalan's constant</a>.
+
+  Hence from equations (3) and (4):
+  \[ I_2 = \frac{\pi}{8}\ln{2} - (-G)  = \frac{\pi}{8}\ln{2} + G \]
+
+  Finally, the value of the original integral is:
+  \[ I = \frac{\pi}{8}\ln{2} + \frac{\pi}{8}\ln{2} + G \]  
+
+  \[ I = 2 \frac{\pi}{8}\ln{2} + G \]  
+
+
+</p>
+
+</div>
+
+</body>
+</html>

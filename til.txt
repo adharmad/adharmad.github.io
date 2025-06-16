@@ -1,1 +1,4 @@
 2025-06-10 The string "()()" is not a palindrome but the string "())(" is a palindrome.
+2025-06-16 The lowest value for which the mod-n Ackermann function does not
+           stabilize is 1969.
+

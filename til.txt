@@ -1,0 +1,1 @@
+2025-06-10 The string "()()" is not a palindrome but the string "())(" is a palindrome.

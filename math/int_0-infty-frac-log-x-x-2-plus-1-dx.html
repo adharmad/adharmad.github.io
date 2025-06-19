@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Integration Problem</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<span class="h1">Integrate \( \int_0^\infty\frac{\ln{x}}{x^2 + 1} \; dx \)</span>
+<p>
+
+  \[ I = \int_0^\infty\frac{\ln{x}}{x^2 + 1} \; dx \]
+
+  By infinite series expansion, we know that:
+  \[ \frac{1}{x^2 + 1} = \sum_{n=0}^\infty (-1)^{n} x^{2n} \]
+
+  Thus,
+  \[ I = \int_0^1 \ln{x} \sum_{n=0}^\infty (-1)^{n} x^{2n} \; dx \]
+
+  Switching the order of summation and integral:
+  \[ I = \sum_{n=0}^\infty (-1)^{n} \int_0^1 \ln{(x)} \; x^{2n} \; dx  \tag{1} \]
+
+  Integrating by parts, we have:
+  \[ \int \ln{(x)} \; x^{2n} \; dx  = \int \ln{(x)} \; d(\frac{x^{2n+1}}{2n+1}) = \frac{x^{2n+1}}{2n+1} \ln{x} - \int \frac{x^{2n+1}}{2n+1} \; d(\ln{x}) \]
+
+  \[ \int \ln{(x)} \; x^{2n} \; dx  = \frac{x^{2n+1} \ln{x}}{2n+1}  - \int \frac{x^{2n+1}}{2n+1} \; \frac{1}{x} \; dx = \frac{x^{2n+1} \ln{x}}{2n+1}  - \int \frac{x^{2n}}{2n+1}  \; dx \]
+
+  Thus, \[ \int \ln{(x)} \; x^{2n} \; dx  = \frac{x^{2n+1} \ln{x}}{2n+1}  - \frac{x^{2n+1}}{(2n+1)^2} \]
+
+  Substituting this result in equation (1), we get:
+  \[ I = \sum_{n=0}^\infty (-1)^{n}  \Biggl[  \frac{x^{2n+1} \ln{x}}{2n+1}  - \frac{x^{2n+1}}{(2n+1)^2} \Biggr]_0^1 =  \sum_{n=0}^\infty (-1)^{n}  \Biggl[ (0 - \frac{1}{(2n+1)^2}) - ( 0 - 0) \Biggr] \]
+
+  \[ I =  - \sum_{n=0}^\infty (-1)^{n} \frac{1}{(2n+1)^2} \]
+
+  The above sum is the value of <a href="https://en.wikipedia.org/wiki/Catalan%27s_constant">Catalan's constant</a> which we know from definition. Hence:
+  \[ I =  - G \]
+
+</p>
+
+</div>
+
+</body>
+</html>

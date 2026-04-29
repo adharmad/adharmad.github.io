@@ -20,6 +20,10 @@ p,ul,ol {
 /*  font-family: sans-serif;*/
 }
 
+pre {
+    overflow-x: auto;
+}
+
 body {
     font-family: monospace;
     font-size: 10.5pt;
@@ -41,4 +45,27 @@ tr {
 
 td {
     text-align: center;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: lightgray;
+    margin-top: 5mm;
+    margin-bottom: 8mm;
+}
+
+.entrylink {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+blockquote {
+    margin: 10px;
+    border-left: 3px solid #eee;
+    padding-left: 15px;
+    color: #333;
 }
